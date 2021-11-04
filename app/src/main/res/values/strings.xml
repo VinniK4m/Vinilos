@@ -1,3 +1,7 @@
 <resources>
-    <string name="app_name">Vinilos</string>
+    <string name="app_name">Vinilos - Móvil</string>
+    <string name="descripcion">Aplicación para coleccionistas de música </string>
+    <string name="grupo">Desarrollado por: 4bidden </string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
