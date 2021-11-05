@@ -4,15 +4,13 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.annotation.LayoutRes
 import androidx.databinding.DataBindingUtil
-import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import co.edu.uniandes.fourbidden.vinilos.R
 import co.edu.uniandes.fourbidden.vinilos.databinding.ItemAlbumBinding
 import co.edu.uniandes.fourbidden.vinilos.modelo.Album
-import co.edu.uniandes.fourbidden.vinilos.vista.fragmentos.AlbumFragmentDirections
 
-class AlbumsAdapter: RecyclerView.Adapter<AlbumsAdapter.AlbumViewHolder>() {
-    var albums :List<Album> = emptyList()
+class DetalleAlbumAdapter: RecyclerView.Adapter<DetalleAlbumAdapter.AlbumViewHolder>() {
+    var album :Album ? = null
         set(value) {
             field = value
             notifyDataSetChanged()
@@ -28,18 +26,21 @@ class AlbumsAdapter: RecyclerView.Adapter<AlbumsAdapter.AlbumViewHolder>() {
 
     override fun onBindViewHolder(holder: AlbumViewHolder, position: Int) {
         holder.viewDataBinding.also {
-            it.album  = albums[position]
+            it.album  = album
         }
-        holder.viewDataBinding.root.setOnClickListener {
-            val action = AlbumFragmentDirections.actionAlbumFragmentToFragmentDetalleAlbum(albums[position].id)
+        /*holder.viewDataBinding.root.setOnClickListener {
+            val action = AlbumFragmentDirections.actionAlbumFragmentToCommentFragment(albums[position].id)
             // Navigate using that action
             holder.viewDataBinding.root.findNavController().navigate(action)
-        }
+        }*/
     }
 
+
     override fun getItemCount(): Int {
-        return albums.size
+        return 1
     }
+
+
     class AlbumViewHolder(val viewDataBinding: ItemAlbumBinding) :
         RecyclerView.ViewHolder(viewDataBinding.root) {
         companion object {
@@ -47,5 +48,7 @@ class AlbumsAdapter: RecyclerView.Adapter<AlbumsAdapter.AlbumViewHolder>() {
             val LAYOUT = R.layout.item_album
         }
     }
+
+
 
 }

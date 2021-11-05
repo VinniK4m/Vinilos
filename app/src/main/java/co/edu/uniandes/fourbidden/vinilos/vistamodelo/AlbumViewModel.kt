@@ -1,16 +1,21 @@
 package co.edu.uniandes.fourbidden.vinilos.vistamodelo
 
 import android.app.Application
+
 import android.os.Build
 import androidx.annotation.RequiresApi
-
 import androidx.lifecycle.*
+
+
 import co.edu.uniandes.fourbidden.vinilos.modelo.Album
+import co.edu.uniandes.fourbidden.vinilos.modelo.repository.AlbumRepository
 import co.edu.uniandes.fourbidden.vinilos.modelo.servicio.ServiceAdapter
 
+@RequiresApi(Build.VERSION_CODES.O)
 class AlbumViewModel (application: Application) :  AndroidViewModel(application) {
 
     private val _albums = MutableLiveData<List<Album>>()
+    private val _albumrepository = AlbumRepository(application)
 
     val albums: LiveData<List<Album>>
         get() = _albums
@@ -31,8 +36,7 @@ class AlbumViewModel (application: Application) :  AndroidViewModel(application)
 
     @RequiresApi(Build.VERSION_CODES.O)
     private fun refreshDataFromNetwork() {
-        ServiceAdapter.getInstance(getApplication()).getAlbums({
-            _albums.postValue(it)
+        _albumrepository.refreshDataAlbums( { _albums.postValue(it)
             _eventNetworkError.value = false
             _isNetworkErrorShown.value = false
         },{
