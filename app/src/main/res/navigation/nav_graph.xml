@@ -20,9 +20,9 @@
         android:id="@+id/fragmentDetalleAlbum"
         android:name="co.edu.uniandes.fourbidden.vinilos.vista.fragmentos.DetalleAlbumFragment"
         android:label="fragment_detalle_album"
-        tools:layout="@layout/fragment_detalle_album" >
+        tools:layout="@layout/detalle_album" >
         <argument
             android:name="albumId"
-            app:argType="integer" />
+            app:argType="string" />
     </fragment>
 </navigation>

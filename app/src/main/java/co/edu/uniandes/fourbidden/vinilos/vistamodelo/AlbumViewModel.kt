@@ -1,15 +1,12 @@
 package co.edu.uniandes.fourbidden.vinilos.vistamodelo
 
-import android.app.Application
 
+import android.app.Application
 import android.os.Build
 import androidx.annotation.RequiresApi
 import androidx.lifecycle.*
-
-
 import co.edu.uniandes.fourbidden.vinilos.modelo.Album
 import co.edu.uniandes.fourbidden.vinilos.modelo.repository.AlbumRepository
-import co.edu.uniandes.fourbidden.vinilos.modelo.servicio.ServiceAdapter
 
 @RequiresApi(Build.VERSION_CODES.O)
 class AlbumViewModel (application: Application) :  AndroidViewModel(application) {

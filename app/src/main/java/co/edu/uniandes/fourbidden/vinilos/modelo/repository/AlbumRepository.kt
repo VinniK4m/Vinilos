@@ -21,8 +21,8 @@ class AlbumRepository(val application: Application) {
 
 
     @RequiresApi(Build.VERSION_CODES.O)
-    fun refreshDataAlbum(albumId: Int, callback:(Album)->Unit, onError:(VolleyError)->Unit) {
-        ServiceAdapter.getInstance(application).getAlbum(albumId,{
+    fun refreshDataAlbum(albumId: String, callback:(Album)->Unit, onError:(VolleyError)->Unit) {
+        ServiceAdapter.getInstance(application).getAlbum( Integer.parseInt(albumId),{
             callback(it)
         },onError)
     }

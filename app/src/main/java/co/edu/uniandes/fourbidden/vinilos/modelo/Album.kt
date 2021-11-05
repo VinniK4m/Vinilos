@@ -4,7 +4,7 @@ import java.time.LocalDate
 import java.util.*
 
 data class Album (
-    val id: Int,
+    val id: String,
     val name: String,
     val cover: String,
     val releaseDate: LocalDate,

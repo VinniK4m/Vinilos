@@ -26,14 +26,14 @@
                     android:layout_height="match_parent"
                     android:orientation="vertical">
                     <ImageView
+                        android:id="@+id/cover"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:src="@{album.cover}"
                         android:contentDescription="@{album.name}"/>
 
 
                     <TextView
-                        android:id="@+id/textView6"
+                        android:id="@+id/name"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="@{album.name}" />

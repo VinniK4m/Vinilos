@@ -2,7 +2,6 @@ package co.edu.uniandes.fourbidden.vinilos.vista.fragmentos
 
 import android.os.Build
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,39 +11,27 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.navArgs
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import co.edu.uniandes.fourbidden.vinilos.databinding.FragmentAlbumBinding
+import co.edu.uniandes.fourbidden.vinilos.databinding.DetalleAlbumBinding
 import co.edu.uniandes.fourbidden.vinilos.modelo.Album
-import co.edu.uniandes.fourbidden.vinilos.modelo.servicio.ServiceAdapter
-import co.edu.uniandes.fourbidden.vinilos.vista.adapter.AlbumsAdapter
-import co.edu.uniandes.fourbidden.vinilos.vista.adapter.DetalleAlbumAdapter
-import co.edu.uniandes.fourbidden.vinilos.vistamodelo.AlbumViewModel
 import co.edu.uniandes.fourbidden.vinilos.vistamodelo.DetalleAlbumViewModel
-import co.edu.uniandes.fourbidden.vinilos.databinding.FragmentDetalleAlbumBinding
+import com.squareup.picasso.Picasso
 
 class DetalleAlbumFragment : Fragment() {
 
-    private var _binding: FragmentDetalleAlbumBinding? = null
+    private var _binding: DetalleAlbumBinding? = null
     private val binding get() = _binding!!
-    private lateinit var recyclerView: RecyclerView
     private lateinit var viewModel: DetalleAlbumViewModel
-    private var viewModelAdapter: DetalleAlbumAdapter? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = FragmentDetalleAlbumBinding.inflate(inflater, container, false)
+        _binding = DetalleAlbumBinding.inflate(inflater, container, false)
         val view = binding.root
-        viewModelAdapter = DetalleAlbumAdapter()
         return view
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        recyclerView = binding.albumRv
-        recyclerView.layoutManager = LinearLayoutManager(context)
-        recyclerView.adapter = viewModelAdapter
     }
 
     @RequiresApi(Build.VERSION_CODES.O)
@@ -59,12 +46,11 @@ class DetalleAlbumFragment : Fragment() {
         viewModel = ViewModelProvider(this, DetalleAlbumViewModel.Factory(activity.application, args.albumId)).get(
             DetalleAlbumViewModel::class.java)
 
-
         viewModel.album.observe(viewLifecycleOwner, Observer<Album> {
+            binding.album = it
 
-            it.apply {
-                viewModelAdapter!!.album = this
-            }
+            Picasso.get().load(binding.album?.cover).into(binding.cover)
+
         })
         viewModel.eventNetworkError.observe(viewLifecycleOwner, Observer<Boolean> { isNetworkError ->
             if (isNetworkError) onNetworkError()

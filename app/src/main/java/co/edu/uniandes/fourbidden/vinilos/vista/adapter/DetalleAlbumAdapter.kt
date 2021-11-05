@@ -33,11 +33,6 @@ class DetalleAlbumAdapter: RecyclerView.Adapter<DetalleAlbumAdapter.AlbumViewHol
             val imageView = holder.itemView.findViewById<ImageView>(R.id.album_cover)
             Picasso.get().load(album?.cover).into(imageView)
         }
-        /*holder.viewDataBinding.root.setOnClickListener {
-            val action = AlbumFragmentDirections.actionAlbumFragmentToCommentFragment(albums[position].id)
-            // Navigate using that action
-            holder.viewDataBinding.root.findNavController().navigate(action)
-        }*/
     }
 
 
@@ -50,7 +45,7 @@ class DetalleAlbumAdapter: RecyclerView.Adapter<DetalleAlbumAdapter.AlbumViewHol
         RecyclerView.ViewHolder(viewDataBinding.root) {
         companion object {
             @LayoutRes
-            val LAYOUT = R.layout.item_album
+            val LAYOUT = R.layout.detalle_album
         }
     }
 

@@ -2,11 +2,8 @@ package co.edu.uniandes.fourbidden.vinilos.modelo.servicio
 
 import android.content.Context
 import android.os.Build
-import android.util.Log
 import androidx.annotation.RequiresApi
 import co.edu.uniandes.fourbidden.vinilos.modelo.Album
-import org.json.JSONObject
-import org.json.JSONArray
 import com.android.volley.Request
 import com.android.volley.RequestQueue
 import com.android.volley.Response
@@ -14,9 +11,10 @@ import com.android.volley.VolleyError
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
+import org.json.JSONArray
+import org.json.JSONObject
 import java.time.LocalDate
 import java.time.LocalDate.parse
-import java.util.*
 
 @Suppress("RedundantSamConstructor")
 class ServiceAdapter constructor(context: Context) {
@@ -31,7 +29,6 @@ class ServiceAdapter constructor(context: Context) {
             }
     }
     private val requestQueue: RequestQueue by lazy {
-        // applicationContext keeps you from leaking the Activity or BroadcastReceiver if someone passes one in.
         Volley.newRequestQueue(context.applicationContext)
     }
     @RequiresApi(Build.VERSION_CODES.O)
@@ -45,7 +42,7 @@ class ServiceAdapter constructor(context: Context) {
                     val fecha : String =  item!!.getString("releaseDate").substringBefore(delimiter = "T", missingDelimiterValue = "2000-01-01")
 
                     var releaseDate : LocalDate = parse(fecha)
-                    list.add(i, Album(id = item.getInt("id"),name = item.getString("name"), cover = item.getString("cover"), recordLabel = item.getString("recordLabel"), releaseDate = releaseDate, genre = item.getString("genre"), description = item.getString("description")))
+                    list.add(i, Album(id = item.getString("id"),name = item.getString("name"), cover = item.getString("cover"), recordLabel = item.getString("recordLabel"), releaseDate = releaseDate, genre = item.getString("genre"), description = item.getString("description")))
                 }
                 onComplete(list)
             },
@@ -64,7 +61,7 @@ class ServiceAdapter constructor(context: Context) {
 
                 var releaseDate = parse(fecha)
 
-                val album = Album(id = resp.getInt("id"),
+                val album = Album(id = resp.getString("id"),
                     name = resp.getString("name"),
                     cover = resp.getString("cover"),
                     recordLabel = resp.getString("recordLabel"),
