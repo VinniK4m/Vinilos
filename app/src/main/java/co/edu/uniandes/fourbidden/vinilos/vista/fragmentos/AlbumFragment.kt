@@ -16,6 +16,7 @@ import co.edu.uniandes.fourbidden.vinilos.modelo.Album
 import co.edu.uniandes.fourbidden.vinilos.vista.adapter.AlbumsAdapter
 import co.edu.uniandes.fourbidden.vinilos.vistamodelo.AlbumViewModel
 import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.GridLayoutManager
 import co.edu.uniandes.fourbidden.vinilos.databinding.FragmentAlbumBinding
 
 /**
@@ -41,7 +42,7 @@ class AlbumFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         recyclerView = binding.albumsRv
-        recyclerView.layoutManager = LinearLayoutManager(context)
+        recyclerView.layoutManager = GridLayoutManager(context, 3)//LinearLayoutManager(context)
         recyclerView.adapter = viewModelAdapter
     }
 

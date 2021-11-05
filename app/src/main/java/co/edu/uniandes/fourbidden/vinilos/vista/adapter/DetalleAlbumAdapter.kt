@@ -2,12 +2,14 @@ package co.edu.uniandes.fourbidden.vinilos.vista.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.ImageView
 import androidx.annotation.LayoutRes
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import co.edu.uniandes.fourbidden.vinilos.R
 import co.edu.uniandes.fourbidden.vinilos.databinding.ItemAlbumBinding
 import co.edu.uniandes.fourbidden.vinilos.modelo.Album
+import com.squareup.picasso.Picasso
 
 class DetalleAlbumAdapter: RecyclerView.Adapter<DetalleAlbumAdapter.AlbumViewHolder>() {
     var album :Album ? = null
@@ -15,6 +17,7 @@ class DetalleAlbumAdapter: RecyclerView.Adapter<DetalleAlbumAdapter.AlbumViewHol
             field = value
             notifyDataSetChanged()
         }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AlbumViewHolder {
         val withDataBinding: ItemAlbumBinding = DataBindingUtil.inflate(
             LayoutInflater.from(parent.context),
@@ -27,6 +30,8 @@ class DetalleAlbumAdapter: RecyclerView.Adapter<DetalleAlbumAdapter.AlbumViewHol
     override fun onBindViewHolder(holder: AlbumViewHolder, position: Int) {
         holder.viewDataBinding.also {
             it.album  = album
+            val imageView = holder.itemView.findViewById<ImageView>(R.id.album_cover)
+            Picasso.get().load(album?.cover).into(imageView)
         }
         /*holder.viewDataBinding.root.setOnClickListener {
             val action = AlbumFragmentDirections.actionAlbumFragmentToCommentFragment(albums[position].id)
