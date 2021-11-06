@@ -7,92 +7,135 @@
             <variable name="album" type="co.edu.uniandes.fourbidden.vinilos.modelo.Album"/>
         </data>
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+    <androidx.constraintlayout.widget.ConstraintLayout
 
-            <com.google.android.material.card.MaterialCardView
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:background="@android:color/transparent"
+        android:backgroundTint="@android:color/transparent">
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginEnd="5dp"
+            android:layout_marginBottom="12dp"
+            android:background="@android:color/transparent"
+            android:backgroundTint="@android:color/transparent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:strokeWidth="0dp">
+
+            <ScrollView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:strokeColor="@color/stroke_color"
-                app:strokeWidth="1dp">
+                android:layout_height="match_parent">
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/transparent"
                     android:orientation="vertical">
 
                     <TextView
                         android:id="@+id/name"
+                        style="@style/TextAppearance.AppCompat.Large"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
                         android:gravity="center"
-                        style="@style/TextAppearance.AppCompat.Large"
-                        android:text="@{album.name}"/>
+                        android:text="@{album.name}" />
 
                     <ImageView
                         android:id="@+id/cover"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:contentDescription="@{album.name}"/>
+                        android:layout_width="150dp"
+                        android:layout_height="150dp"
+                        android:layout_gravity="center"
+                        android:contentDescription="@{album.name}" />
+
                     <TextView
                         android:id="@+id/lgenre"
+                        style="@style/textonormal"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        style="@style/textonormal"
-                        android:text="Género :"/>
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginTop="5dp"
+                        android:text="Género :" />
 
                     <TextView
                         android:id="@+id/textView4"
+                        style="@style/TextAppearance.AppCompat.Large"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        style="@style/TextAppearance.AppCompat.Large"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginTop="5dp"
                         android:text="@{album.genre}" />
+
                     <TextView
                         android:id="@+id/lDisquera"
+                        style="@style/textonormal"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        style="@style/textonormal"
-                        android:text="Disquera :"/>
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginTop="5dp"
+                        android:text="Disquera :" />
+
                     <TextView
                         android:id="@+id/textView3"
+                        style="@style/TextAppearance.AppCompat.Large"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        style="@style/TextAppearance.AppCompat.Large"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginTop="5dp"
                         android:text="@{album.recordLabel}" />
+
                     <TextView
                         android:id="@+id/lfecha"
+                        style="@style/textonormal"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        style="@style/textonormal"
-                        android:text="Fecha creación :"/>
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginTop="5dp"
+                        android:text="Fecha creación :" />
+
                     <TextView
                         android:id="@+id/releasedate"
+                        style="@style/TextAppearance.AppCompat.Large"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        style="@style/TextAppearance.AppCompat.Large"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginTop="5dp"
                         android:text="@{album.releaseDate.toString()}" />
 
                     <TextView
                         android:id="@+id/ldescrip"
+                        style="@style/textonormal"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        style="@style/textonormal"
-                        android:text="Descripción :"/>
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginTop="5dp"
+                        android:text="Descripción :" />
 
                     <TextView
                         android:id="@+id/textView5"
+                        style="@style/TextAppearance.AppCompat.Medium"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        style="@style/TextAppearance.AppCompat.Medium"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginRight="15dp"
+                        android:layout_marginBottom="15dp"
                         android:text="@{album.description}" />
 
 
                 </LinearLayout>
-            </com.google.android.material.card.MaterialCardView>
-        </androidx.constraintlayout.widget.ConstraintLayout>
+            </ScrollView>
+
+        </com.google.android.material.card.MaterialCardView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
     </layout>
