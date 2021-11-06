@@ -7,6 +7,7 @@ import androidx.annotation.LayoutRes
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import co.edu.uniandes.fourbidden.vinilos.R
+import co.edu.uniandes.fourbidden.vinilos.databinding.DetalleAlbumBinding
 import co.edu.uniandes.fourbidden.vinilos.databinding.ItemAlbumBinding
 import co.edu.uniandes.fourbidden.vinilos.modelo.Album
 import com.squareup.picasso.Picasso
@@ -19,7 +20,7 @@ class DetalleAlbumAdapter: RecyclerView.Adapter<DetalleAlbumAdapter.AlbumViewHol
         }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AlbumViewHolder {
-        val withDataBinding: ItemAlbumBinding = DataBindingUtil.inflate(
+        val withDataBinding: DetalleAlbumBinding = DataBindingUtil.inflate(
             LayoutInflater.from(parent.context),
             AlbumViewHolder.LAYOUT,
             parent,
@@ -41,7 +42,7 @@ class DetalleAlbumAdapter: RecyclerView.Adapter<DetalleAlbumAdapter.AlbumViewHol
     }
 
 
-    class AlbumViewHolder(val viewDataBinding: ItemAlbumBinding) :
+    class AlbumViewHolder(val viewDataBinding: DetalleAlbumBinding) :
         RecyclerView.ViewHolder(viewDataBinding.root) {
         companion object {
             @LayoutRes

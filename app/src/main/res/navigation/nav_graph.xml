@@ -8,7 +8,7 @@
     <fragment
         android:id="@+id/albumFragment"
         android:name="co.edu.uniandes.fourbidden.vinilos.vista.fragmentos.AlbumFragment"
-        android:label="album_fragment"
+        android:label="@string/titulolistaalbum"
         tools:layout="@layout/fragment_album" >
         <action
             android:id="@+id/action_albumFragment_to_fragmentDetalleAlbum"
@@ -19,7 +19,7 @@
     <fragment
         android:id="@+id/fragmentDetalleAlbum"
         android:name="co.edu.uniandes.fourbidden.vinilos.vista.fragmentos.DetalleAlbumFragment"
-        android:label="fragment_detalle_album"
+        android:label="@string/titulodetallealbum"
         tools:layout="@layout/detalle_album" >
         <argument
             android:name="albumId"

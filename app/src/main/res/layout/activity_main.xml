@@ -14,11 +14,9 @@
         android:layout_width="298dp"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:fontFamily="sans-serif-black"
         android:text="@string/descripcion"
-        android:textSize="20sp"
         app:autoSizeTextType="none"
-        app:fontFamily="sans-serif-black" />
+        style="@style/textoblack"/>
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/bingreso"

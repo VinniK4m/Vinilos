@@ -4,4 +4,6 @@
     <string name="grupo">Desarrollado por: 4bidden </string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="titulodetallealbum">Detalle del álbum</string>
+    <string name="titulolistaalbum">Listado de álbumes</string>
 </resources>

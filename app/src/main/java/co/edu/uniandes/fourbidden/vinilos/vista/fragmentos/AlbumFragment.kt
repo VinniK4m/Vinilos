@@ -41,6 +41,7 @@ class AlbumFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         recyclerView = binding.albumsRv
         recyclerView.layoutManager = GridLayoutManager(context, 3)//LinearLayoutManager(context)
+        recyclerView.layoutManager
         recyclerView.adapter = viewModelAdapter
     }
 
