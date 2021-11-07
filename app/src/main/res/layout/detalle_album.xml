@@ -17,129 +17,159 @@
         android:background="@android:color/transparent"
         android:backgroundTint="@android:color/transparent">
 
-        <com.google.android.material.card.MaterialCardView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+
+        <TextView
+            android:id="@+id/lgenre"
+            style="@style/textonormal"
+            android:layout_width="100dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="11dp"
+            android:layout_marginTop="10dp"
+            android:text="Género :"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/name" />
+
+        <TextView
+            android:id="@+id/releasedate"
+            style="@style/TextAppearance.AppCompat.Large"
+            android:layout_width="130dp"
+            android:layout_height="30dp"
             android:layout_marginStart="5dp"
-            android:layout_marginTop="12dp"
-            android:layout_marginEnd="5dp"
-            android:layout_marginBottom="12dp"
-            android:background="@android:color/transparent"
-            android:backgroundTint="@android:color/transparent"
+            android:layout_marginTop="10dp"
+            android:text="@{album.releaseDate.toString()}"
+            app:layout_constraintStart_toEndOf="@+id/lfecha"
+            app:layout_constraintTop_toBottomOf="@+id/textView3" />
+
+        <TextView
+            android:id="@+id/lDisquera"
+            style="@style/textonormal"
+            android:layout_width="100dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="11dp"
+            android:layout_marginTop="10dp"
+            android:text="Disquera :"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/lgenre" />
+
+        <TextView
+            android:id="@+id/textView3"
+            style="@style/TextAppearance.AppCompat.Large"
+            android:layout_width="130dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="10dp"
+            android:text="@{album.recordLabel}"
+            app:layout_constraintStart_toEndOf="@+id/lDisquera"
+            app:layout_constraintTop_toBottomOf="@+id/lgenre" />
+
+        <TextView
+            android:id="@+id/ldescrip"
+            style="@style/textonormal"
+            android:layout_width="130dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="10dp"
+            android:text="Descripción :"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/lfecha" />
+
+        <ImageView
+            android:id="@+id/cover"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="40dp"
+            android:layout_marginEnd="4dp"
+            android:contentDescription="@{album.name}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textView5"
+            style="@style/TextAppearance.AppCompat.Medium"
+            android:layout_width="0dp"
+            android:layout_height="200dp"
+            android:layout_marginStart="11dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="11dp"
+            android:text="@{album.description}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ldescrip"
+            tools:ignore="MissingConstraints" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/trackRv"
+            android:layout_width="0dp"
+            android:layout_height="160dp"
+            android:layout_marginStart="11dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="11dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:strokeWidth="0dp">
+            app:layout_constraintTop_toBottomOf="@+id/ltrack"
+            tools:listitem="@layout/track_album" />
 
-            <ScrollView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
+        <TextView
+            android:id="@+id/lfecha"
+            style="@style/textonormal"
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="11dp"
+            android:layout_marginTop="10dp"
+            android:text="Fecha creación :"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/lDisquera" />
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@android:color/transparent"
-                    android:orientation="vertical">
+        <TextView
+            android:id="@+id/textView4"
+            style="@style/TextAppearance.AppCompat.Large"
+            android:layout_width="130dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="10dp"
+            android:text="@{album.genre}"
+            app:layout_constraintStart_toEndOf="@+id/lgenre"
+            app:layout_constraintTop_toBottomOf="@+id/name"
+            tools:ignore="MissingConstraints" />
 
-                    <TextView
-                        android:id="@+id/name"
-                        style="@style/TextAppearance.AppCompat.Large"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="5dp"
-                        android:gravity="center"
-                        android:text="@{album.name}" />
+        <TextView
+            android:id="@+id/name"
+            style="@style/TextAppearance.AppCompat.Large"
+            android:layout_width="300dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="16dp"
+            android:gravity="center"
+            android:text="@{album.name}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-                    <ImageView
-                        android:id="@+id/cover"
-                        android:layout_width="150dp"
-                        android:layout_height="150dp"
-                        android:layout_gravity="center"
-                        android:contentDescription="@{album.name}" />
+        <TextView
+            android:id="@+id/ltrack"
+            style="@style/textonormal"
+            android:layout_width="250dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="16dp"
+            android:text="Track "
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView5" />
 
-                    <TextView
-                        android:id="@+id/lgenre"
-                        style="@style/textonormal"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="15dp"
-                        android:layout_marginTop="5dp"
-                        android:text="Género :" />
+        <TextView
+            android:id="@+id/lDuracion"
+            style="@style/textonormal"
+            android:layout_width="100dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="16dp"
+            android:text="Duración "
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/ltrack"
+            app:layout_constraintTop_toBottomOf="@+id/textView5" />
 
-                    <TextView
-                        android:id="@+id/textView4"
-                        style="@style/TextAppearance.AppCompat.Large"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="15dp"
-                        android:layout_marginTop="5dp"
-                        android:text="@{album.genre}" />
 
-                    <TextView
-                        android:id="@+id/lDisquera"
-                        style="@style/textonormal"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="15dp"
-                        android:layout_marginTop="5dp"
-                        android:text="Disquera :" />
-
-                    <TextView
-                        android:id="@+id/textView3"
-                        style="@style/TextAppearance.AppCompat.Large"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="15dp"
-                        android:layout_marginTop="5dp"
-                        android:text="@{album.recordLabel}" />
-
-                    <TextView
-                        android:id="@+id/lfecha"
-                        style="@style/textonormal"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="15dp"
-                        android:layout_marginTop="5dp"
-                        android:text="Fecha creación :" />
-
-                    <TextView
-                        android:id="@+id/releasedate"
-                        style="@style/TextAppearance.AppCompat.Large"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="15dp"
-                        android:layout_marginTop="5dp"
-                        android:text="@{album.releaseDate.toString()}" />
-
-                    <TextView
-                        android:id="@+id/ldescrip"
-                        style="@style/textonormal"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="15dp"
-                        android:layout_marginTop="5dp"
-                        android:text="Descripción :" />
-
-                    <TextView
-                        android:id="@+id/textView5"
-                        style="@style/TextAppearance.AppCompat.Medium"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="15dp"
-                        android:layout_marginTop="5dp"
-                        android:layout_marginRight="15dp"
-                        android:layout_marginBottom="15dp"
-                        android:text="@{album.description}" />
-
-                    <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/trackRv"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        tools:listitem="@layout/track_album"/>
-                </LinearLayout>
-            </ScrollView>
-
-        </com.google.android.material.card.MaterialCardView>
     </androidx.constraintlayout.widget.ConstraintLayout>
     </layout>

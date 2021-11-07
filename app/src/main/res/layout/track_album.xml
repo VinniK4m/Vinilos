@@ -17,73 +17,28 @@
         android:background="@android:color/transparent"
         android:backgroundTint="@android:color/transparent">
 
-        <com.google.android.material.card.MaterialCardView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="5dp"
-            android:layout_marginTop="12dp"
-            android:layout_marginEnd="5dp"
-            android:layout_marginBottom="12dp"
-            android:background="@android:color/transparent"
-            android:backgroundTint="@android:color/transparent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
+
+        <TextView
+            android:id="@+id/trackName"
+            style="@style/TextAppearance.AppCompat.Large"
+            android:layout_width="250dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="5dp"
+            android:text="@{track.name}"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:strokeWidth="0dp">
-
-            <ScrollView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@android:color/transparent"
-                    android:orientation="vertical">
+            app:layout_constraintTop_toTopOf="parent" />
 
 
-
-
-                    <TextView
-                        android:id="@+id/lgenre"
-                        style="@style/textonormal"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="15dp"
-                        android:layout_marginTop="5dp"
-                        android:text="Track :" />
-
-                    <TextView
-                        android:id="@+id/trackName"
-                        style="@style/TextAppearance.AppCompat.Large"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="15dp"
-                        android:layout_marginTop="5dp"
-                        android:text="@{track.name}" />
-
-                    <TextView
-                        android:id="@+id/lDisquera"
-                        style="@style/textonormal"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="15dp"
-                        android:layout_marginTop="5dp"
-                        android:text="Duración :" />
-
-                    <TextView
-                        android:id="@+id/textView3"
-                        style="@style/TextAppearance.AppCompat.Large"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="15dp"
-                        android:layout_marginTop="5dp"
-                        android:text="@{track.duration}" />
-
-                </LinearLayout>
-            </ScrollView>
-
-        </com.google.android.material.card.MaterialCardView>
+        <TextView
+            android:id="@+id/trackduraction"
+            style="@style/TextAppearance.AppCompat.Large"
+            android:layout_width="100dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="5dp"
+            android:text="@{track.duration}"
+            app:layout_constraintStart_toEndOf="@+id/trackName"
+            app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

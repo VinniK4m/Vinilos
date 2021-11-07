@@ -2,7 +2,6 @@ package co.edu.uniandes.fourbidden.vinilos.modelo.servicio
 
 import android.content.Context
 import android.os.Build
-import android.util.Log
 import androidx.annotation.RequiresApi
 import co.edu.uniandes.fourbidden.vinilos.modelo.Album
 import co.edu.uniandes.fourbidden.vinilos.modelo.Track
@@ -13,10 +12,8 @@ import com.android.volley.VolleyError
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
-import com.google.gson.GsonBuilder
 import org.json.JSONArray
 import org.json.JSONObject
-import java.lang.NullPointerException
 import java.time.LocalDate
 import java.time.LocalDate.parse
 
