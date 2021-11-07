@@ -132,7 +132,11 @@
                         android:layout_marginBottom="15dp"
                         android:text="@{album.description}" />
 
-
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/trackRv"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        tools:listitem="@layout/track_album"/>
                 </LinearLayout>
             </ScrollView>
 

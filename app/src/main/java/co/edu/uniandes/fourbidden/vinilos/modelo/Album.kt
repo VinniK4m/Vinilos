@@ -10,5 +10,6 @@ data class Album (
     val releaseDate: LocalDate,
     val description: String,
     val genre: String,
-    val recordLabel: String
+    val recordLabel: String,
+    var tracks: List<Track>
 )
