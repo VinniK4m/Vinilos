@@ -13,7 +13,7 @@
         android:id="@+id/imageView"
         android:layout_width="40dp"
         android:layout_height="181dp"
-        android:layout_marginStart="100dp"
+        android:layout_marginStart="75dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/logo" />
@@ -22,14 +22,13 @@
         android:id="@+id/descripcion"
         style="@style/textonormal"
         android:layout_width="298dp"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:layout_marginStart="31dp"
-        android:layout_marginTop="87dp"
+        android:layout_height="43dp"
+        android:layout_marginBottom="350dp"
         android:text="@string/descripcion"
         app:autoSizeTextType="none"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView"
         tools:ignore="MissingConstraints" />
 
     <ImageView
@@ -46,10 +45,11 @@
         style="@style/titulo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="144dp"
-        android:layout_marginTop="38dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="40dp"
+        android:background="@android:color/transparent"
         android:text="vinilos"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="@id/imageView"
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="MissingConstraints" />
 
