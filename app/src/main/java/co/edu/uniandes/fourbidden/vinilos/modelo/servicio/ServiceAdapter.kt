@@ -4,6 +4,7 @@ import android.content.Context
 import android.os.Build
 import androidx.annotation.RequiresApi
 import co.edu.uniandes.fourbidden.vinilos.modelo.Album
+import co.edu.uniandes.fourbidden.vinilos.modelo.Track
 import com.android.volley.Request
 import com.android.volley.RequestQueue
 import com.android.volley.Response
@@ -42,7 +43,11 @@ class ServiceAdapter constructor(context: Context) {
                     val fecha : String =  item!!.getString("releaseDate").substringBefore(delimiter = "T", missingDelimiterValue = "2000-01-01")
 
                     var releaseDate : LocalDate = parse(fecha)
-                    list.add(i, Album(id = item.getString("id"),name = item.getString("name"), cover = item.getString("cover"), recordLabel = item.getString("recordLabel"), releaseDate = releaseDate, genre = item.getString("genre"), description = item.getString("description")))
+                    val listTrack = mutableListOf<Track>()
+
+
+
+                    list.add(i, Album(id = item.getString("id"),name = item.getString("name"), cover = item.getString("cover"), recordLabel = item.getString("recordLabel"), releaseDate = releaseDate, genre = item.getString("genre"), description = item.getString("description"), tracks = listTrack))
                 }
                 onComplete(list)
             },
@@ -60,6 +65,12 @@ class ServiceAdapter constructor(context: Context) {
                 val fecha : String =  resp!!.getString("releaseDate").substringBefore(delimiter = "T", missingDelimiterValue = "2000-01-01")
 
                 var releaseDate = parse(fecha)
+                val listTrack = mutableListOf<Track>()
+                val tracks = resp.getJSONArray("tracks")
+                for (j in 0 until tracks.length()) {
+                    val itemtrack = tracks.getJSONObject(j)
+                    listTrack.add(j, Track(id = itemtrack.getInt("id"), name = itemtrack.getString("name"),duration = itemtrack.getString("duration")))
+                }
 
                 val album = Album(id = resp.getString("id"),
                     name = resp.getString("name"),
@@ -67,7 +78,9 @@ class ServiceAdapter constructor(context: Context) {
                     recordLabel = resp.getString("recordLabel"),
                     releaseDate = releaseDate,
                     genre = resp.getString("genre"),
-                    description = resp.getString("description"))
+                    description = resp.getString("description"),
+                    tracks = listTrack,
+                )
 
                 onComplete(album)
             },
