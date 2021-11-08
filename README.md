@@ -1,7 +1,7 @@
 # Vinilos
 App vinilos movil
 
-Instrucciones para la generación de AK. 
+Instrucciones para la generación de APK. 
 
 1. Clonar el proyecto desde la página https://github.com/VinniK4m/Vinilos/ allí encontrará la información del proyecto fuentes y configuración, tal como se muestra en la siguiente imagen. 
 - ![instruccion1](https://user-images.githubusercontent.com/78054065/140674630-fbcb7245-97fb-461e-9a62-d2be755b5060.PNG)
