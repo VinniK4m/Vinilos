@@ -6,4 +6,6 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="titulodetallealbum">Detalle del álbum</string>
     <string name="titulolistaalbum">Listado de álbumes</string>
+    <string name="titulolistamusico">Listado de músicos</string>
+    <string name="titulodetallemusico">Detalle músico</string>
 </resources>

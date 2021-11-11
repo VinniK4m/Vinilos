@@ -5,31 +5,20 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/fondo"
-    tools:context=".vista.AlbumActivity">
+    tools:context=".vista.MusicoActivity">
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/nav_host_fragment"
         android:name="androidx.navigation.fragment.NavHostFragment"
-        android:layout_width="397dp"
-        android:layout_height="656dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:layout_marginStart="5dp"
         android:layout_marginEnd="5dp"
-        android:layout_marginBottom="25dp"
         app:defaultNavHost="true"
-        app:layout_constraintBottom_toTopOf="@+id/btMusico"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:navGraph="@navigation/nav_graph" />
-
-    <Button
-        android:id="@+id/btMusico"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="5dp"
-        android:text="Musicos"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:navGraph="@navigation/nav_graph_musico"
+        tools:layout_editor_absoluteY="64dp" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
