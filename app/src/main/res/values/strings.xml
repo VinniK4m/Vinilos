@@ -8,4 +8,7 @@
     <string name="titulolistaalbum">Listado de álbumes</string>
     <string name="titulolistamusico">Listado de músicos</string>
     <string name="titulodetallemusico">Detalle músico</string>
+    <string name="opAlbumes">Álbumes</string>
+    <string name="opMusicos">Músicos</string>
+    <string name="opColeccionistas">Coleccionistas</string>
 </resources>
