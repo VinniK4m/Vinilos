@@ -7,6 +7,9 @@ import androidx.annotation.RequiresApi
 import androidx.lifecycle.*
 import co.edu.uniandes.fourbidden.vinilos.modelo.Musico
 import co.edu.uniandes.fourbidden.vinilos.modelo.repository.MusicoRepository
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 
 @RequiresApi(Build.VERSION_CODES.O)
@@ -32,15 +35,26 @@ class MusicoViewModel (application: Application) :  AndroidViewModel(application
         refreshDataFromNetwork()
     }
 
-    @RequiresApi(Build.VERSION_CODES.O)
-    private fun refreshDataFromNetwork() {
-        _musciorepository.refreshDataMusicos( { _musicos.postValue(it)
-            _eventNetworkError.value = false
-            _isNetworkErrorShown.value = false
-        },{
+     private fun refreshDataFromNetwork() {
+        try {
+            viewModelScope.launch (Dispatchers.Default){
+                withContext(Dispatchers.IO){
+                    var data = _musciorepository.refreshDataMusicos()
+                    _musicos.postValue(data)
+                }
+                _eventNetworkError.postValue(false)
+                _isNetworkErrorShown.postValue(false)
+            }
+        }
+        catch (e:Exception){
             _eventNetworkError.value = true
-        })
+        }
     }
+
+
+
+
+
 
     fun onNetworkErrorShown() {
         _isNetworkErrorShown.value = true
