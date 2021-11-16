@@ -27,6 +27,11 @@ class MusicoActivity : AppCompatActivity() {
             val activityAlbumes = Intent(this, AlbumActivity::class.java)
             startActivity(activityAlbumes)
         }
+        val btColeccionista =findViewById<Button>(R.id.btColeccionistas)
+        btColeccionista.setOnClickListener {
+            val coleccionistaActivity = Intent(this, ColeccionistaActivity::class.java)
+            startActivity(coleccionistaActivity)
+        }
 
     }
     override fun onSupportNavigateUp(): Boolean {

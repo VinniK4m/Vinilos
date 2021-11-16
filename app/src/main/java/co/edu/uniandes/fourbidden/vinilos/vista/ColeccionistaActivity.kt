@@ -10,32 +10,30 @@ import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupActionBarWithNavController
 import co.edu.uniandes.fourbidden.vinilos.R
 
-class AlbumActivity : AppCompatActivity() {
+class ColeccionistaActivity : AppCompatActivity() {
     private lateinit var navController: NavController
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_album)
+        setContentView(R.layout.activity_coleccionista)
         val navHostFragment = supportFragmentManager
             .findFragmentById(R.id.nav_host_fragment) as NavHostFragment
         navController = navHostFragment.navController
         //setSupportActionBar(findViewById(R.id.my_toolbar))
         setupActionBarWithNavController(navController)
 
+        val btAlbumes =findViewById<Button>(R.id.btAlbumes)
+        btAlbumes.setOnClickListener {
+            val activityAlbumes = Intent(this, AlbumActivity::class.java)
+            startActivity(activityAlbumes)
+        }
         val btMusico=findViewById<Button>(R.id.btMusico)
         btMusico.setOnClickListener {
             val activityMusicos = Intent(this, MusicoActivity::class.java)
             startActivity(activityMusicos)
         }
-        val btColeccionista =findViewById<Button>(R.id.btColeccionistas)
-        btColeccionista.setOnClickListener {
-            val coleccionistaActivity = Intent(this, ColeccionistaActivity::class.java)
-            startActivity(coleccionistaActivity)
-        }
     }
     override fun onSupportNavigateUp(): Boolean {
         return navController.navigateUp() || super.onSupportNavigateUp()
     }
-
-
 }
