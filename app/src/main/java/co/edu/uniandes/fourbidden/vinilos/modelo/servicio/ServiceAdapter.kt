@@ -16,6 +16,9 @@ import org.json.JSONArray
 import org.json.JSONObject
 import java.time.LocalDate
 import java.time.LocalDate.parse
+import kotlin.coroutines.resume
+import kotlin.coroutines.resumeWithException
+import kotlin.coroutines.suspendCoroutine
 
 @Suppress("RedundantSamConstructor")
 class ServiceAdapter constructor(context: Context) {
@@ -32,8 +35,10 @@ class ServiceAdapter constructor(context: Context) {
     private val requestQueue: RequestQueue by lazy {
         Volley.newRequestQueue(context.applicationContext)
     }
-    @RequiresApi(Build.VERSION_CODES.O)
-    fun getAlbums(onComplete:(resp:List<Album>)->Unit, onError: (error: VolleyError)->Unit){
+
+
+
+    suspend fun getAlbums() = suspendCoroutine<List<Album>>{ cont->
         requestQueue.add(getRequest("albums",
             Response.Listener<String> { response ->
                 val resp = JSONArray(response)
@@ -41,20 +46,17 @@ class ServiceAdapter constructor(context: Context) {
                 for (i in 0 until resp.length()) {
                     val item = resp.getJSONObject(i)
                     val fecha : String =  item!!.getString("releaseDate").substringBefore(delimiter = "T", missingDelimiterValue = "2000-01-01")
-
                     var releaseDate : LocalDate = parse(fecha)
                     val listTrack = mutableListOf<Track>()
-
-
-
                     list.add(i, Album(id = item.getString("id"),name = item.getString("name"), cover = item.getString("cover"), recordLabel = item.getString("recordLabel"), releaseDate = releaseDate, genre = item.getString("genre"), description = item.getString("description"), tracks = listTrack))
                 }
-                onComplete(list)
+                cont.resume(list)
             },
             Response.ErrorListener {
-                onError(it)
+                cont.resumeWithException(it)
             }))
     }
+
 
 
     @RequiresApi(Build.VERSION_CODES.O)

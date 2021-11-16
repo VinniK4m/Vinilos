@@ -3,19 +3,20 @@ package co.edu.uniandes.fourbidden.vinilos.modelo.repository
 import android.app.Application
 import android.os.Build
 import androidx.annotation.RequiresApi
+import co.edu.uniandes.fourbidden.vinilos.modelo.Album
 import co.edu.uniandes.fourbidden.vinilos.modelo.Musico
+import co.edu.uniandes.fourbidden.vinilos.modelo.servicio.ServiceAdapter
 import co.edu.uniandes.fourbidden.vinilos.modelo.servicio.ServiceAdapterMusico
 import com.android.volley.VolleyError
 
 
 class MusicoRepository(val application: Application) {
 
-    @RequiresApi(Build.VERSION_CODES.O)
-    fun refreshDataMusicos(callback:(List<Musico>)->Unit, onError:(VolleyError)->Unit) {
-        ServiceAdapterMusico.getInstance(application).getMusicos({
-            callback(it)
-        },onError)
+
+    suspend fun refreshDataMusicos(): List<Musico>{
+        return ServiceAdapterMusico.getInstance(application).getMusicos()
     }
+
 
 
     @RequiresApi(Build.VERSION_CODES.O)
