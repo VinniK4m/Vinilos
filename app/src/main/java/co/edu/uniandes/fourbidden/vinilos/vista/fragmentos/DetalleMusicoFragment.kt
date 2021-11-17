@@ -21,6 +21,7 @@ import co.edu.uniandes.fourbidden.vinilos.databinding.AlbumMusicoBinding
 import co.edu.uniandes.fourbidden.vinilos.databinding.DetalleMusicoBinding
 import co.edu.uniandes.fourbidden.vinilos.modelo.Album
 import co.edu.uniandes.fourbidden.vinilos.modelo.Musico
+import co.edu.uniandes.fourbidden.vinilos.modelo.Track
 import co.edu.uniandes.fourbidden.vinilos.vista.adapter.AlbumsAdapter
 import co.edu.uniandes.fourbidden.vinilos.vista.adapter.TrackAdapter
 import co.edu.uniandes.fourbidden.vinilos.vistamodelo.DetalleAlbumViewModel
@@ -66,20 +67,28 @@ class DetalleMusicoFragment : Fragment() {
 
         val args: DetalleMusicoFragmentArgs by navArgs()
 
-        viewModel = ViewModelProvider(this, DetalleMusicoViewModel.Factory(activity.application, args.musicoId)).get(
-            DetalleMusicoViewModel::class.java)
+        viewModel = ViewModelProvider(
+            this,
+            DetalleMusicoViewModel.Factory(activity.application, args.musicoId)
+        ).get(
+            DetalleMusicoViewModel::class.java
+        )
 
         viewModel.musico.observe(viewLifecycleOwner, Observer<Musico> {
             binding.musico = it
 
             Picasso.get().load(binding.musico?.image).into(binding.cover)
             //binding.tracksRv = it.tracks
-            viewModelAdapter!!.albums =it.albums
+            viewModelAdapter!!.albums = it.albums
+            Log.d("lista", it.albums.toString())
         })
-        viewModel.eventNetworkError.observe(viewLifecycleOwner, Observer<Boolean> { isNetworkError ->
-            if (isNetworkError) onNetworkError()
-        })
+        viewModel.eventNetworkError.observe(
+            viewLifecycleOwner,
+            Observer<Boolean> { isNetworkError ->
+                if (isNetworkError) onNetworkError()
+            })
     }
+
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
@@ -87,7 +96,7 @@ class DetalleMusicoFragment : Fragment() {
 
     @RequiresApi(Build.VERSION_CODES.O)
     private fun onNetworkError() {
-        if(!viewModel.isNetworkErrorShown.value!!) {
+        if (!viewModel.isNetworkErrorShown.value!!) {
             Toast.makeText(activity, "Network Error", Toast.LENGTH_LONG).show()
             viewModel.onNetworkErrorShown()
         }
