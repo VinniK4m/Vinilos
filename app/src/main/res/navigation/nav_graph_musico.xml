@@ -10,5 +10,18 @@
         android:name="co.edu.uniandes.fourbidden.vinilos.vista.fragmentos.MusicoFragment"
         android:label="@string/titulolistamusico"
         tools:layout="@layout/fragment_musico" >
+        <action
+            android:id="@+id/action_musicoFragment_to_fragmentDetalleMusico"
+            app:destination="@id/fragmentDetalleMusico" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/fragmentDetalleMusico"
+        android:name="co.edu.uniandes.fourbidden.vinilos.vista.fragmentos.DetalleMusicoFragment"
+        android:label="@string/titulodetallemusico"
+        tools:layout="@layout/detalle_musico" >
+        <argument
+            android:name="musicoId"
+            app:argType="string" />
     </fragment>
 </navigation>
