@@ -22,8 +22,8 @@ import co.edu.uniandes.fourbidden.vinilos.databinding.DetalleMusicoBinding
 import co.edu.uniandes.fourbidden.vinilos.modelo.Album
 import co.edu.uniandes.fourbidden.vinilos.modelo.Musico
 import co.edu.uniandes.fourbidden.vinilos.modelo.Track
+import co.edu.uniandes.fourbidden.vinilos.vista.adapter.AlbumListAdapter
 import co.edu.uniandes.fourbidden.vinilos.vista.adapter.AlbumsAdapter
-import co.edu.uniandes.fourbidden.vinilos.vista.adapter.TrackAdapter
 import co.edu.uniandes.fourbidden.vinilos.vistamodelo.DetalleAlbumViewModel
 import co.edu.uniandes.fourbidden.vinilos.vistamodelo.DetalleMusicoViewModel
 import com.squareup.picasso.Picasso
@@ -37,7 +37,7 @@ class DetalleMusicoFragment : Fragment() {
     private var _bindingT: AlbumMusicoBinding? = null
     private val bindingT get() = _bindingT!!
 
-    private var viewModelAdapter: AlbumsAdapter? = null
+    private var viewModelAdapter: AlbumListAdapter? = null
 
 
     override fun onCreateView(
@@ -45,7 +45,7 @@ class DetalleMusicoFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         _bindingT = AlbumMusicoBinding.inflate(inflater, container, false)
-        viewModelAdapter = AlbumsAdapter()
+        viewModelAdapter = AlbumListAdapter()
         _binding = DetalleMusicoBinding.inflate(inflater, container, false)
         val view = binding.root
         return view
