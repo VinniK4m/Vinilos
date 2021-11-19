@@ -12,6 +12,8 @@ import co.edu.uniandes.fourbidden.vinilos.R
 import co.edu.uniandes.fourbidden.vinilos.databinding.ItemMusicoBinding
 import co.edu.uniandes.fourbidden.vinilos.modelo.Album
 import co.edu.uniandes.fourbidden.vinilos.modelo.Musico
+import co.edu.uniandes.fourbidden.vinilos.vista.fragmentos.AlbumFragmentDirections
+import co.edu.uniandes.fourbidden.vinilos.vista.fragmentos.MusicoFragmentDirections
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.request.RequestOptions
@@ -39,6 +41,12 @@ class MusicosAdapter: RecyclerView.Adapter<MusicosAdapter.MusicoViewHolder>() {
             Picasso.get().load(musicos[position].image).into(imageView)
 
         }
+        holder.bind(musicos[position])
+        holder.viewDataBinding.root.setOnClickListener {
+            val action = MusicoFragmentDirections.actionMusicoFragmentToFragmentDetalleMusico(musicos[position].id)
+            // Navigate using that action
+            holder.viewDataBinding.root.findNavController().navigate(action)
+        }
     }
 
     override fun getItemCount(): Int {
@@ -48,9 +56,9 @@ class MusicosAdapter: RecyclerView.Adapter<MusicosAdapter.MusicoViewHolder>() {
     class MusicoViewHolder(val viewDataBinding: ItemMusicoBinding) :
         RecyclerView.ViewHolder(viewDataBinding.root) {
 
-        fun bind(album: Album) {
+        fun bind(musico: Musico) {
             Glide.with(itemView)
-                .load(album.cover.toUri().buildUpon().scheme("https").build())
+                .load(musico.image.toUri().buildUpon().scheme("https").build())
                 .apply(
                     RequestOptions()
                     //.placeholder(R.drawable.loading_animation)

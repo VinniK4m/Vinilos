@@ -47,7 +47,7 @@ class ServiceAdapterMusico constructor(context: Context) {
                     val fecha : String =  item!!.getString("birthDate").substringBefore(delimiter = "T", missingDelimiterValue = "2000-01-01")
                     var releaseDate : LocalDate = parse(fecha)
                     val listAlbums = mutableListOf<Album>()
-                    list.add(i, Musico(id = item.getInt("id"),name = item.getString("name"), image = item.getString("image"),
+                    list.add(i, Musico(id = item.getString("id"),name = item.getString("name"), image = item.getString("image"),
                         birthDate = releaseDate, description = item.getString("description"), albums = listAlbums))
                 }
                 cont.resume(list)
@@ -79,7 +79,7 @@ class ServiceAdapterMusico constructor(context: Context) {
                         genre = itemAlbum.getString("genre"),
                         description = itemAlbum.getString("description"), tracks = listTracks))
                 }
-                val musico = Musico(id = resp.getInt("id"),name = resp.getString("name"), image = resp.getString("image"),
+                val musico = Musico(id = resp.getString("id"),name = resp.getString("name"), image = resp.getString("image"),
                     birthDate = releaseDate, description = resp.getString("description"), albums = listAlbums)
                 onComplete(musico)
             },
