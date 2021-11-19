@@ -11,5 +11,6 @@
     <string name="opAlbumes">Álbumes</string>
     <string name="opMusicos">Músicos</string>
     <string name="opColeccionistas">Coleccionistas</string>
+    <string name="todo">TODO</string>
     <string name="titulolistacoleccionistas">Listado de Coleccionistas</string>
 </resources>
