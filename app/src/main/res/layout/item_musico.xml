@@ -4,7 +4,7 @@
         xmlns:tools="http://schemas.android.com/tools">
 
         <data>
-            <variable name="album" type="co.edu.uniandes.fourbidden.vinilos.modelo.Album"/>
+            <variable name="musico" type="co.edu.uniandes.fourbidden.vinilos.modelo.Musico"/>
         </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -22,12 +22,12 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <ImageView
-                android:id="@+id/album_cover"
+                android:id="@+id/musico_cover"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:contentDescription="@{album.name}"
+                android:contentDescription="@{musico.name}"
                 android:scaleType="fitXY"
-                android:transitionName="@{album.name}"
+                android:transitionName="@{musico.name}"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -35,14 +35,14 @@
         </androidx.cardview.widget.CardView>
 
         <TextView
-            android:id="@+id/album_name"
+            android:id="@+id/musico_name"
             style="@style/textoLista"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
             android:background="@android:color/transparent"
             android:maxLines="1"
-            android:text="@{album.name}"
+            android:text="@{musico.name}"
             android:textColor="@color/black"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

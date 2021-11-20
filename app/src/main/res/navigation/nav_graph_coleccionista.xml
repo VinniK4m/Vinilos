@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph_coleccionista"
+    app:startDestination="@id/coleccionistaFragment">
+
+    <fragment
+        android:id="@+id/coleccionistaFragment"
+        android:name="co.edu.uniandes.fourbidden.vinilos.vista.fragmentos.ColeccionistaFragment"
+        android:label="@string/titulolistacoleccionistas"
+        tools:layout="@layout/fragment_coleccionista" >
+    </fragment>
+</navigation>

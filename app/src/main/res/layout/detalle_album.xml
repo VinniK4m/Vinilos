@@ -3,9 +3,13 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools">
 
-        <data>
-            <variable name="album" type="co.edu.uniandes.fourbidden.vinilos.modelo.Album"/>
-        </data>
+    <data>
+        <variable name="album" type="co.edu.uniandes.fourbidden.vinilos.modelo.Album"/>
+    </data>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
 
     <androidx.constraintlayout.widget.ConstraintLayout
 
@@ -121,18 +125,18 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/lDisquera" />
 
-        <TextView
-            android:id="@+id/descripcion"
-            style="@style/TextAppearance.AppCompat.Medium"
-            android:layout_width="0dp"
-            android:layout_height="200dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="6dp"
-            android:layout_marginEnd="8dp"
-            android:text="@{album.description}"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/ldescrip" />
+            <TextView
+                android:id="@+id/descripcion"
+                style="@style/TextAppearance.AppCompat.Medium"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="6dp"
+                android:layout_marginEnd="8dp"
+                android:text="@{album.description}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/ldescrip" />
 
         <TextView
             android:id="@+id/ltrack"
@@ -156,19 +160,22 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/descripcion" />
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/trackRv"
-            android:layout_width="0dp"
-            android:layout_height="120dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="6dp"
-            android:layout_marginEnd="8dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/ltrack"
-            tools:listitem="@layout/track_album" />
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/trackRv"
+                android:layout_width="0dp"
+                android:layout_height="120dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="6dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginBottom="64dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/ltrack"
+                tools:listitem="@layout/track_album" />
 
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
-    </layout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+</layout>

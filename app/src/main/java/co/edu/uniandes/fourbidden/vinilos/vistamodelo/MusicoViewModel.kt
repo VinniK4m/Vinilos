@@ -3,23 +3,23 @@ package co.edu.uniandes.fourbidden.vinilos.vistamodelo
 
 import android.app.Application
 import android.os.Build
-import android.util.Log
 import androidx.annotation.RequiresApi
 import androidx.lifecycle.*
-import co.edu.uniandes.fourbidden.vinilos.modelo.Album
-import co.edu.uniandes.fourbidden.vinilos.modelo.repository.AlbumRepository
+import co.edu.uniandes.fourbidden.vinilos.modelo.Musico
+import co.edu.uniandes.fourbidden.vinilos.modelo.repository.MusicoRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
+
 @RequiresApi(Build.VERSION_CODES.O)
-class AlbumViewModel (application: Application) :  AndroidViewModel(application) {
+class MusicoViewModel (application: Application) :  AndroidViewModel(application) {
 
-    private val _albums = MutableLiveData<List<Album>>()
-    private val _albumrepository = AlbumRepository(application)
+    private val _musicos = MutableLiveData<List<Musico>>()
+    private val _musciorepository = MusicoRepository(application)
 
-    val albums: LiveData<List<Album>>
-        get() = _albums
+    val musicos: LiveData<List<Musico>>
+        get() = _musicos
 
     private var _eventNetworkError = MutableLiveData<Boolean>(false)
 
@@ -35,14 +35,12 @@ class AlbumViewModel (application: Application) :  AndroidViewModel(application)
         refreshDataFromNetwork()
     }
 
-
-
-    private fun refreshDataFromNetwork() {
+     private fun refreshDataFromNetwork() {
         try {
             viewModelScope.launch (Dispatchers.Default){
                 withContext(Dispatchers.IO){
-                    var data = _albumrepository.refreshDataAlbums()
-                    _albums.postValue(data)
+                    var data = _musciorepository.refreshDataMusicos()
+                    _musicos.postValue(data)
                 }
                 _eventNetworkError.postValue(false)
                 _isNetworkErrorShown.postValue(false)
@@ -56,15 +54,17 @@ class AlbumViewModel (application: Application) :  AndroidViewModel(application)
 
 
 
+
+
     fun onNetworkErrorShown() {
         _isNetworkErrorShown.value = true
     }
 
     class Factory(val app: Application) : ViewModelProvider.Factory {
         override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-            if (modelClass.isAssignableFrom(AlbumViewModel::class.java)) {
+            if (modelClass.isAssignableFrom(MusicoViewModel::class.java)) {
                 @Suppress("UNCHECKED_CAST")
-                return AlbumViewModel(app) as T
+                return MusicoViewModel(app) as T
             }
             throw IllegalArgumentException("Unable to construct viewmodel")
         }
