@@ -6,11 +6,4 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="titulodetallealbum">Detalle del álbum</string>
     <string name="titulolistaalbum">Listado de álbumes</string>
-    <string name="titulolistamusico">Listado de músicos</string>
-    <string name="titulodetallemusico">Detalle músico</string>
-    <string name="opAlbumes">Álbumes</string>
-    <string name="opMusicos">Músicos</string>
-    <string name="opColeccionistas">Coleccionistas</string>
-    <string name="todo">TODO</string>
-    <string name="titulolistacoleccionistas">Listado de Coleccionistas</string>
 </resources>

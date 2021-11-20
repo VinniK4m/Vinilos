@@ -55,7 +55,7 @@
 
     <Button
         android:id="@+id/bingreso"
-        style="@style/botonMenu"
+        style="@style/Widget.AppCompat.Button.Borderless.Colored"
         android:layout_width="93dp"
         android:layout_height="48dp"
         android:layout_marginBottom="12dp"

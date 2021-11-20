@@ -12,10 +12,11 @@ import com.android.volley.VolleyError
 
 class AlbumRepository(val application: Application) {
 
-
-
-    suspend fun refreshDataAlbums(): List<Album>{
-        return ServiceAdapter.getInstance(application).getAlbums()
+    @RequiresApi(Build.VERSION_CODES.O)
+    fun refreshDataAlbums(callback:(List<Album>)->Unit, onError:(VolleyError)->Unit) {
+        ServiceAdapter.getInstance(application).getAlbums({
+            callback(it)
+        },onError)
     }
 
 
