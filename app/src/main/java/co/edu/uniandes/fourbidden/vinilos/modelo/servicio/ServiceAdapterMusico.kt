@@ -4,6 +4,7 @@ import android.content.Context
 import android.os.Build
 import androidx.annotation.RequiresApi
 import co.edu.uniandes.fourbidden.vinilos.modelo.Album
+import co.edu.uniandes.fourbidden.vinilos.modelo.Musico
 import co.edu.uniandes.fourbidden.vinilos.modelo.Track
 import com.android.volley.Request
 import com.android.volley.RequestQueue
@@ -21,13 +22,13 @@ import kotlin.coroutines.resumeWithException
 import kotlin.coroutines.suspendCoroutine
 
 @Suppress("RedundantSamConstructor")
-class ServiceAdapter constructor(context: Context) {
+class ServiceAdapterMusico constructor(context: Context) {
     companion object{
         const val URL_API= "https://back-vinyls-populated.herokuapp.com/"
-        var instance: ServiceAdapter? = null
+        var instance: ServiceAdapterMusico? = null
         fun getInstance(context: Context) =
             instance ?: synchronized(this) {
-                instance ?: ServiceAdapter(context).also {
+                instance ?: ServiceAdapterMusico(context).also {
                     instance = it
                 }
             }
@@ -36,19 +37,18 @@ class ServiceAdapter constructor(context: Context) {
         Volley.newRequestQueue(context.applicationContext)
     }
 
-
-
-    suspend fun getAlbums() = suspendCoroutine<List<Album>>{ cont->
-        requestQueue.add(getRequest("albums",
+    suspend fun getMusicos() = suspendCoroutine<List<Musico>>{ cont->
+        requestQueue.add(getRequest("musicians",
             Response.Listener<String> { response ->
                 val resp = JSONArray(response)
-                val list = mutableListOf<Album>()
+                val list = mutableListOf<Musico>()
                 for (i in 0 until resp.length()) {
                     val item = resp.getJSONObject(i)
-                    val fecha : String =  item!!.getString("releaseDate").substringBefore(delimiter = "T", missingDelimiterValue = "2000-01-01")
+                    val fecha : String =  item!!.getString("birthDate").substringBefore(delimiter = "T", missingDelimiterValue = "2000-01-01")
                     var releaseDate : LocalDate = parse(fecha)
-                    val listTrack = mutableListOf<Track>()
-                    list.add(i, Album(id = item.getString("id"),name = item.getString("name"), cover = item.getString("cover"), recordLabel = item.getString("recordLabel"), releaseDate = releaseDate, genre = item.getString("genre"), description = item.getString("description"), tracks = listTrack))
+                    val listAlbums = mutableListOf<Album>()
+                    list.add(i, Musico(id = item.getString("id"),name = item.getString("name"), image = item.getString("image"),
+                        birthDate = releaseDate, description = item.getString("description"), albums = listAlbums))
                 }
                 cont.resume(list)
             },
@@ -60,46 +60,42 @@ class ServiceAdapter constructor(context: Context) {
 
 
     @RequiresApi(Build.VERSION_CODES.O)
-    fun getAlbum(albumId: Int, onComplete: (resp: Album) -> Unit, onError: (error: VolleyError) -> Unit){
-        requestQueue.add(getRequest("albums/$albumId",
+    fun getMusico(musicoId: Int, onComplete: (resp: Musico) -> Unit, onError: (error: VolleyError) -> Unit){
+        requestQueue.add(getRequest("musicians/$musicoId",
             Response.Listener<String> { response ->
                 val resp = JSONObject(response)
-                val fecha : String =  resp!!.getString("releaseDate").substringBefore(delimiter = "T", missingDelimiterValue = "2000-01-01")
-
+                val fecha : String =  resp!!.getString("birthDate").substringBefore(delimiter = "T", missingDelimiterValue = "2000-01-01")
                 var releaseDate = parse(fecha)
-                val listTrack = mutableListOf<Track>()
-                val tracks = resp.getJSONArray("tracks")
-                for (j in 0 until tracks.length()) {
-                    val itemtrack = tracks.getJSONObject(j)
-                    listTrack.add(j, Track(id = itemtrack.getInt("id"), name = itemtrack.getString("name"),duration = itemtrack.getString("duration")))
+                val listAlbums = mutableListOf<Album>()
+                val listTracks = mutableListOf<Track>()
+                val albums = resp.getJSONArray("albums")
+                for (j in 0 until albums.length()) {
+                    val itemAlbum = albums.getJSONObject(j)
+                    listAlbums.add(j, Album(id = itemAlbum.getString("id"),
+                        name = itemAlbum.getString("name"),
+                        cover = itemAlbum.getString("cover"),
+                        recordLabel = itemAlbum.getString("recordLabel"),
+                        releaseDate = releaseDate,
+                        genre = itemAlbum.getString("genre"),
+                        description = itemAlbum.getString("description"), tracks = listTracks))
                 }
-
-                val album = Album(id = resp.getString("id"),
-                    name = resp.getString("name"),
-                    cover = resp.getString("cover"),
-                    recordLabel = resp.getString("recordLabel"),
-                    releaseDate = releaseDate,
-                    genre = resp.getString("genre"),
-                    description = resp.getString("description"),
-                    tracks = listTrack,
-                )
-
-                onComplete(album)
+                val musico = Musico(id = resp.getString("id"),name = resp.getString("name"), image = resp.getString("image"),
+                    birthDate = releaseDate, description = resp.getString("description"), albums = listAlbums)
+                onComplete(musico)
             },
             Response.ErrorListener {
                 onError(it)
             }))
     }
 
-
-
-
     private fun getRequest(path:String, responseListener: Response.Listener<String>, errorListener: Response.ErrorListener): StringRequest {
         return StringRequest(Request.Method.GET, URL_API+path, responseListener,errorListener)
     }
+
     private fun postRequest(path: String, body: JSONObject, responseListener: Response.Listener<JSONObject>, errorListener: Response.ErrorListener ):JsonObjectRequest{
         return  JsonObjectRequest(Request.Method.POST, URL_API+path, body, responseListener, errorListener)
     }
+
     private fun putRequest(path: String, body: JSONObject, responseListener: Response.Listener<JSONObject>, errorListener: Response.ErrorListener ):JsonObjectRequest{
         return  JsonObjectRequest(Request.Method.PUT, URL_API+path, body, responseListener, errorListener)
     }

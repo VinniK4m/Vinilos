@@ -4,12 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-        <variable name="album" type="co.edu.uniandes.fourbidden.vinilos.modelo.Album"/>
+        <variable name="musico" type="co.edu.uniandes.fourbidden.vinilos.modelo.Musico"/>
     </data>
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-
 
         <androidx.constraintlayout.widget.ConstraintLayout
 
@@ -32,7 +32,7 @@
                 android:layout_marginEnd="8dp"
                 android:layout_weight="1"
                 android:gravity="start"
-                android:text="@{album.name}"
+                android:text="@{musico.name}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -44,7 +44,7 @@
                 android:layout_height="40dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="10dp"
-                android:text="Fecha\ncreación :"
+                android:text="Fecha\nnacimiento :"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/name" />
 
@@ -55,7 +55,7 @@
                 android:layout_height="30dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="18dp"
-                android:text="@{album.releaseDate.toString()}"
+                android:text="@{musico.birthDate.toString()}"
                 app:layout_constraintStart_toEndOf="@+id/lfecha"
                 app:layout_constraintTop_toBottomOf="@+id/name" />
 
@@ -65,54 +65,9 @@
                 android:layout_height="120dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="8dp"
-                android:contentDescription="@{album.name}"
+                android:contentDescription="@{musico.image}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/name" />
-
-            <TextView
-                android:id="@+id/lgenre"
-                style="@style/textonormal"
-                android:layout_width="84dp"
-                android:layout_height="30dp"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="6dp"
-                android:text="Género :"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/lfecha" />
-
-            <TextView
-                android:id="@+id/genero"
-                style="@style/TextAppearance.AppCompat.Large"
-                android:layout_width="130dp"
-                android:layout_height="30dp"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="7dp"
-                android:text="@{album.genre}"
-                app:layout_constraintStart_toEndOf="@+id/lgenre"
-                app:layout_constraintTop_toBottomOf="@+id/releasedate"
-                tools:ignore="MissingConstraints" />
-
-            <TextView
-                android:id="@+id/lDisquera"
-                style="@style/textonormal"
-                android:layout_width="84dp"
-                android:layout_height="30dp"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="6dp"
-                android:text="Disquera :"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/lgenre" />
-
-            <TextView
-                android:id="@+id/disquera"
-                style="@style/TextAppearance.AppCompat.Large"
-                android:layout_width="130dp"
-                android:layout_height="30dp"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="6dp"
-                android:text="@{album.recordLabel}"
-                app:layout_constraintStart_toEndOf="@+id/lDisquera"
-                app:layout_constraintTop_toBottomOf="@+id/genero" />
 
             <TextView
                 android:id="@+id/ldescrip"
@@ -123,7 +78,7 @@
                 android:layout_marginTop="6dp"
                 android:text="Descripción :"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/lDisquera" />
+                app:layout_constraintTop_toBottomOf="@+id/cover" />
 
             <TextView
                 android:id="@+id/descripcion"
@@ -133,46 +88,35 @@
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="6dp"
                 android:layout_marginEnd="8dp"
-                android:text="@{album.description}"
+                android:text="@{musico.description}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/ldescrip" />
 
             <TextView
-                android:id="@+id/ltrack"
+                android:id="@+id/lalbums"
                 style="@style/textonormal"
                 android:layout_width="250dp"
                 android:layout_height="30dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="6dp"
-                android:text="Track "
+                android:text="Albums "
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/descripcion" />
 
-            <TextView
-                android:id="@+id/lDuracion"
-                style="@style/textonormal"
-                android:layout_width="80dp"
-                android:layout_height="30dp"
-                android:layout_marginTop="6dp"
-                android:layout_marginEnd="8dp"
-                android:text="Duración "
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/descripcion" />
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/trackRv"
-                android:layout_width="0dp"
-                android:layout_height="120dp"
+                android:id="@+id/albumRv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="6dp"
                 android:layout_marginEnd="8dp"
-                android:layout_marginBottom="64dp"
+                android:layout_marginBottom="68dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/ltrack"
+                app:layout_constraintTop_toBottomOf="@id/lalbums"
                 tools:listitem="@layout/track_album" />
 
 
