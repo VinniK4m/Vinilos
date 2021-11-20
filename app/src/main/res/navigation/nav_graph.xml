@@ -15,6 +15,7 @@
             app:destination="@id/fragmentDetalleAlbum" />
     </fragment>
 
+
     <fragment
         android:id="@+id/fragmentDetalleAlbum"
         android:name="co.edu.uniandes.fourbidden.vinilos.vista.fragmentos.DetalleAlbumFragment"

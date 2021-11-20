@@ -3,14 +3,10 @@ package co.edu.uniandes.fourbidden.vinilos.vistamodelo
 
 import android.app.Application
 import android.os.Build
-import android.util.Log
 import androidx.annotation.RequiresApi
 import androidx.lifecycle.*
 import co.edu.uniandes.fourbidden.vinilos.modelo.Album
 import co.edu.uniandes.fourbidden.vinilos.modelo.repository.AlbumRepository
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 
 @RequiresApi(Build.VERSION_CODES.O)
 class AlbumViewModel (application: Application) :  AndroidViewModel(application) {
@@ -35,26 +31,15 @@ class AlbumViewModel (application: Application) :  AndroidViewModel(application)
         refreshDataFromNetwork()
     }
 
-
-
+    @RequiresApi(Build.VERSION_CODES.O)
     private fun refreshDataFromNetwork() {
-        try {
-            viewModelScope.launch (Dispatchers.Default){
-                withContext(Dispatchers.IO){
-                    var data = _albumrepository.refreshDataAlbums()
-                    _albums.postValue(data)
-                }
-                _eventNetworkError.postValue(false)
-                _isNetworkErrorShown.postValue(false)
-            }
-        }
-        catch (e:Exception){
+        _albumrepository.refreshDataAlbums( { _albums.postValue(it)
+            _eventNetworkError.value = false
+            _isNetworkErrorShown.value = false
+        },{
             _eventNetworkError.value = true
-        }
+        })
     }
-
-
-
 
     fun onNetworkErrorShown() {
         _isNetworkErrorShown.value = true
