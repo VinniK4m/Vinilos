@@ -4,9 +4,11 @@ package co.edu.uniandes.fourbidden.vinilos.vista
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
-import androidx.test.espresso.Espresso.*
-import androidx.test.espresso.assertion.ViewAssertions.matches
+import androidx.test.espresso.Espresso.onView
+import androidx.test.espresso.action.ViewActions.click
+import androidx.test.espresso.contrib.RecyclerViewActions.actionOnItemAtPosition
 import androidx.test.espresso.matcher.ViewMatchers.*
+import androidx.test.filters.LargeTest
 import androidx.test.rule.ActivityTestRule
 import androidx.test.runner.AndroidJUnit4
 import co.edu.uniandes.fourbidden.vinilos.R
@@ -18,19 +20,16 @@ import org.hamcrest.TypeSafeMatcher
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
-import androidx.test.espresso.matcher.ViewMatchers.isDisplayed
-import androidx.test.espresso.action.ViewActions.*
-import androidx.test.espresso.contrib.RecyclerViewActions.scrollToPosition
 
 
 @RunWith(AndroidJUnit4::class)
-class Prueba4 {
+class PruebaListarAlbumes {
 
     @get:Rule
     val mActivityTestRule = ActivityTestRule(MainActivity::class.java)
 
     @Test
-    fun prueba4() {
+    fun prueba2() {
         val materialButton = onView(
             allOf(
                 withId(R.id.bingreso), withText("Entrar"),
@@ -46,39 +45,17 @@ class Prueba4 {
         )
         materialButton.perform(click())
 
-        Thread.sleep(3000)
-
-
+        Thread.sleep(5000)
         val recyclerView = onView(
             allOf(
                 withId(R.id.albumsRv),
                 childAtPosition(
                     withClassName(`is`("android.widget.FrameLayout")),
-                    1,
-                ), isDisplayed()
+                    1
+                )
             )
         )
-        recyclerView.perform(scrollToPosition<ViewHolder>(138), click())
-
-        Thread.sleep(1000)
-        val textView = onView(
-            allOf(
-                withId(R.id.disquera), withText("Elektra"),
-                withParent(withParent(withId(R.id.nav_host_fragment))),
-                isDisplayed()
-            )
-        )
-        textView.check(matches(withText("Elektra")))
-
-        val textView2 = onView(
-            allOf(
-                withId(R.id.name), withText("test"),
-                withParent(withParent(withId(R.id.nav_host_fragment))),
-                isDisplayed()
-            )
-        )
-        textView2.check(matches(withText("test")))
-
+        recyclerView.perform(actionOnItemAtPosition<ViewHolder>(0, click()))
 
         val appCompatImageButton = onView(
             allOf(
@@ -97,7 +74,6 @@ class Prueba4 {
             )
         )
         appCompatImageButton.perform(click())
-        Thread.sleep(7000)
     }
 
     private fun childAtPosition(
