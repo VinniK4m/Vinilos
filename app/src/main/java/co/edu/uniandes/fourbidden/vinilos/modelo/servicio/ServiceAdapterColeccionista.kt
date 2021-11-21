@@ -3,7 +3,9 @@ package co.edu.uniandes.fourbidden.vinilos.modelo.servicio
 import android.content.Context
 import android.os.Build
 import androidx.annotation.RequiresApi
+import co.edu.uniandes.fourbidden.vinilos.modelo.Album
 import co.edu.uniandes.fourbidden.vinilos.modelo.Coleccionista
+import co.edu.uniandes.fourbidden.vinilos.modelo.Track
 import com.android.volley.Request
 import com.android.volley.RequestQueue
 import com.android.volley.Response
@@ -15,6 +17,9 @@ import org.json.JSONArray
 import org.json.JSONObject
 import java.time.LocalDate
 import java.time.LocalDate.parse
+import kotlin.coroutines.resume
+import kotlin.coroutines.resumeWithException
+import kotlin.coroutines.suspendCoroutine
 
 @Suppress("RedundantSamConstructor")
 class ServiceAdapterColeccionista constructor(context: Context) {
@@ -31,8 +36,9 @@ class ServiceAdapterColeccionista constructor(context: Context) {
     private val requestQueue: RequestQueue by lazy {
         Volley.newRequestQueue(context.applicationContext)
     }
-    @RequiresApi(Build.VERSION_CODES.O)
-    fun getColeccionistas(onComplete:(resp:List<Coleccionista>)->Unit, onError: (error: VolleyError)->Unit){
+
+
+    suspend fun getColeccionistas() = suspendCoroutine<List<Coleccionista>>{ cont->
         requestQueue.add(getRequest("collectors",
             Response.Listener<String> { response ->
                 val resp = JSONArray(response)
@@ -41,12 +47,17 @@ class ServiceAdapterColeccionista constructor(context: Context) {
                     val item = resp.getJSONObject(i)
                     list.add(i, Coleccionista(id = item.getInt("id"),name = item.getString("name"), email = item.getString("email")))
                 }
-                onComplete(list)
+
+                cont.resume(list)
             },
             Response.ErrorListener {
-                onError(it)
+                cont.resumeWithException(it)
             }))
     }
+
+
+
+
 
     @RequiresApi(Build.VERSION_CODES.O)
     fun getColeccionista(ColeccionistaId: Int, onComplete: (resp: Coleccionista) -> Unit, onError: (error: VolleyError) -> Unit){

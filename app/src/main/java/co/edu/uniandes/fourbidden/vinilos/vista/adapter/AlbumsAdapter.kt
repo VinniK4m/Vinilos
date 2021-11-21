@@ -46,21 +46,6 @@ class AlbumsAdapter: RecyclerView.Adapter<AlbumsAdapter.AlbumViewHolder>() {
     }
 
 
-    /*
-    override fun onBindViewHolder(holder: AlbumViewHolder, position: Int) {
-
-        holder.viewDataBinding.also {
-            it.album  = albums[position]
-            val imageView = holder.itemView.findViewById<ImageView>(R.id.album_cover)
-            Picasso.get().load(albums[position].cover).into(imageView)
-
-        }
-        holder.viewDataBinding.root.setOnClickListener {
-            val action = AlbumFragmentDirections.actionAlbumFragmentToFragmentDetalleAlbum(albums[position].id)
-            holder.viewDataBinding.root.findNavController().navigate(action)
-        }
-    }
-*/
     override fun getItemCount(): Int {
         return albums.size
     }

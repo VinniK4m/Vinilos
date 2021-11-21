@@ -4,12 +4,17 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.annotation.LayoutRes
+import androidx.core.net.toUri
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import co.edu.uniandes.fourbidden.vinilos.R
 import co.edu.uniandes.fourbidden.vinilos.databinding.ItemColeccionistaBinding
+import co.edu.uniandes.fourbidden.vinilos.modelo.Album
 import co.edu.uniandes.fourbidden.vinilos.modelo.Coleccionista
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
+import com.bumptech.glide.request.RequestOptions
 import com.squareup.picasso.Picasso
 
 class ColeccionistaAdapter: RecyclerView.Adapter<ColeccionistaAdapter.ColeccionistaViewHolder>() {
@@ -40,6 +45,7 @@ class ColeccionistaAdapter: RecyclerView.Adapter<ColeccionistaAdapter.Coleccioni
 
     class ColeccionistaViewHolder(val viewDataBinding: ItemColeccionistaBinding) :
         RecyclerView.ViewHolder(viewDataBinding.root) {
+
 
         companion object {
             @LayoutRes
