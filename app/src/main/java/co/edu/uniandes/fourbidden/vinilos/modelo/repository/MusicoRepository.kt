@@ -3,9 +3,7 @@ package co.edu.uniandes.fourbidden.vinilos.modelo.repository
 import android.app.Application
 import android.os.Build
 import androidx.annotation.RequiresApi
-import co.edu.uniandes.fourbidden.vinilos.modelo.Album
 import co.edu.uniandes.fourbidden.vinilos.modelo.Musico
-import co.edu.uniandes.fourbidden.vinilos.modelo.servicio.ServiceAdapter
 import co.edu.uniandes.fourbidden.vinilos.modelo.servicio.ServiceAdapterMusico
 import com.android.volley.VolleyError
 

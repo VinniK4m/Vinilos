@@ -31,7 +31,7 @@ class ColeccionistaFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentColeccionistaBinding.inflate(inflater, container, false)
         val view = binding.root
         viewModelAdapter = ColeccionistaAdapter()
@@ -55,13 +55,13 @@ class ColeccionistaFragment : Fragment() {
         viewModel = ViewModelProvider(this, ColeccionistaViewModel.Factory(activity.application)).get(
             ColeccionistaViewModel::class.java)
 
-        viewModel.coleccionistas.observe(viewLifecycleOwner, Observer<List<Coleccionista>> {
+        viewModel.coleccionistas.observe(viewLifecycleOwner, Observer {
 
             it.apply {
                 viewModelAdapter!!.coleccionistas = this
             }
         })
-        viewModel.eventNetworkError.observe(viewLifecycleOwner, Observer<Boolean> { isNetworkError ->
+        viewModel.eventNetworkError.observe(viewLifecycleOwner, Observer { isNetworkError ->
             if (isNetworkError) onNetworkError()
         })
     }

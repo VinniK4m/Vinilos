@@ -25,7 +25,7 @@ import kotlin.coroutines.suspendCoroutine
 class ServiceAdapterMusico constructor(context: Context) {
     companion object{
         const val URL_API= "https://back-vinyls-populated.herokuapp.com/"
-        var instance: ServiceAdapterMusico? = null
+        private var instance: ServiceAdapterMusico? = null
         fun getInstance(context: Context) =
             instance ?: synchronized(this) {
                 instance ?: ServiceAdapterMusico(context).also {
@@ -45,7 +45,7 @@ class ServiceAdapterMusico constructor(context: Context) {
                 for (i in 0 until resp.length()) {
                     val item = resp.getJSONObject(i)
                     val fecha : String =  item!!.getString("birthDate").substringBefore(delimiter = "T", missingDelimiterValue = "2000-01-01")
-                    var releaseDate : LocalDate = parse(fecha)
+                    val releaseDate : LocalDate = parse(fecha)
                     val listAlbums = mutableListOf<Album>()
                     list.add(i, Musico(id = item.getString("id"),name = item.getString("name"), image = item.getString("image"),
                         birthDate = releaseDate, description = item.getString("description"), albums = listAlbums))
@@ -64,8 +64,8 @@ class ServiceAdapterMusico constructor(context: Context) {
         requestQueue.add(getRequest("musicians/$musicoId",
             Response.Listener<String> { response ->
                 val resp = JSONObject(response)
-                val fecha : String =  resp!!.getString("birthDate").substringBefore(delimiter = "T", missingDelimiterValue = "2000-01-01")
-                var releaseDate = parse(fecha)
+                val fecha : String =  resp.getString("birthDate").substringBefore(delimiter = "T", missingDelimiterValue = "2000-01-01")
+                val releaseDate = parse(fecha)
                 val listAlbums = mutableListOf<Album>()
                 val listTracks = mutableListOf<Track>()
                 val albums = resp.getJSONArray("albums")
@@ -92,11 +92,5 @@ class ServiceAdapterMusico constructor(context: Context) {
         return StringRequest(Request.Method.GET, URL_API+path, responseListener,errorListener)
     }
 
-    private fun postRequest(path: String, body: JSONObject, responseListener: Response.Listener<JSONObject>, errorListener: Response.ErrorListener ):JsonObjectRequest{
-        return  JsonObjectRequest(Request.Method.POST, URL_API+path, body, responseListener, errorListener)
-    }
 
-    private fun putRequest(path: String, body: JSONObject, responseListener: Response.Listener<JSONObject>, errorListener: Response.ErrorListener ):JsonObjectRequest{
-        return  JsonObjectRequest(Request.Method.PUT, URL_API+path, body, responseListener, errorListener)
-    }
 }

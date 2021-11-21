@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/fondo"
+    style="@style/tema.vinilos"
     android:gravity="center"
     android:orientation="vertical"
     tools:context=".vista.MainActivity">
@@ -14,6 +14,7 @@
         android:layout_width="40dp"
         android:layout_height="181dp"
         android:layout_marginStart="75dp"
+        android:contentDescription="@string/textoimagenlogo"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/logo" />
@@ -35,6 +36,7 @@
         android:id="@+id/imageView2"
         android:layout_width="0dp"
         android:layout_height="80dp"
+        android:contentDescription="@string/textoimagen"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -48,7 +50,7 @@
         android:layout_marginStart="50dp"
         android:layout_marginTop="40dp"
         android:background="@android:color/transparent"
-        android:text="vinilos"
+        android:text="@string/titulo"
         app:layout_constraintStart_toStartOf="@id/imageView"
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="MissingConstraints" />
@@ -60,7 +62,7 @@
         android:layout_height="48dp"
         android:layout_marginBottom="12dp"
         android:background="@color/black"
-        android:text="Entrar"
+        android:text="@string/textobotonentrar"
         app:iconTint="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

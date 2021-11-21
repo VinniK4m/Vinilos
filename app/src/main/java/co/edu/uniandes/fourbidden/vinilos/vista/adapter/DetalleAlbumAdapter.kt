@@ -2,16 +2,13 @@ package co.edu.uniandes.fourbidden.vinilos.vista.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.ArrayAdapter
 import android.widget.ImageView
 import androidx.annotation.LayoutRes
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import co.edu.uniandes.fourbidden.vinilos.R
 import co.edu.uniandes.fourbidden.vinilos.databinding.DetalleAlbumBinding
-import co.edu.uniandes.fourbidden.vinilos.databinding.ItemAlbumBinding
 import co.edu.uniandes.fourbidden.vinilos.modelo.Album
-import co.edu.uniandes.fourbidden.vinilos.modelo.Track
 import com.squareup.picasso.Picasso
 
 class DetalleAlbumAdapter: RecyclerView.Adapter<DetalleAlbumAdapter.AlbumViewHolder>() {

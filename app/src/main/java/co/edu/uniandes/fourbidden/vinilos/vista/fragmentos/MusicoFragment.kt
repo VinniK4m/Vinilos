@@ -31,7 +31,7 @@ class MusicoFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentMusicoBinding.inflate(inflater, container, false)
         val view = binding.root
         viewModelAdapter = MusicosAdapter()
@@ -55,13 +55,13 @@ class MusicoFragment : Fragment() {
         viewModel = ViewModelProvider(this, MusicoViewModel.Factory(activity.application)).get(
             MusicoViewModel::class.java)
 
-        viewModel.musicos.observe(viewLifecycleOwner, Observer<List<Musico>> {
+        viewModel.musicos.observe(viewLifecycleOwner, Observer{
 
             it.apply {
                 viewModelAdapter!!.musicos = this
             }
         })
-        viewModel.eventNetworkError.observe(viewLifecycleOwner, Observer<Boolean> { isNetworkError ->
+        viewModel.eventNetworkError.observe(viewLifecycleOwner, Observer { isNetworkError ->
             if (isNetworkError) onNetworkError()
         })
     }

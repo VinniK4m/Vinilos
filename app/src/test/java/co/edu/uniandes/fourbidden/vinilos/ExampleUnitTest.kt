@@ -1,10 +1,7 @@
 package co.edu.uniandes.fourbidden.vinilos
 
-import android.app.Application
-import co.edu.uniandes.fourbidden.vinilos.modelo.servicio.ServiceAdapterMusico
+import org.junit.Assert.assertEquals
 import org.junit.Test
-
-import org.junit.Assert.*
 
 /**
  * Example local unit test, which will execute on the development machine (host).

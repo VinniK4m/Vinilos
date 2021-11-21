@@ -44,7 +44,7 @@
             android:layout_height="40dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="10dp"
-            android:text="Fecha\ncreación :"
+            android:text="@string/fechacreacion"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/name" />
 
@@ -76,7 +76,7 @@
             android:layout_height="30dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="6dp"
-            android:text="Género :"
+            android:text="@string/genero"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/lfecha" />
 
@@ -99,7 +99,7 @@
             android:layout_height="30dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="6dp"
-            android:text="Disquera :"
+            android:text="@string/disquera"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/lgenre" />
 
@@ -121,7 +121,7 @@
             android:layout_height="30dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="6dp"
-            android:text="Descripción :"
+            android:text="@string/descripcionalb"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/lDisquera" />
 
@@ -145,7 +145,7 @@
             android:layout_height="30dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="6dp"
-            android:text="Track "
+            android:text="@string/track"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/descripcion" />
 
@@ -156,7 +156,7 @@
             android:layout_height="30dp"
             android:layout_marginTop="6dp"
             android:layout_marginEnd="8dp"
-            android:text="Duración "
+            android:text="@string/duracion"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/descripcion" />
 
