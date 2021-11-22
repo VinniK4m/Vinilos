@@ -1,7 +1,6 @@
 package co.edu.uniandes.fourbidden.vinilos.vista
 
 
-import android.util.Log
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
@@ -9,7 +8,6 @@ import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.action.ViewActions.click
 import androidx.test.espresso.contrib.RecyclerViewActions.actionOnItemAtPosition
 import androidx.test.espresso.matcher.ViewMatchers.*
-import androidx.test.filters.LargeTest
 import androidx.test.rule.ActivityTestRule
 import androidx.test.runner.AndroidJUnit4
 import co.edu.uniandes.fourbidden.vinilos.R
@@ -23,15 +21,13 @@ import org.junit.Test
 import org.junit.runner.RunWith
 
 @RunWith(AndroidJUnit4::class)
-class Prueba1 {
+class PruebaDetalleMusico {
 
     @get:Rule
-    //public val mActivityTestRule: ActivityTestRule<MainActivity> = ActivityTestRule(javaClass<MainActivity>())
-    val mActivityTestRule = ActivityTestRule(MainActivity::class.java)
+    var mActivityTestRule = ActivityTestRule(MainActivity::class.java)
 
     @Test
-    fun prueba01() {
-        Log.d("hola", "hola")
+    fun pruebaDetalleMusico() {
         val materialButton = onView(
             allOf(
                 withId(R.id.bingreso), withText("Entrar"),
@@ -45,9 +41,33 @@ class Prueba1 {
                 isDisplayed()
             )
         )
-
         materialButton.perform(click())
+        Thread.sleep(5000)
+        val materialButton2 = onView(
+            allOf(
+                withId(R.id.btMusico), withText("Músicos"),
+                childAtPosition(
+                    childAtPosition(
+                        withId(android.R.id.content),
+                        0
+                    ),
+                    4
+                ),
+                isDisplayed()
+            )
+        )
+        materialButton2.perform(click())
 
+        val recyclerView = onView(
+            allOf(
+                withId(R.id.musicosRv),
+                childAtPosition(
+                    withClassName(`is`("android.widget.FrameLayout")),
+                    1
+                )
+            )
+        )
+        recyclerView.perform(actionOnItemAtPosition<ViewHolder>(1, click()))
     }
 
     private fun childAtPosition(

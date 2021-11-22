@@ -21,16 +21,15 @@ import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 
-@LargeTest
-@RunWith(AndroidJUnit4::class)
-class Prueba {
 
-    @Rule
-    @JvmField
-    var mActivityTestRule = ActivityTestRule(MainActivity::class.java)
+@RunWith(AndroidJUnit4::class)
+class PruebaListarAlbumes {
+
+    @get:Rule
+    val mActivityTestRule = ActivityTestRule(MainActivity::class.java)
 
     @Test
-    fun prueba() {
+    fun prueba2() {
         val materialButton = onView(
             allOf(
                 withId(R.id.bingreso), withText("Entrar"),
@@ -46,6 +45,7 @@ class Prueba {
         )
         materialButton.perform(click())
 
+        Thread.sleep(5000)
         val recyclerView = onView(
             allOf(
                 withId(R.id.albumsRv),
@@ -74,93 +74,6 @@ class Prueba {
             )
         )
         appCompatImageButton.perform(click())
-
-        val recyclerView2 = onView(
-            allOf(
-                withId(R.id.albumsRv),
-                childAtPosition(
-                    withClassName(`is`("android.widget.FrameLayout")),
-                    1
-                )
-            )
-        )
-        recyclerView2.perform(actionOnItemAtPosition<ViewHolder>(7, click()))
-
-        val appCompatImageButton2 = onView(
-            allOf(
-                withContentDescription("Navigate up"),
-                childAtPosition(
-                    allOf(
-                        withId(R.id.action_bar),
-                        childAtPosition(
-                            withId(R.id.action_bar_container),
-                            0
-                        )
-                    ),
-                    2
-                ),
-                isDisplayed()
-            )
-        )
-        appCompatImageButton2.perform(click())
-
-        val recyclerView3 = onView(
-            allOf(
-                withId(R.id.albumsRv),
-                childAtPosition(
-                    withClassName(`is`("android.widget.FrameLayout")),
-                    1
-                )
-            )
-        )
-        recyclerView3.perform(actionOnItemAtPosition<ViewHolder>(49, click()))
-
-        val appCompatImageButton3 = onView(
-            allOf(
-                withContentDescription("Navigate up"),
-                childAtPosition(
-                    allOf(
-                        withId(R.id.action_bar),
-                        childAtPosition(
-                            withId(R.id.action_bar_container),
-                            0
-                        )
-                    ),
-                    2
-                ),
-                isDisplayed()
-            )
-        )
-        appCompatImageButton3.perform(click())
-
-        val recyclerView4 = onView(
-            allOf(
-                withId(R.id.albumsRv),
-                childAtPosition(
-                    withClassName(`is`("android.widget.FrameLayout")),
-                    1
-                )
-            )
-        )
-        recyclerView4.perform(actionOnItemAtPosition<ViewHolder>(55, click()))
-
-        val appCompatImageButton4 = onView(
-            allOf(
-                withContentDescription("Navigate up"),
-                childAtPosition(
-                    allOf(
-                        withId(R.id.action_bar),
-                        childAtPosition(
-                            withId(R.id.action_bar_container),
-                            0
-                        )
-                    ),
-                    2
-                ),
-                isDisplayed()
-            )
-        )
-        appCompatImageButton4.perform(click())
     }
 
     private fun childAtPosition(

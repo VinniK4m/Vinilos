@@ -1,8 +1,9 @@
 package co.edu.uniandes.fourbidden.vinilos.vista
 
-import androidx.appcompat.app.AppCompatActivity
+import android.content.Intent
 import android.os.Bundle
-import android.util.Log
+import android.widget.Button
+import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupActionBarWithNavController
@@ -20,8 +21,20 @@ class AlbumActivity : AppCompatActivity() {
         //setSupportActionBar(findViewById(R.id.my_toolbar))
         setupActionBarWithNavController(navController)
 
+        val btMusico=findViewById<Button>(R.id.btMusico)
+        btMusico.setOnClickListener {
+            val activityMusicos = Intent(this, MusicoActivity::class.java)
+            startActivity(activityMusicos)
+        }
+        val btColeccionista =findViewById<Button>(R.id.btColeccionistas)
+        btColeccionista.setOnClickListener {
+            val coleccionistaActivity = Intent(this, ColeccionistaActivity::class.java)
+            startActivity(coleccionistaActivity)
+        }
     }
     override fun onSupportNavigateUp(): Boolean {
         return navController.navigateUp() || super.onSupportNavigateUp()
     }
+
+
 }
