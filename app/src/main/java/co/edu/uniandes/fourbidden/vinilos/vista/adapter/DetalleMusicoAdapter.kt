@@ -8,9 +8,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import co.edu.uniandes.fourbidden.vinilos.R
 import co.edu.uniandes.fourbidden.vinilos.databinding.DetalleMusicoBinding
-import co.edu.uniandes.fourbidden.vinilos.modelo.Album
 import co.edu.uniandes.fourbidden.vinilos.modelo.Musico
-
 import com.squareup.picasso.Picasso
 
 class DetalleMusicoAdapter: RecyclerView.Adapter<DetalleMusicoAdapter.MusicoViewHolder>() {

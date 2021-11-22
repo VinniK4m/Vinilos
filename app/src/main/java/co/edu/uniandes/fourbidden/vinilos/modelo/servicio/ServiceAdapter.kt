@@ -24,7 +24,7 @@ import kotlin.coroutines.suspendCoroutine
 class ServiceAdapter constructor(context: Context) {
     companion object{
         const val URL_API= "https://back-vinyls-populated.herokuapp.com/"
-        var instance: ServiceAdapter? = null
+        private var instance: ServiceAdapter? = null
         fun getInstance(context: Context) =
             instance ?: synchronized(this) {
                 instance ?: ServiceAdapter(context).also {
@@ -32,11 +32,10 @@ class ServiceAdapter constructor(context: Context) {
                 }
             }
     }
+
     private val requestQueue: RequestQueue by lazy {
         Volley.newRequestQueue(context.applicationContext)
     }
-
-
 
     suspend fun getAlbums() = suspendCoroutine<List<Album>>{ cont->
         requestQueue.add(getRequest("albums",
@@ -46,7 +45,7 @@ class ServiceAdapter constructor(context: Context) {
                 for (i in 0 until resp.length()) {
                     val item = resp.getJSONObject(i)
                     val fecha : String =  item!!.getString("releaseDate").substringBefore(delimiter = "T", missingDelimiterValue = "2000-01-01")
-                    var releaseDate : LocalDate = parse(fecha)
+                    val releaseDate : LocalDate = parse(fecha)
                     val listTrack = mutableListOf<Track>()
                     list.add(i, Album(id = item.getString("id"),name = item.getString("name"), cover = item.getString("cover"), recordLabel = item.getString("recordLabel"), releaseDate = releaseDate, genre = item.getString("genre"), description = item.getString("description"), tracks = listTrack))
                 }
@@ -58,15 +57,14 @@ class ServiceAdapter constructor(context: Context) {
     }
 
 
-
     @RequiresApi(Build.VERSION_CODES.O)
     fun getAlbum(albumId: Int, onComplete: (resp: Album) -> Unit, onError: (error: VolleyError) -> Unit){
         requestQueue.add(getRequest("albums/$albumId",
             Response.Listener<String> { response ->
                 val resp = JSONObject(response)
-                val fecha : String =  resp!!.getString("releaseDate").substringBefore(delimiter = "T", missingDelimiterValue = "2000-01-01")
+                val fecha : String =  resp.getString("releaseDate").substringBefore(delimiter = "T", missingDelimiterValue = "2000-01-01")
 
-                var releaseDate = parse(fecha)
+                val releaseDate = parse(fecha)
                 val listTrack = mutableListOf<Track>()
                 val tracks = resp.getJSONArray("tracks")
                 for (j in 0 until tracks.length()) {
@@ -97,10 +95,5 @@ class ServiceAdapter constructor(context: Context) {
     private fun getRequest(path:String, responseListener: Response.Listener<String>, errorListener: Response.ErrorListener): StringRequest {
         return StringRequest(Request.Method.GET, URL_API+path, responseListener,errorListener)
     }
-    private fun postRequest(path: String, body: JSONObject, responseListener: Response.Listener<JSONObject>, errorListener: Response.ErrorListener ):JsonObjectRequest{
-        return  JsonObjectRequest(Request.Method.POST, URL_API+path, body, responseListener, errorListener)
-    }
-    private fun putRequest(path: String, body: JSONObject, responseListener: Response.Listener<JSONObject>, errorListener: Response.ErrorListener ):JsonObjectRequest{
-        return  JsonObjectRequest(Request.Method.PUT, URL_API+path, body, responseListener, errorListener)
-    }
+
 }

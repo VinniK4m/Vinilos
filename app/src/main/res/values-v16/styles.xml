@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="textonormal" parent="TextAppearance.AppCompat">
+        <item name="android:textColor">#272927</item>
+        <item name="android:fontFamily">@font/comfortaa</item>
+        <item name="android:textSize">16dp</item>
+
+    </style>
+
+</resources>

@@ -13,14 +13,15 @@ import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import org.json.JSONArray
 import org.json.JSONObject
-import java.time.LocalDate
-import java.time.LocalDate.parse
+import kotlin.coroutines.resume
+import kotlin.coroutines.resumeWithException
+import kotlin.coroutines.suspendCoroutine
 
 @Suppress("RedundantSamConstructor")
 class ServiceAdapterColeccionista constructor(context: Context) {
     companion object{
         const val URL_API= "https://back-vinyls-populated.herokuapp.com/"
-        var instance: ServiceAdapterColeccionista? = null
+        private var instance: ServiceAdapterColeccionista? = null
         fun getInstance(context: Context) =
             instance ?: synchronized(this) {
                 instance ?: ServiceAdapterColeccionista(context).also {
@@ -31,8 +32,9 @@ class ServiceAdapterColeccionista constructor(context: Context) {
     private val requestQueue: RequestQueue by lazy {
         Volley.newRequestQueue(context.applicationContext)
     }
-    @RequiresApi(Build.VERSION_CODES.O)
-    fun getColeccionistas(onComplete:(resp:List<Coleccionista>)->Unit, onError: (error: VolleyError)->Unit){
+
+
+    suspend fun getColeccionistas() = suspendCoroutine<List<Coleccionista>>{ cont->
         requestQueue.add(getRequest("collectors",
             Response.Listener<String> { response ->
                 val resp = JSONArray(response)
@@ -41,12 +43,17 @@ class ServiceAdapterColeccionista constructor(context: Context) {
                     val item = resp.getJSONObject(i)
                     list.add(i, Coleccionista(id = item.getInt("id"),name = item.getString("name"), email = item.getString("email")))
                 }
-                onComplete(list)
+
+                cont.resume(list)
             },
             Response.ErrorListener {
-                onError(it)
+                cont.resumeWithException(it)
             }))
     }
+
+
+
+
 
     @RequiresApi(Build.VERSION_CODES.O)
     fun getColeccionista(ColeccionistaId: Int, onComplete: (resp: Coleccionista) -> Unit, onError: (error: VolleyError) -> Unit){
@@ -65,11 +72,5 @@ class ServiceAdapterColeccionista constructor(context: Context) {
         return StringRequest(Request.Method.GET, URL_API+path, responseListener,errorListener)
     }
 
-    private fun postRequest(path: String, body: JSONObject, responseListener: Response.Listener<JSONObject>, errorListener: Response.ErrorListener ):JsonObjectRequest{
-        return  JsonObjectRequest(Request.Method.POST, URL_API+path, body, responseListener, errorListener)
-    }
 
-    private fun putRequest(path: String, body: JSONObject, responseListener: Response.Listener<JSONObject>, errorListener: Response.ErrorListener ):JsonObjectRequest{
-        return  JsonObjectRequest(Request.Method.PUT, URL_API+path, body, responseListener, errorListener)
-    }
 }

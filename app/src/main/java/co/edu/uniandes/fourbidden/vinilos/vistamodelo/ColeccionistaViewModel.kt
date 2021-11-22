@@ -7,6 +7,9 @@ import androidx.annotation.RequiresApi
 import androidx.lifecycle.*
 import co.edu.uniandes.fourbidden.vinilos.modelo.Coleccionista
 import co.edu.uniandes.fourbidden.vinilos.modelo.repository.ColeccionistaRepository
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 
 @RequiresApi(Build.VERSION_CODES.O)
@@ -18,12 +21,12 @@ class ColeccionistaViewModel (application: Application) :  AndroidViewModel(appl
     val coleccionistas: LiveData<List<Coleccionista>>
         get() = _coleccionistas
 
-    private var _eventNetworkError = MutableLiveData<Boolean>(false)
+    private var _eventNetworkError = MutableLiveData(false)
 
     val eventNetworkError: LiveData<Boolean>
         get() = _eventNetworkError
 
-    private var _isNetworkErrorShown = MutableLiveData<Boolean>(false)
+    private var _isNetworkErrorShown = MutableLiveData(false)
 
     val isNetworkErrorShown: LiveData<Boolean>
         get() = _isNetworkErrorShown
@@ -32,15 +35,24 @@ class ColeccionistaViewModel (application: Application) :  AndroidViewModel(appl
         refreshDataFromNetwork()
     }
 
-    @RequiresApi(Build.VERSION_CODES.O)
+
+
     private fun refreshDataFromNetwork() {
-        _coleccionistarepository.refreshDataColeccionista( { _coleccionistas.postValue(it)
-            _eventNetworkError.value = false
-            _isNetworkErrorShown.value = false
-        },{
+        try {
+            viewModelScope.launch (Dispatchers.Default){
+                withContext(Dispatchers.IO){
+                    var data = _coleccionistarepository.refreshDataColeccionistas()
+                    _coleccionistas.postValue(data)
+                }
+                _eventNetworkError.postValue(false)
+                _isNetworkErrorShown.postValue(false)
+            }
+        }
+        catch (e:Exception){
             _eventNetworkError.value = true
-        })
+        }
     }
+
 
     fun onNetworkErrorShown() {
         _isNetworkErrorShown.value = true

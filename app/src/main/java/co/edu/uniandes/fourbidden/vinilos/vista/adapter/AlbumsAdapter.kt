@@ -2,7 +2,6 @@ package co.edu.uniandes.fourbidden.vinilos.vista.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.ImageView
 import androidx.annotation.LayoutRes
 import androidx.core.net.toUri
 import androidx.databinding.DataBindingUtil
@@ -15,7 +14,6 @@ import co.edu.uniandes.fourbidden.vinilos.vista.fragmentos.AlbumFragmentDirectio
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.request.RequestOptions
-import com.squareup.picasso.Picasso
 
 class AlbumsAdapter: RecyclerView.Adapter<AlbumsAdapter.AlbumViewHolder>() {
     var albums :List<Album> = emptyList()
@@ -46,21 +44,6 @@ class AlbumsAdapter: RecyclerView.Adapter<AlbumsAdapter.AlbumViewHolder>() {
     }
 
 
-    /*
-    override fun onBindViewHolder(holder: AlbumViewHolder, position: Int) {
-
-        holder.viewDataBinding.also {
-            it.album  = albums[position]
-            val imageView = holder.itemView.findViewById<ImageView>(R.id.album_cover)
-            Picasso.get().load(albums[position].cover).into(imageView)
-
-        }
-        holder.viewDataBinding.root.setOnClickListener {
-            val action = AlbumFragmentDirections.actionAlbumFragmentToFragmentDetalleAlbum(albums[position].id)
-            holder.viewDataBinding.root.findNavController().navigate(action)
-        }
-    }
-*/
     override fun getItemCount(): Int {
         return albums.size
     }

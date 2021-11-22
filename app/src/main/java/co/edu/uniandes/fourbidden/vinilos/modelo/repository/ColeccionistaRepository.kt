@@ -10,11 +10,9 @@ import com.android.volley.VolleyError
 
 class ColeccionistaRepository(val application: Application) {
 
-    @RequiresApi(Build.VERSION_CODES.O)
-    fun refreshDataColeccionista(callback:(List<Coleccionista>)->Unit, onError:(VolleyError)->Unit) {
-        ServiceAdapterColeccionista.getInstance(application).getColeccionistas({
-            callback(it)
-        },onError)
+
+    suspend fun refreshDataColeccionistas(): List<Coleccionista>{
+        return ServiceAdapterColeccionista.getInstance(application).getColeccionistas()
     }
 
 

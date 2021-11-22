@@ -44,7 +44,7 @@
                 android:layout_height="40dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="10dp"
-                android:text="Fecha\nnacimiento :"
+                android:text="@string/fechanacimiento"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/name" />
 
@@ -76,7 +76,7 @@
                 android:layout_height="30dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="6dp"
-                android:text="Descripción :"
+                android:text="@string/descripcionmusico"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/cover" />
 
@@ -100,7 +100,7 @@
                 android:layout_height="30dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="6dp"
-                android:text="Albums "
+                android:text="@string/albumes"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/descripcion" />
 

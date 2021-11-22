@@ -2,15 +2,12 @@ package co.edu.uniandes.fourbidden.vinilos.vista.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.ImageView
 import androidx.annotation.LayoutRes
 import androidx.databinding.DataBindingUtil
-import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import co.edu.uniandes.fourbidden.vinilos.R
 import co.edu.uniandes.fourbidden.vinilos.databinding.ItemColeccionistaBinding
 import co.edu.uniandes.fourbidden.vinilos.modelo.Coleccionista
-import com.squareup.picasso.Picasso
 
 class ColeccionistaAdapter: RecyclerView.Adapter<ColeccionistaAdapter.ColeccionistaViewHolder>() {
     var coleccionistas :List<Coleccionista> = emptyList()
@@ -40,6 +37,7 @@ class ColeccionistaAdapter: RecyclerView.Adapter<ColeccionistaAdapter.Coleccioni
 
     class ColeccionistaViewHolder(val viewDataBinding: ItemColeccionistaBinding) :
         RecyclerView.ViewHolder(viewDataBinding.root) {
+
 
         companion object {
             @LayoutRes
