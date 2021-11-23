@@ -4,6 +4,7 @@ import android.app.Application
 import android.os.Build
 import androidx.annotation.RequiresApi
 import androidx.lifecycle.*
+import co.edu.uniandes.fourbidden.vinilos.database.VinylRoomDatabase
 import co.edu.uniandes.fourbidden.vinilos.modelo.Album
 import co.edu.uniandes.fourbidden.vinilos.modelo.repository.AlbumRepository
 
@@ -12,7 +13,8 @@ import co.edu.uniandes.fourbidden.vinilos.modelo.repository.AlbumRepository
 class DetalleAlbumViewModel (application: Application, albumId: String) :  AndroidViewModel(application) {
 
     private val _album = MutableLiveData<Album>()
-    private val _albumrepository = AlbumRepository(application)
+    //private val _albumrepository = AlbumRepository(application)
+    private val _albumsRepository = AlbumRepository(application, VinylRoomDatabase.getDatabase(application.applicationContext).albumsDao())
 
     val album: LiveData<Album>
         get() = _album
@@ -28,7 +30,7 @@ class DetalleAlbumViewModel (application: Application, albumId: String) :  Andro
         get() = _isNetworkErrorShown
 
     init {
-        _albumrepository.refreshDataAlbum(albumId,{_album.value = it},{})
+        _albumsRepository.refreshDataAlbum(albumId,{_album.value = it},{})
     }
 
 

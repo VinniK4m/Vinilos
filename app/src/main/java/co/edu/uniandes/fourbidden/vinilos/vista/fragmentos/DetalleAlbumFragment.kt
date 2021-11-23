@@ -73,10 +73,10 @@ class DetalleAlbumFragment : Fragment() {
 
             Picasso.get().load(binding.album?.cover).into(binding.cover)
             //binding.tracksRv = it.tracks
-            viewModelAdapter!!.tracks =it.tracks
-            Log.d("lista", it.tracks.toString())
-            val esta = Track(id = 10, name = "la listya ",duration = "5:20")
-                bindingT.track = esta
+            //viewModelAdapter!!.tracks =it.tracks
+            //Log.d("lista", it.tracks.toString())
+            //val esta = Track(id = 10, name = "la listya ",duration = "5:20")
+             //   bindingT.track = esta
 
 
 

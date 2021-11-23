@@ -79,8 +79,8 @@ class DetalleMusicoFragment : Fragment() {
 
             Picasso.get().load(binding.musico?.image).into(binding.cover)
             //binding.tracksRv = it.tracks
-            viewModelAdapter!!.albums = it.albums
-            Log.d("lista", it.albums.toString())
+            //viewModelAdapter!!.albums = it.albums
+            //Log.d("lista", it.albums.toString())
         })
         viewModel.eventNetworkError.observe(
             viewLifecycleOwner,
