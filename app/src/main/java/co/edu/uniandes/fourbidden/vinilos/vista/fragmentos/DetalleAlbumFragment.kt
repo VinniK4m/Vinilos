@@ -1,27 +1,22 @@
 package co.edu.uniandes.fourbidden.vinilos.vista.fragmentos
 
-import android.R
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.navArgs
-import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import co.edu.uniandes.fourbidden.vinilos.databinding.DetalleAlbumBinding
 import co.edu.uniandes.fourbidden.vinilos.databinding.TrackAlbumBinding
-import co.edu.uniandes.fourbidden.vinilos.modelo.Album
 import co.edu.uniandes.fourbidden.vinilos.modelo.Track
-import co.edu.uniandes.fourbidden.vinilos.vista.adapter.AlbumsAdapter
 import co.edu.uniandes.fourbidden.vinilos.vista.adapter.TrackAdapter
 import co.edu.uniandes.fourbidden.vinilos.vistamodelo.DetalleAlbumViewModel
 import com.squareup.picasso.Picasso
@@ -41,12 +36,11 @@ class DetalleAlbumFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _bindingT = TrackAlbumBinding.inflate(inflater, container, false)
         viewModelAdapter = TrackAdapter()
         _binding = DetalleAlbumBinding.inflate(inflater, container, false)
-        val view = binding.root
-        return view
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -68,7 +62,7 @@ class DetalleAlbumFragment : Fragment() {
         viewModel = ViewModelProvider(this, DetalleAlbumViewModel.Factory(activity.application, args.albumId)).get(
             DetalleAlbumViewModel::class.java)
 
-        viewModel.album.observe(viewLifecycleOwner, Observer<Album> {
+        viewModel.album.observe(viewLifecycleOwner, Observer {
             binding.album = it
 
             Picasso.get().load(binding.album?.cover).into(binding.cover)
@@ -82,7 +76,7 @@ class DetalleAlbumFragment : Fragment() {
 
 
         })
-        viewModel.eventNetworkError.observe(viewLifecycleOwner, Observer<Boolean> { isNetworkError ->
+        viewModel.eventNetworkError.observe(viewLifecycleOwner, Observer { isNetworkError ->
             if (isNetworkError) onNetworkError()
         })
     }

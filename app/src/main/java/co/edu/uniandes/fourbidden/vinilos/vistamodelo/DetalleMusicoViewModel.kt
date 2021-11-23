@@ -4,9 +4,7 @@ import android.app.Application
 import android.os.Build
 import androidx.annotation.RequiresApi
 import androidx.lifecycle.*
-import co.edu.uniandes.fourbidden.vinilos.modelo.Album
 import co.edu.uniandes.fourbidden.vinilos.modelo.Musico
-import co.edu.uniandes.fourbidden.vinilos.modelo.repository.AlbumRepository
 import co.edu.uniandes.fourbidden.vinilos.modelo.repository.MusicoRepository
 
 
@@ -19,12 +17,12 @@ class DetalleMusicoViewModel (application: Application, musicoId: String) :  And
     val musico: LiveData<Musico>
         get() = _musico
 
-    private var _eventNetworkError = MutableLiveData<Boolean>(false)
+    private var _eventNetworkError = MutableLiveData(false)
 
     val eventNetworkError: LiveData<Boolean>
         get() = _eventNetworkError
 
-    private var _isNetworkErrorShown = MutableLiveData<Boolean>(false)
+    private var _isNetworkErrorShown = MutableLiveData(false)
 
     val isNetworkErrorShown: LiveData<Boolean>
         get() = _isNetworkErrorShown
@@ -38,7 +36,7 @@ class DetalleMusicoViewModel (application: Application, musicoId: String) :  And
         _isNetworkErrorShown.value = true
     }
 
-    class Factory(val app: Application, val musicoId: String) : ViewModelProvider.Factory {
+    class Factory(val app: Application, private val musicoId: String) : ViewModelProvider.Factory {
         override fun <T : ViewModel?> create(modelClass: Class<T>): T {
             if (modelClass.isAssignableFrom(DetalleMusicoViewModel::class.java)) {
                 @Suppress("UNCHECKED_CAST")

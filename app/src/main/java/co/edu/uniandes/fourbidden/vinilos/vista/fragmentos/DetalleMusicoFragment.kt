@@ -1,30 +1,22 @@
 package co.edu.uniandes.fourbidden.vinilos.vista.fragmentos
 
-import android.R
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.navArgs
-import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import co.edu.uniandes.fourbidden.vinilos.databinding.AlbumMusicoBinding
 import co.edu.uniandes.fourbidden.vinilos.databinding.DetalleMusicoBinding
-import co.edu.uniandes.fourbidden.vinilos.modelo.Album
-import co.edu.uniandes.fourbidden.vinilos.modelo.Musico
-import co.edu.uniandes.fourbidden.vinilos.modelo.Track
 import co.edu.uniandes.fourbidden.vinilos.vista.adapter.AlbumListAdapter
-import co.edu.uniandes.fourbidden.vinilos.vista.adapter.AlbumsAdapter
-import co.edu.uniandes.fourbidden.vinilos.vistamodelo.DetalleAlbumViewModel
 import co.edu.uniandes.fourbidden.vinilos.vistamodelo.DetalleMusicoViewModel
 import com.squareup.picasso.Picasso
 
@@ -35,7 +27,7 @@ class DetalleMusicoFragment : Fragment() {
     private lateinit var viewModel: DetalleMusicoViewModel
     private lateinit var recyclerView: RecyclerView
     private var _bindingT: AlbumMusicoBinding? = null
-    private val bindingT get() = _bindingT!!
+
 
     private var viewModelAdapter: AlbumListAdapter? = null
 
@@ -43,12 +35,11 @@ class DetalleMusicoFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _bindingT = AlbumMusicoBinding.inflate(inflater, container, false)
         viewModelAdapter = AlbumListAdapter()
         _binding = DetalleMusicoBinding.inflate(inflater, container, false)
-        val view = binding.root
-        return view
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -74,7 +65,7 @@ class DetalleMusicoFragment : Fragment() {
             DetalleMusicoViewModel::class.java
         )
 
-        viewModel.musico.observe(viewLifecycleOwner, Observer<Musico> {
+        viewModel.musico.observe(viewLifecycleOwner, Observer {
             binding.musico = it
 
             Picasso.get().load(binding.musico?.image).into(binding.cover)
@@ -84,7 +75,7 @@ class DetalleMusicoFragment : Fragment() {
         })
         viewModel.eventNetworkError.observe(
             viewLifecycleOwner,
-            Observer<Boolean> { isNetworkError ->
+            Observer { isNetworkError ->
                 if (isNetworkError) onNetworkError()
             })
     }

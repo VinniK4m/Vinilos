@@ -27,15 +27,11 @@ class AlbumRepository (val application: Application, private val albumsDao: Albu
 
 
 
-    suspend fun refreshDataAlbum(albumId: Int): Album {
-        var cached = albumsDao.getAlbum(albumId)
-        return if(cached == null){
-            val cm = application.baseContext.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
-            if( cm.activeNetworkInfo?.type != ConnectivityManager.TYPE_WIFI && cm.activeNetworkInfo?.type != ConnectivityManager.TYPE_MOBILE){
-                albumsDao.getAlbum(albumId)
-            } else ServiceAdapter.getInstance(application).getAlbum(albumId)
-        } else cached
+    @RequiresApi(Build.VERSION_CODES.O)
+    fun refreshDataAlbum(albumId: String, callback:(Album)->Unit, onError:(VolleyError)->Unit) {
+        ServiceAdapter.getInstance(application).getAlbum( Integer.parseInt(albumId),{
+            callback(it)
+        },onError)
     }
-
 
 }

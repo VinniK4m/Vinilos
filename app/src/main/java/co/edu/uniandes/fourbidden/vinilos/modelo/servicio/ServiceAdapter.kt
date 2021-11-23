@@ -46,10 +46,9 @@ class ServiceAdapter constructor(context: Context) {
                 for (i in 0 until resp.length()) {
                     val item = resp.getJSONObject(i)
                     val fecha : String =  item!!.getString("releaseDate").substringBefore(delimiter = "T", missingDelimiterValue = "2000-01-01")
-                    //var releaseDate : LocalDate = parse(fecha)
+                    var releaseDate : LocalDate = parse(fecha)
                     val listTrack = mutableListOf<Track>()
-                    list.add(i, Album(id = item.getString("id"),name = item.getString("name"), cover = item.getString("cover"),
-                        recordLabel = item.getString("recordLabel"), releaseDate = fecha, genre = item.getString("genre"), description = item.getString("description")))
+                    list.add(i, Album(id = item.getString("id"),name = item.getString("name"), cover = item.getString("cover"), recordLabel = item.getString("recordLabel"), releaseDate = releaseDate, genre = item.getString("genre"), description = item.getString("description"), tracks = listTrack))
                 }
                 cont.resume(list)
             },
@@ -60,33 +59,35 @@ class ServiceAdapter constructor(context: Context) {
 
 
 
-
-    suspend fun getAlbum(albumId: Int)= suspendCoroutine<Album>{ cont->
+    @RequiresApi(Build.VERSION_CODES.O)
+    fun getAlbum(albumId: Int, onComplete: (resp: Album) -> Unit, onError: (error: VolleyError) -> Unit){
         requestQueue.add(getRequest("albums/$albumId",
             Response.Listener<String> { response ->
                 val resp = JSONObject(response)
                 val fecha : String =  resp!!.getString("releaseDate").substringBefore(delimiter = "T", missingDelimiterValue = "2000-01-01")
+
+                var releaseDate = parse(fecha)
                 val listTrack = mutableListOf<Track>()
                 val tracks = resp.getJSONArray("tracks")
                 for (j in 0 until tracks.length()) {
                     val itemtrack = tracks.getJSONObject(j)
-                    listTrack.add(j, Track(id = itemtrack.getInt("id"), name = itemtrack.getString("name"),duration = itemtrack.getString("duration"),
-                        albumId = resp.getInt("id")))
+                    listTrack.add(j, Track(id = itemtrack.getInt("id"), name = itemtrack.getString("name"),duration = itemtrack.getString("duration")))
                 }
 
                 val album = Album(id = resp.getString("id"),
                     name = resp.getString("name"),
                     cover = resp.getString("cover"),
                     recordLabel = resp.getString("recordLabel"),
-                    releaseDate = fecha,
+                    releaseDate = releaseDate,
                     genre = resp.getString("genre"),
-                    description = resp.getString("description")
+                    description = resp.getString("description"),
+                    tracks = listTrack,
                 )
-                cont.resume(album)
 
+                onComplete(album)
             },
             Response.ErrorListener {
-                cont.resumeWithException(it)
+                onError(it)
             }))
     }
 

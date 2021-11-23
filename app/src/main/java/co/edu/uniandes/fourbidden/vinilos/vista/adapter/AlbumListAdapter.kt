@@ -7,7 +7,6 @@ import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import co.edu.uniandes.fourbidden.vinilos.R
 import co.edu.uniandes.fourbidden.vinilos.databinding.AlbumMusicoBinding
-import co.edu.uniandes.fourbidden.vinilos.databinding.TrackAlbumBinding
 import co.edu.uniandes.fourbidden.vinilos.modelo.Album
 
 class AlbumListAdapter: RecyclerView.Adapter<AlbumListAdapter.AlbumListViewHolder>() {

@@ -26,4 +26,13 @@ class ColeccionistaRepository(val application: Application, private val coleccio
             } else ServiceAdapterColeccionista.getInstance(application).getColeccionistas()
         } else cached
     }
+
+
+    @RequiresApi(Build.VERSION_CODES.O)
+    fun refreshDataColeccionista(coleccionistaId: String, callback:(Coleccionista)->Unit, onError:(VolleyError)->Unit) {
+        ServiceAdapterColeccionista.getInstance(application).getColeccionista( Integer.parseInt(coleccionistaId),{
+            callback(it)
+        },onError)
+    }
+
 }

@@ -3,9 +3,7 @@ package co.edu.uniandes.fourbidden.vinilos.modelo.servicio
 import android.content.Context
 import android.os.Build
 import androidx.annotation.RequiresApi
-import co.edu.uniandes.fourbidden.vinilos.modelo.Album
 import co.edu.uniandes.fourbidden.vinilos.modelo.Coleccionista
-import co.edu.uniandes.fourbidden.vinilos.modelo.Track
 import com.android.volley.Request
 import com.android.volley.RequestQueue
 import com.android.volley.Response
@@ -15,8 +13,6 @@ import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import org.json.JSONArray
 import org.json.JSONObject
-import java.time.LocalDate
-import java.time.LocalDate.parse
 import kotlin.coroutines.resume
 import kotlin.coroutines.resumeWithException
 import kotlin.coroutines.suspendCoroutine
@@ -25,7 +21,7 @@ import kotlin.coroutines.suspendCoroutine
 class ServiceAdapterColeccionista constructor(context: Context) {
     companion object{
         const val URL_API= "https://back-vinyls-populated.herokuapp.com/"
-        var instance: ServiceAdapterColeccionista? = null
+        private var instance: ServiceAdapterColeccionista? = null
         fun getInstance(context: Context) =
             instance ?: synchronized(this) {
                 instance ?: ServiceAdapterColeccionista(context).also {
@@ -76,11 +72,5 @@ class ServiceAdapterColeccionista constructor(context: Context) {
         return StringRequest(Request.Method.GET, URL_API+path, responseListener,errorListener)
     }
 
-    private fun postRequest(path: String, body: JSONObject, responseListener: Response.Listener<JSONObject>, errorListener: Response.ErrorListener ):JsonObjectRequest{
-        return  JsonObjectRequest(Request.Method.POST, URL_API+path, body, responseListener, errorListener)
-    }
 
-    private fun putRequest(path: String, body: JSONObject, responseListener: Response.Listener<JSONObject>, errorListener: Response.ErrorListener ):JsonObjectRequest{
-        return  JsonObjectRequest(Request.Method.PUT, URL_API+path, body, responseListener, errorListener)
-    }
 }

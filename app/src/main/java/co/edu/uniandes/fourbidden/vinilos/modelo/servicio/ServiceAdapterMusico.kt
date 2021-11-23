@@ -45,10 +45,10 @@ class ServiceAdapterMusico constructor(context: Context) {
                 for (i in 0 until resp.length()) {
                     val item = resp.getJSONObject(i)
                     val fecha : String =  item!!.getString("birthDate").substringBefore(delimiter = "T", missingDelimiterValue = "2000-01-01")
-                    //var releaseDate : LocalDate = parse(fecha)
+                    var releaseDate : LocalDate = parse(fecha)
                     val listAlbums = mutableListOf<Album>()
                     list.add(i, Musico(id = item.getString("id"),name = item.getString("name"), image = item.getString("image"),
-                        birthDate = fecha, description = item.getString("description")))
+                        birthDate = releaseDate, description = item.getString("description"), albums = listAlbums))
                 }
                 cont.resume(list)
             },
@@ -65,7 +65,7 @@ class ServiceAdapterMusico constructor(context: Context) {
             Response.Listener<String> { response ->
                 val resp = JSONObject(response)
                 val fecha : String =  resp!!.getString("birthDate").substringBefore(delimiter = "T", missingDelimiterValue = "2000-01-01")
-                //var releaseDate = parse(fecha)
+                var releaseDate = parse(fecha)
                 val listAlbums = mutableListOf<Album>()
                 val listTracks = mutableListOf<Track>()
                 val albums = resp.getJSONArray("albums")
@@ -75,12 +75,12 @@ class ServiceAdapterMusico constructor(context: Context) {
                         name = itemAlbum.getString("name"),
                         cover = itemAlbum.getString("cover"),
                         recordLabel = itemAlbum.getString("recordLabel"),
-                        releaseDate = fecha,
+                        releaseDate = releaseDate,
                         genre = itemAlbum.getString("genre"),
-                        description = itemAlbum.getString("description")))
+                        description = itemAlbum.getString("description"), tracks = listTracks))
                 }
                 val musico = Musico(id = resp.getString("id"),name = resp.getString("name"), image = resp.getString("image"),
-                    birthDate = resp.getString("releaseDate"), description = resp.getString("description"))
+                    birthDate = releaseDate, description = resp.getString("description"), albums = listAlbums)
                 onComplete(musico)
             },
             Response.ErrorListener {

@@ -43,7 +43,7 @@ class AlbumViewModel (application: Application) :  AndroidViewModel(application)
         try {
             viewModelScope.launch (Dispatchers.Default){
                 withContext(Dispatchers.IO){
-                    var data = _albumsRepository.refreshData()
+                    var data = _albumrepository.refreshDataAlbums()
                     _albums.postValue(data)
                 }
                 _eventNetworkError.postValue(false)
@@ -58,14 +58,9 @@ class AlbumViewModel (application: Application) :  AndroidViewModel(application)
 
 
 
-
     fun onNetworkErrorShown() {
         _isNetworkErrorShown.value = true
     }
-
-
-
-
 
     class Factory(val app: Application) : ViewModelProvider.Factory {
         override fun <T : ViewModel?> create(modelClass: Class<T>): T {
