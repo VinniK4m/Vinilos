@@ -59,7 +59,7 @@ class DetalleAlbumFragment : Fragment() {
 
         val args: DetalleAlbumFragmentArgs by navArgs()
 
-        viewModel = ViewModelProvider(this, DetalleAlbumViewModel.Factory(activity.application, args.albumId)).get(
+        viewModel = ViewModelProvider(this, DetalleAlbumViewModel.Factory(activity.application, args.albumId.toString())).get(
             DetalleAlbumViewModel::class.java)
 
         viewModel.album.observe(viewLifecycleOwner, Observer {
@@ -67,12 +67,13 @@ class DetalleAlbumFragment : Fragment() {
 
             Picasso.get().load(binding.album?.cover).into(binding.cover)
             //binding.tracksRv = it.tracks
+            // todo revisar funcionamiento
+            /*
             viewModelAdapter!!.tracks =it.tracks
             Log.d("lista", it.tracks.toString())
             val esta = Track(id = 10, name = "la listya ",duration = "5:20")
                 bindingT.track = esta
-
-
+             */
 
 
         })

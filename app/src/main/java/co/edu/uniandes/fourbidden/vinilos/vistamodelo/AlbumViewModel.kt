@@ -5,6 +5,7 @@ import android.app.Application
 import android.os.Build
 import androidx.annotation.RequiresApi
 import androidx.lifecycle.*
+import co.edu.uniandes.fourbidden.vinilos.database.VinylRoomDatabase
 import co.edu.uniandes.fourbidden.vinilos.modelo.Album
 import co.edu.uniandes.fourbidden.vinilos.modelo.repository.AlbumRepository
 import kotlinx.coroutines.Dispatchers
@@ -14,8 +15,10 @@ import kotlinx.coroutines.withContext
 @RequiresApi(Build.VERSION_CODES.O)
 class AlbumViewModel (application: Application) :  AndroidViewModel(application) {
 
+    private val _albumrepository = AlbumRepository(application, VinylRoomDatabase.getDatabase(application.applicationContext).albumsDao())
+
     private val _albums = MutableLiveData<List<Album>>()
-    private val _albumrepository = AlbumRepository(application)
+    //private val _albumrepository = AlbumRepository(application)
 
     val albums: LiveData<List<Album>>
         get() = _albums
@@ -40,7 +43,7 @@ class AlbumViewModel (application: Application) :  AndroidViewModel(application)
         try {
             viewModelScope.launch (Dispatchers.Default){
                 withContext(Dispatchers.IO){
-                    val data = _albumrepository.refreshDataAlbums()
+                    val data = _albumrepository.refreshData()
                     _albums.postValue(data)
                 }
                 _eventNetworkError.postValue(false)

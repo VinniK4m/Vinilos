@@ -22,6 +22,6 @@
         tools:layout="@layout/detalle_musico" >
         <argument
             android:name="musicoId"
-            app:argType="string" />
+            app:argType="integer" />
     </fragment>
 </navigation>

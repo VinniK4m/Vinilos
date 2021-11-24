@@ -22,6 +22,6 @@
         tools:layout="@layout/detalle_album" >
         <argument
             android:name="albumId"
-            app:argType="string" />
+            app:argType="integer" />
     </fragment>
 </navigation>

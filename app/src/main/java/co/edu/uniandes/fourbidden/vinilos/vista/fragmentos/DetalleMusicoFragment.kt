@@ -60,7 +60,7 @@ class DetalleMusicoFragment : Fragment() {
 
         viewModel = ViewModelProvider(
             this,
-            DetalleMusicoViewModel.Factory(activity.application, args.musicoId)
+            DetalleMusicoViewModel.Factory(activity.application, args.musicoId.toString())
         ).get(
             DetalleMusicoViewModel::class.java
         )
@@ -70,8 +70,10 @@ class DetalleMusicoFragment : Fragment() {
 
             Picasso.get().load(binding.musico?.image).into(binding.cover)
             //binding.tracksRv = it.tracks
+            /* todo revisar visualizar el detalle de musico
             viewModelAdapter!!.albums = it.albums
             Log.d("lista", it.albums.toString())
+             */
         })
         viewModel.eventNetworkError.observe(
             viewLifecycleOwner,
