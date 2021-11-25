@@ -27,7 +27,7 @@ class ColeccionistaRepository(val application: Application, private val coleccio
     }
     /*suspend fun refreshDataColeccionistas(): List<Coleccionista>{
         return ServiceAdapterColeccionista.getInstance(application).getColeccionistas()
-    }
+    }*/
 
 
     @RequiresApi(Build.VERSION_CODES.O)
@@ -35,6 +35,6 @@ class ColeccionistaRepository(val application: Application, private val coleccio
         ServiceAdapterColeccionista.getInstance(application).getColeccionista( Integer.parseInt(coleccionistaId),{
             callback(it)
         },onError)
-    }*/
+    }
 
 }

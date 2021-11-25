@@ -10,5 +10,18 @@
         android:name="co.edu.uniandes.fourbidden.vinilos.vista.fragmentos.ColeccionistaFragment"
         android:label="@string/titulolistacoleccionistas"
         tools:layout="@layout/fragment_coleccionista" >
+        <action
+            android:id="@+id/action_coleccionistaFragment_to_fragmentDetalleColeccionista"
+            app:destination="@id/fragmentDetalleColeccionista" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/fragmentDetalleColeccionista"
+        android:name="co.edu.uniandes.fourbidden.vinilos.vista.fragmentos.DetalleColeccionistaFragment"
+        android:label="@string/titulodetallecoleccionista"
+        tools:layout="@layout/detalle_coleccionista" >
+        <argument
+            android:name="coleccionistaId"
+            app:argType="integer" />
     </fragment>
 </navigation>
