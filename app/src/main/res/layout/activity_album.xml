@@ -25,7 +25,7 @@
         android:id="@+id/toolbar"
         android:layout_width="0dp"
         android:layout_height="64dp"
-        android:background="?attr/colorPrimary"
+        android:background="@color/white"
         android:minHeight="?attr/actionBarSize"
         android:theme="?attr/actionBarTheme"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -41,6 +41,7 @@
         android:layout_marginStart="5dp"
         android:layout_marginBottom="8dp"
         android:text="@string/opAlbumes"
+        android:drawableLeft="@drawable/albums"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -52,6 +53,7 @@
         android:layout_marginStart="5dp"
         android:layout_marginBottom="8dp"
         android:text="@string/opColeccionistas"
+        android:drawableLeft="@drawable/musico"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@id/btMusico" />
 
@@ -64,6 +66,7 @@
         android:layout_marginBottom="8dp"
         android:text="@string/opMusicos"
         app:layout_constraintBottom_toBottomOf="parent"
+        android:drawableLeft="@drawable/audifono"
         app:layout_constraintStart_toEndOf="@id/btAlbumes" />
 
 

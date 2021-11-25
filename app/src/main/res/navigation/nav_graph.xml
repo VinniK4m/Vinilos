@@ -9,6 +9,7 @@
         android:id="@+id/albumFragment"
         android:name="co.edu.uniandes.fourbidden.vinilos.vista.fragmentos.AlbumFragment"
         android:label="@string/titulolistaalbum"
+        android:drawableLeft="@drawable/albums"
         tools:layout="@layout/fragment_album" >
         <action
             android:id="@+id/action_albumFragment_to_fragmentDetalleAlbum"
@@ -22,6 +23,6 @@
         tools:layout="@layout/detalle_album" >
         <argument
             android:name="albumId"
-            app:argType="string" />
+            app:argType="integer" />
     </fragment>
 </navigation>

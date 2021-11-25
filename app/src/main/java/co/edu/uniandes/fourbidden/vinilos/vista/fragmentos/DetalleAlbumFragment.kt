@@ -19,6 +19,7 @@ import co.edu.uniandes.fourbidden.vinilos.databinding.TrackAlbumBinding
 import co.edu.uniandes.fourbidden.vinilos.modelo.Track
 import co.edu.uniandes.fourbidden.vinilos.vista.adapter.TrackAdapter
 import co.edu.uniandes.fourbidden.vinilos.vistamodelo.DetalleAlbumViewModel
+import co.edu.uniandes.fourbidden.vinilos.vistamodelo.TrackViewModel
 import com.squareup.picasso.Picasso
 
 class DetalleAlbumFragment : Fragment() {
@@ -30,6 +31,7 @@ class DetalleAlbumFragment : Fragment() {
     private var _bindingT: TrackAlbumBinding? = null
     private val bindingT get() = _bindingT!!
 
+    private lateinit var viewModelT: TrackViewModel
     private var viewModelAdapter: TrackAdapter? = null
 
 
@@ -59,7 +61,7 @@ class DetalleAlbumFragment : Fragment() {
 
         val args: DetalleAlbumFragmentArgs by navArgs()
 
-        viewModel = ViewModelProvider(this, DetalleAlbumViewModel.Factory(activity.application, args.albumId)).get(
+        viewModel = ViewModelProvider(this, DetalleAlbumViewModel.Factory(activity.application, args.albumId.toString())).get(
             DetalleAlbumViewModel::class.java)
 
         viewModel.album.observe(viewLifecycleOwner, Observer {
@@ -67,15 +69,25 @@ class DetalleAlbumFragment : Fragment() {
 
             Picasso.get().load(binding.album?.cover).into(binding.cover)
             //binding.tracksRv = it.tracks
+            // todo revisar funcionamiento
+            /*
             viewModelAdapter!!.tracks =it.tracks
             Log.d("lista", it.tracks.toString())
             val esta = Track(id = 10, name = "la listya ",duration = "5:20")
                 bindingT.track = esta
-
-
+             */
 
 
         })
+        viewModelT = ViewModelProvider(this, TrackViewModel.Factory(activity.application, args.albumId)).get(TrackViewModel::class.java)
+        viewModelT.tracks.observe(viewLifecycleOwner, Observer<List<Track>> {
+            it.apply {
+                viewModelAdapter!!.tracks = this
+            }
+        })
+
+
+
         viewModel.eventNetworkError.observe(viewLifecycleOwner, Observer { isNetworkError ->
             if (isNetworkError) onNetworkError()
         })

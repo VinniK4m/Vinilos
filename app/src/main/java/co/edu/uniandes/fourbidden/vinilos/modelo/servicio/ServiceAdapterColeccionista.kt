@@ -39,8 +39,9 @@ class ServiceAdapterColeccionista constructor(context: Context) {
             Response.Listener<String> { response ->
                 val resp = JSONArray(response)
                 val list = mutableListOf<Coleccionista>()
+                var item:JSONObject? = null
                 for (i in 0 until resp.length()) {
-                    val item = resp.getJSONObject(i)
+                    item = resp.getJSONObject(i)
                     list.add(i, Coleccionista(id = item.getInt("id"),name = item.getString("name"), email = item.getString("email")))
                 }
 
