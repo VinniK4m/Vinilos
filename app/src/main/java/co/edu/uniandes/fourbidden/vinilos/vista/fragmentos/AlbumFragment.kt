@@ -52,7 +52,7 @@ class AlbumFragment : Fragment() {
             "You can only access the viewModel after onActivityCreated()"
         }
 
-        viewModel = ViewModelProvider(this, AlbumViewModel.Factory(activity.application)).get(
+        viewModel = ViewModelProvider(this, AlbumViewModel.Factory(activity.application, 0)).get(
             AlbumViewModel::class.java)
 
 

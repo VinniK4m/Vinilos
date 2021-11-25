@@ -14,6 +14,8 @@ interface AlbumsDao {
     @Query("SELECT * FROM albums_table WHERE id = :albumId")
     fun getAlbum(albumId:Int):Album
 
+    @Query("SELECT * FROM albums_table WHERE idMusico = :musicoId")
+    fun getAlbumsByMusico(musicoId:Int):List<Album>
 
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
