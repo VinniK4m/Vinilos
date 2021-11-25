@@ -4,6 +4,7 @@ import android.app.Application
 import android.os.Build
 import androidx.annotation.RequiresApi
 import androidx.lifecycle.*
+import co.edu.uniandes.fourbidden.vinilos.database.VinylRoomDatabase
 import co.edu.uniandes.fourbidden.vinilos.modelo.Musico
 import co.edu.uniandes.fourbidden.vinilos.modelo.repository.MusicoRepository
 
@@ -12,7 +13,8 @@ import co.edu.uniandes.fourbidden.vinilos.modelo.repository.MusicoRepository
 class DetalleMusicoViewModel (application: Application, musicoId: String) :  AndroidViewModel(application) {
 
     private val _musico = MutableLiveData<Musico>()
-    private val _musicorepository = MusicoRepository(application)
+    private val _musicorepository = MusicoRepository(application,
+        VinylRoomDatabase.getDatabase(application.applicationContext).musicosDao())
 
     val musico: LiveData<Musico>
         get() = _musico
@@ -28,6 +30,7 @@ class DetalleMusicoViewModel (application: Application, musicoId: String) :  And
         get() = _isNetworkErrorShown
 
     init {
+        
         _musicorepository.refreshDataMusico(musicoId,{_musico.value = it},{})
     }
 

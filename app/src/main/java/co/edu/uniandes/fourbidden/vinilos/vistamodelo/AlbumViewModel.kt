@@ -17,7 +17,6 @@ import kotlinx.coroutines.withContext
 class AlbumViewModel (application: Application) :  AndroidViewModel(application) {
 
     private val _albums = MutableLiveData<List<Album>>()
-    //private val _albumrepository = AlbumRepository(application)
     private val _albumsRepository = AlbumRepository(application, VinylRoomDatabase.getDatabase(application.applicationContext).albumsDao())
 
     val albums: LiveData<List<Album>>
@@ -43,7 +42,7 @@ class AlbumViewModel (application: Application) :  AndroidViewModel(application)
         try {
             viewModelScope.launch (Dispatchers.Default){
                 withContext(Dispatchers.IO){
-                    var data = _albumrepository.refreshDataAlbums()
+                    var data = _albumsRepository.refreshData()
                     _albums.postValue(data)
                 }
                 _eventNetworkError.postValue(false)

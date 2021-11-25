@@ -3,6 +3,7 @@ package co.edu.uniandes.fourbidden.vinilos.modelo
 import java.time.LocalDate
 
 import androidx.room.Entity
+import androidx.room.Ignore
 import androidx.room.PrimaryKey
 
 @Entity(tableName = "albums_table")
@@ -16,5 +17,9 @@ data class Album (
     val description: String,
     val genre: String,
     val recordLabel: String,
-    //var tracks: List<Track>
+
+
+
+
+
 )

@@ -24,4 +24,13 @@ class MusicoRepository(val application: Application, private val musicosDao: Mus
             } else ServiceAdapterMusico.getInstance(application).getMusicos()
         } else cached
     }
+
+
+    @RequiresApi(Build.VERSION_CODES.O)
+    fun refreshDataMusico(musicoId: String, callback:(Musico)->Unit, onError:(VolleyError)->Unit) {
+        ServiceAdapterMusico.getInstance(application).getMusico( Integer.parseInt(musicoId),{
+            callback(it)
+        },onError)
+    }
+
 }

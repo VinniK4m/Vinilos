@@ -16,6 +16,7 @@ interface TracksDao {
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun insert(track: Track)
 
+    @Query("DELETE FROM tracks_table")
     suspend fun clear():Void
 
     @Query("DELETE FROM tracks_table WHERE albumId = :albumId")

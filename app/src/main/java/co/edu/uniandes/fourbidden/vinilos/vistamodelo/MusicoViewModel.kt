@@ -42,7 +42,7 @@ class MusicoViewModel (application: Application) :  AndroidViewModel(application
         try {
             viewModelScope.launch (Dispatchers.Default){
                 withContext(Dispatchers.IO){
-                    var data = _musciorepository.refreshDataMusicos()
+                    var data = _musciorepository.refreshData()
                     _musicos.postValue(data)
                 }
                 _eventNetworkError.postValue(false)
