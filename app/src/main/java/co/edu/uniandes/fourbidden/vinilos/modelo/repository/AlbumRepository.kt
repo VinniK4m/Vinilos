@@ -7,10 +7,11 @@ import android.os.Build
 import androidx.annotation.RequiresApi
 import co.edu.uniandes.fourbidden.vinilos.database.AlbumsDao
 import co.edu.uniandes.fourbidden.vinilos.modelo.Album
-import co.edu.uniandes.fourbidden.vinilos.modelo.Track
 import co.edu.uniandes.fourbidden.vinilos.modelo.servicio.ServiceAdapter
 import co.edu.uniandes.fourbidden.vinilos.modelo.servicio.ServiceAdapterMusico
+import com.android.volley.Response
 import com.android.volley.VolleyError
+import org.json.JSONObject
 
 
 class AlbumRepository(val application: Application, private val albumsDao: AlbumsDao) {
@@ -40,14 +41,8 @@ class AlbumRepository(val application: Application, private val albumsDao: Album
             callback(it)
         },onError)
     }
-    /*
-    private fun getAlbumes(): List<Album> {
-        val prefs = CacheManager.getPrefs(application.baseContext, CacheManager.ALBUMS_SPREFS)
-
-        return listOf<Album>()
-    }
 
 
-
-    */
-}
+    fun createAlbum(newalbum: JSONObject, onComplete:(resp:JSONObject)->Unit , onError: (error:VolleyError)->Unit) {
+        ServiceAdapter.getInstance(application).postAlbum(newalbum,onComplete,  onError)
+    }}

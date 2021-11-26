@@ -14,6 +14,12 @@
         <action
             android:id="@+id/action_albumFragment_to_fragmentDetalleAlbum"
             app:destination="@id/fragmentDetalleAlbum" />
+
+        <action
+            android:id="@+id/action_albumFragment_to_newAlbum"
+            app:destination="@id/albumNewFragment" />
+
+
     </fragment>
 
     <fragment
@@ -25,4 +31,16 @@
             android:name="albumId"
             app:argType="integer" />
     </fragment>
+
+
+    <fragment
+        android:id="@+id/albumNewFragment"
+        android:name="co.edu.uniandes.fourbidden.vinilos.vista.fragmentos.AlbumNewFragment"
+        android:label="@string/titulocrearalbum"
+        android:drawableLeft="@drawable/albums"
+        tools:layout="@layout/fragment_album_new" >
+    </fragment>
+
+
+
 </navigation>

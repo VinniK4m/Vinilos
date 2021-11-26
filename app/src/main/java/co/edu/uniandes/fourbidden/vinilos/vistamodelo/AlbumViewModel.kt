@@ -9,17 +9,19 @@ import androidx.lifecycle.*
 import co.edu.uniandes.fourbidden.vinilos.database.VinylRoomDatabase
 import co.edu.uniandes.fourbidden.vinilos.modelo.Album
 import co.edu.uniandes.fourbidden.vinilos.modelo.repository.AlbumRepository
+import com.android.volley.Response
+import com.android.volley.VolleyError
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import org.json.JSONObject
 
 @RequiresApi(Build.VERSION_CODES.O)
 class AlbumViewModel (application: Application, musicoId: Int) :  AndroidViewModel(application) {
 
     private val _albumrepository = AlbumRepository(application, VinylRoomDatabase.getDatabase(application.applicationContext).albumsDao())
-
     private val _albums = MutableLiveData<List<Album>>()
-    //private val _albumrepository = AlbumRepository(application)
+
     val musicoId:Int = musicoId
 
     val albums: LiveData<List<Album>>
@@ -39,6 +41,26 @@ class AlbumViewModel (application: Application, musicoId: Int) :  AndroidViewMod
         refreshDataFromNetwork()
 
     }
+
+
+    public fun crearAlbum(json: JSONObject,onComplete:(resp:JSONObject)->Unit , onError: (error: VolleyError)->Unit){
+
+        try {
+            viewModelScope.launch(Dispatchers.Default) {
+                withContext(Dispatchers.IO) {
+                    val data = _albumrepository.createAlbum(json,onComplete ,onError )
+                }
+            }
+        }
+    catch (e:Exception){
+        _eventNetworkError.value = true
+    }
+
+
+
+    }
+
+
 
     private fun refreshDataFromNetwork() {
         try {

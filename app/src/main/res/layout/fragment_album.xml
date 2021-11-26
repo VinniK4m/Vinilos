@@ -20,4 +20,15 @@
         android:layout_height="match_parent"
         tools:listitem="@layout/item_album"/>
 
+
+
+    <Button
+        android:id="@+id/btCrearAlbum"
+        style="@style/botonMenu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:layout_marginBottom="8dp"
+        android:text="@string/btCrearAlbum"/>
+
 </FrameLayout>

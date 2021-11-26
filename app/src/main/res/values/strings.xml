@@ -28,4 +28,13 @@
     <string name="fechanacimiento">Fecha\nnacimiento :</string>
     <string name="descripcionmusico">Descripción :</string>
     <string name="albumes">"Albums "</string>
+    <string name="form_album_name">Nombre</string>
+    <string name="form_album_cover">Carátula</string>
+    <string name="form_album_date">Fecha de lanzamiento</string>
+    <string name="form_album_descr">Descripción</string>
+    <string name="form_album_genre">Género</string>
+    <string name="form_album_recordlabel">Disquera</string>
+    <string name="create_album">Crear Album</string>
+    <string name="btCrearAlbum">Crear Album</string>
+    <string name="titulocrearalbum">Crear Album</string>
 </resources>
