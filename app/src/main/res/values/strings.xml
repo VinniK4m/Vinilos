@@ -28,4 +28,6 @@
     <string name="fechanacimiento">Fecha\nnacimiento :</string>
     <string name="descripcionmusico">Descripción :</string>
     <string name="albumes">"Albums "</string>
+    <string name="email">email</string>
+    <string name="titulodetallecoleccionista">Detalle Coleccionista</string>
 </resources>

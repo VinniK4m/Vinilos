@@ -3,6 +3,7 @@ package co.edu.uniandes.fourbidden.vinilos.modelo.servicio
 import android.content.Context
 import android.os.Build
 import androidx.annotation.RequiresApi
+import co.edu.uniandes.fourbidden.vinilos.modelo.Album
 import co.edu.uniandes.fourbidden.vinilos.modelo.Coleccionista
 import com.android.volley.Request
 import com.android.volley.RequestQueue
@@ -33,6 +34,31 @@ class ServiceAdapterColeccionista constructor(context: Context) {
         Volley.newRequestQueue(context.applicationContext)
     }
 
+    suspend fun getAlbums(idColeccionista: Int) = suspendCoroutine<List<Album>>{ cont->
+        requestQueue.add(getRequest("collectors/$idColeccionista/albums",
+            Response.Listener<String> { response ->
+                val resp = JSONArray(response)
+                val list = mutableListOf<Album>()
+                var item:JSONObject? = null
+                var fecha : String = ""
+                if (resp.length() > 0) {
+                    item = resp.getJSONObject(0).getJSONObject("album")
+                    fecha =  item.getString("releaseDate").substringBefore(delimiter = "T", missingDelimiterValue = "2000-01-01")
+                    list.add(0, Album(id = item.getInt("id"),
+                        name = item.getString("name"),
+                        cover = item.getString("cover"),
+                        recordLabel = item.getString("recordLabel"),
+                        releaseDate = fecha,
+                        genre = item.getString("genre"),
+                        description = item.getString("description"),
+                        idMusico = 1)
+                )}
+                cont.resume(list)
+            },
+            Response.ErrorListener {
+                cont.resumeWithException(it)
+            }))
+    }
 
     suspend fun getColeccionistas() = suspendCoroutine<List<Coleccionista>>{ cont->
         requestQueue.add(getRequest("collectors",
