@@ -29,6 +29,8 @@ class AlbumFragment : Fragment() {
     private lateinit var recyclerView: RecyclerView
     private lateinit var viewModel: AlbumViewModel
     private var viewModelAdapter: AlbumsAdapter? = null
+    var button: Button? = null
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -45,6 +47,7 @@ class AlbumFragment : Fragment() {
         recyclerView.layoutManager = GridLayoutManager(context, 3)//LinearLayoutManager(context)
         recyclerView.layoutManager
         recyclerView.adapter = viewModelAdapter
+
 
 
 

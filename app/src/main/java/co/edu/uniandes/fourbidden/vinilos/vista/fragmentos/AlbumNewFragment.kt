@@ -9,9 +9,13 @@ import android.view.ViewGroup
 import android.widget.Button
 import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.navArgs
 import co.edu.uniandes.fourbidden.vinilos.databinding.FragmentAlbumNewBinding
 import co.edu.uniandes.fourbidden.vinilos.vista.adapter.AlbumsAdapter
 import co.edu.uniandes.fourbidden.vinilos.vistamodelo.AlbumViewModel
+import co.edu.uniandes.fourbidden.vinilos.vistamodelo.CrearAlbumViewModel
+import co.edu.uniandes.fourbidden.vinilos.vistamodelo.DetalleAlbumViewModel
 import com.android.volley.Response
 import com.google.android.material.textfield.TextInputEditText
 import org.json.JSONObject
@@ -20,7 +24,7 @@ import org.json.JSONObject
 class AlbumNewFragment : Fragment() {
     private var _binding: FragmentAlbumNewBinding? = null
     private val binding get() = _binding!!
-    private lateinit var viewModel: AlbumViewModel
+    private lateinit var viewModel: CrearAlbumViewModel
     private var viewModelAdapter: AlbumsAdapter? = null
 
     override fun onCreateView(
@@ -35,7 +39,19 @@ class AlbumNewFragment : Fragment() {
 
 
 
+
     @RequiresApi(Build.VERSION_CODES.O)
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+        val activity = requireNotNull(this.activity) {
+            "You can only access the viewModel after onActivityCreated()"
+        }
+        viewModel = ViewModelProvider(this, CrearAlbumViewModel.Factory(activity.application)).get(
+            CrearAlbumViewModel::class.java)
+    }
+
+
+        @RequiresApi(Build.VERSION_CODES.O)
     fun createdFormularioAlbum() {
 
         val btCrearAlbum: Button = binding.createAlbum
@@ -55,6 +71,8 @@ class AlbumNewFragment : Fragment() {
                 "genre" to genreTxt.text.toString(),
                 "recordlabel" to recordlabelTxt.text.toString()
             )
+
+           /*
             viewModel?.crearAlbum(JSONObject(postParams),
                 { response ->
                     Log.d("prueba","")
@@ -63,6 +81,8 @@ class AlbumNewFragment : Fragment() {
                     Log.d("prueba","")
                 }
             )
+
+ */
         }
 
     }
@@ -89,6 +109,8 @@ class AlbumNewFragment : Fragment() {
                 "genre" to genreTxt.text.toString(),
                 "recordlabel" to recordlabelTxt.text.toString()
             )
+
+            /*
             viewModel?.crearAlbum(JSONObject(postParams),
                  { response ->
                    Log.d("prueba","")
@@ -97,6 +119,9 @@ class AlbumNewFragment : Fragment() {
                     Log.d("prueba","")
                 }
             )
+
+            */
+
         }
 
     }
