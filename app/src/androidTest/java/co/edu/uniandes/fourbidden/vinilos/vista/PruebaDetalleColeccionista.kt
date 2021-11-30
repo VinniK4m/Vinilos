@@ -43,7 +43,7 @@ class PruebaDetalleColeccionista {
             )
         )
         materialButton.perform(click())
-        Thread.sleep(4500)
+        Thread.sleep(7000)
 
         val materialButton2 = onView(
             allOf(
@@ -59,7 +59,7 @@ class PruebaDetalleColeccionista {
             )
         )
         materialButton2.perform(click())
-        Thread.sleep(2000)
+        Thread.sleep(3000)
 
         val recyclerView = onView(
             allOf(
@@ -71,7 +71,7 @@ class PruebaDetalleColeccionista {
             )
         )
         recyclerView.perform(actionOnItemAtPosition<ViewHolder>(0, click()))
-        Thread.sleep(3000)
+
     }
 
     private fun childAtPosition(
