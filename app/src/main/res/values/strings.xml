@@ -37,4 +37,6 @@
     <string name="create_album">Crear Album</string>
     <string name="btCrearAlbum">Crear Album</string>
     <string name="titulocrearalbum">Crear Album</string>
+    <string name="email">email</string>
+    <string name="titulodetallecoleccionista">Detalle Coleccionista</string>
 </resources>

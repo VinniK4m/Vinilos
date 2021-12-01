@@ -14,9 +14,20 @@
         <entry key="..\:/Kotlin_Projects/Vinilos/app/src/main/res/layout/fragment_musico.xml" value="0.2644927536231884" />
         <entry key="..\:/Kotlin_Projects/Vinilos/app/src/main/res/layout/item_album.xml" value="0.2740036231884058" />
         <entry key="..\:/Kotlin_Projects/Vinilos/app/src/main/res/layout/item_musico.xml" value="0.2644927536231884" />
+        <entry key="..\:/Users/Albeiro/Documents/Albeiro/Master/IsMovil/Vinilos/app/src/main/res/layout/activity_coleccionista.xml" value="0.18072916666666666" />
+        <entry key="..\:/Users/Albeiro/Documents/Albeiro/Master/IsMovil/Vinilos/app/src/main/res/layout/album_coleccionista.xml" value="0.18072916666666666" />
+        <entry key="..\:/Users/Albeiro/Documents/Albeiro/Master/IsMovil/Vinilos/app/src/main/res/layout/album_musico.xml" value="0.1" />
+        <entry key="..\:/Users/Albeiro/Documents/Albeiro/Master/IsMovil/Vinilos/app/src/main/res/layout/detalle_coleccionista.xml" value="0.264" />
+        <entry key="..\:/Users/Albeiro/Documents/Albeiro/Master/IsMovil/Vinilos/app/src/main/res/layout/detalle_colleccionista.xml" value="0.18072916666666666" />
+        <entry key="..\:/Users/Albeiro/Documents/Albeiro/Master/IsMovil/Vinilos/app/src/main/res/layout/fragment_detalle_coleccionista.xml" value="0.18072916666666666" />
+        <entry key="..\:/Users/Albeiro/Documents/Albeiro/Master/IsMovil/Vinilos/app/src/main/res/layout/item_album.xml" value="0.18072916666666666" />
+        <entry key="..\:/Users/Albeiro/Documents/Albeiro/Master/IsMovil/Vinilos/app/src/main/res/layout/item_coleccionista.xml" value="0.18072916666666666" />
+        <entry key="..\:/Users/Albeiro/Documents/Albeiro/Master/IsMovil/Vinilos/app/src/main/res/layout/item_musico.xml" value="0.18072916666666666" />
+        <entry key="..\:/Users/Albeiro/Documents/Albeiro/Master/IsMovil/Vinilos/app/src/main/res/layout/track_album.xml" value="0.11282051282051282" />
       </map>
     </option>
   </component>
+  <component name="ExternalStorageConfigurationManager" enabled="true" />
   <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="11" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>

@@ -45,9 +45,11 @@ class ServiceAdapter constructor(context: Context) {
             Response.Listener<String> { response ->
                 val resp = JSONArray(response)
                 val list = mutableListOf<Album>()
+                var fecha : String = ""
+                var item:JSONObject? = null
                 for (i in 0 until resp.length()) {
-                    val item = resp.getJSONObject(i)
-                    val fecha : String =  item!!.getString("releaseDate").substringBefore(delimiter = "T", missingDelimiterValue = "2000-01-01")
+                    item = resp.getJSONObject(i)
+                    fecha = item!!.getString("releaseDate").substringBefore(delimiter = "T", missingDelimiterValue = "2000-01-01")
                     //val releaseDate : LocalDate = parse(fecha)
                     list.add(i, Album(id = item.getInt("id"),name = item.getString("name"), cover = item.getString("cover"), recordLabel = item.getString("recordLabel"), releaseDate = fecha, genre = item.getString("genre"), description = item.getString("description"), idMusico = 0))
                 }
@@ -65,9 +67,7 @@ class ServiceAdapter constructor(context: Context) {
             Response.Listener<String> { response ->
                 val resp = JSONObject(response)
                 val fecha : String =  resp.getString("releaseDate").substringBefore(delimiter = "T", missingDelimiterValue = "2000-01-01")
-
                 val releaseDate = fecha
-
                 val album = Album(id = resp.getInt("id"),
                     name = resp.getString("name"),
                     cover = resp.getString("cover"),

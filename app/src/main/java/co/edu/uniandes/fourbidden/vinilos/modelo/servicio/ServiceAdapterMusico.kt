@@ -42,11 +42,12 @@ class ServiceAdapterMusico constructor(context: Context) {
             Response.Listener<String> { response ->
                 val resp = JSONArray(response)
                 val list = mutableListOf<Musico>()
+                var item:JSONObject? = null
+                var fecha : String = ""
                 for (i in 0 until resp.length()) {
-                    val item = resp.getJSONObject(i)
-                    val fecha : String =  item!!.getString("birthDate").substringBefore(delimiter = "T", missingDelimiterValue = "2000-01-01")
-                    //val releaseDate : LocalDate = parse(fecha)
-                    val listAlbums = mutableListOf<Album>()
+                    item = resp.getJSONObject(i)
+                    fecha =  item!!.getString("birthDate").substringBefore(delimiter = "T", missingDelimiterValue = "2000-01-01")
+
                     list.add(i, Musico(id = item.getInt("id"),name = item.getString("name"), image = item.getString("image"),
                         birthDate = fecha, description = item.getString("description")))
                 }
@@ -81,9 +82,10 @@ class ServiceAdapterMusico constructor(context: Context) {
                 val resp = JSONArray(response)
                 val list = mutableListOf<Album>()
                 var item:JSONObject? = null
+                var fecha : String = ""
                 for (i in 0 until resp.length()) {
                     item = resp.getJSONObject(i)
-                    val fecha : String =  item.getString("releaseDate").substringBefore(delimiter = "T", missingDelimiterValue = "2000-01-01")
+                    fecha =  item.getString("releaseDate").substringBefore(delimiter = "T", missingDelimiterValue = "2000-01-01")
                     list.add(i, Album(id = item.getInt("id"),
                         name = item.getString("name"),
                         cover = item.getString("cover"),
