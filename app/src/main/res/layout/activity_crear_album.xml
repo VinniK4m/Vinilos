@@ -4,8 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    style="@style/tema.vinilos"
-    tools:context=".vista.AlbumActivity">
+    tools:context=".vista.CrearAlbumActivity">
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/nav_host_fragment"
@@ -19,7 +18,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:navGraph="@navigation/nav_graph" />
+        app:navGraph="@navigation/nav_graph_crear_album" />
+
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
@@ -68,6 +68,7 @@
         android:text="@string/opMusicos"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@id/btAlbumes" />
+
 
 
 

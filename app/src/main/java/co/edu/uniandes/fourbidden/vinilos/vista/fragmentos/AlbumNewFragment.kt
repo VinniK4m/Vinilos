@@ -16,6 +16,7 @@ import co.edu.uniandes.fourbidden.vinilos.vista.adapter.AlbumsAdapter
 import co.edu.uniandes.fourbidden.vinilos.vistamodelo.AlbumViewModel
 import co.edu.uniandes.fourbidden.vinilos.vistamodelo.CrearAlbumViewModel
 import co.edu.uniandes.fourbidden.vinilos.vistamodelo.DetalleAlbumViewModel
+import co.edu.uniandes.fourbidden.vinilos.vistamodelo.TrackViewModel
 import com.android.volley.Response
 import com.google.android.material.textfield.TextInputEditText
 import org.json.JSONObject
@@ -38,91 +39,43 @@ class AlbumNewFragment : Fragment() {
     }
 
 
-
-
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         val activity = requireNotNull(this.activity) {
             "You can only access the viewModel after onActivityCreated()"
         }
-        viewModel = ViewModelProvider(this, CrearAlbumViewModel.Factory(activity.application)).get(
-            CrearAlbumViewModel::class.java)
-    }
-
-
-        @RequiresApi(Build.VERSION_CODES.O)
-    fun createdFormularioAlbum() {
-
-        val btCrearAlbum: Button = binding.createAlbum
-        //val postResultTextView : TextView = findViewById(R.id.post_result_text)
-        btCrearAlbum.setOnClickListener {
-            val nameTxt : TextInputEditText = binding.formAlbumName
-            val coverTxt : TextInputEditText = binding.formAlbumCover
-            val releasedateTxt : TextInputEditText = binding.formAlbumDate
-            val descriptionTxt : TextInputEditText = binding.formAlbumDescr
-            val genreTxt : TextInputEditText = binding.formAlbumGenre
-            val recordlabelTxt : TextInputEditText = binding.formAlbumRecordlabel
-            val postParams = mapOf<String, Any>(
-                "name" to nameTxt.text.toString(),
-                "cover" to coverTxt.text.toString(),
-                "releasedate" to releasedateTxt.text.toString(),
-                "description" to descriptionTxt.text.toString(),
-                "genre" to genreTxt.text.toString(),
-                "recordlabel" to recordlabelTxt.text.toString()
-            )
-
-           /*
-            viewModel?.crearAlbum(JSONObject(postParams),
-                { response ->
-                    Log.d("prueba","")
-                },
-                {
-                    Log.d("prueba","")
-                }
-            )
-
- */
-        }
 
     }
-
 
 
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-
-        val btCrearAlbum: Button = binding.createAlbum
-        //val postResultTextView : TextView = findViewById(R.id.post_result_text)
+       val btCrearAlbum: Button = binding.createAlbum
         btCrearAlbum.setOnClickListener {
             val nameTxt : TextInputEditText = binding.formAlbumName
             val coverTxt : TextInputEditText = binding.formAlbumCover
-            val releasedateTxt : TextInputEditText = binding.formAlbumDate
+            /*formato 1984-08-01T00:00:00-05:00*/
+            var releasedateTxt : TextInputEditText = binding.formAlbumDate
             val descriptionTxt : TextInputEditText = binding.formAlbumDescr
             val genreTxt : TextInputEditText = binding.formAlbumGenre
             val recordlabelTxt : TextInputEditText = binding.formAlbumRecordlabel
             val postParams = mapOf<String, Any>(
                 "name" to nameTxt.text.toString(),
                 "cover" to coverTxt.text.toString(),
-                "releasedate" to releasedateTxt.text.toString(),
+                "releaseDate" to releasedateTxt.text.toString()+"T00:00:00-05:00",
                 "description" to descriptionTxt.text.toString(),
                 "genre" to genreTxt.text.toString(),
-                "recordlabel" to recordlabelTxt.text.toString()
+                "recordLabel" to recordlabelTxt.text.toString()
             )
 
-            /*
-            viewModel?.crearAlbum(JSONObject(postParams),
-                 { response ->
-                   Log.d("prueba","")
-                },
-                 {
-                    Log.d("prueba","")
-                }
-            )
+            val activity = requireNotNull(this.activity) {
+                "You can only access the viewModel after onActivityCreated()"
+            }
 
-            */
-
-        }
+           viewModel = ViewModelProvider(this, CrearAlbumViewModel.Factory(activity.application, JSONObject(postParams))).get(
+                CrearAlbumViewModel::class.java)
+}
 
     }
 

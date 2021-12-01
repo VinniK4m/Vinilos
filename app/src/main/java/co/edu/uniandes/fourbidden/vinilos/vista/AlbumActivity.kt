@@ -27,8 +27,13 @@ class AlbumActivity : AppCompatActivity() {
         //setSupportActionBar(findViewById(R.id.my_toolbar))
         setupActionBarWithNavController(navController)
 
-
-
+/*
+        val btCrearAlbum= findViewById<Button>(R.id.btCrearAlbum)
+        btCrearAlbum.setOnClickListener {
+        val activityCrearAlbum = Intent(this, CrearAlbumActivity::class.java)
+        startActivity(activityCrearAlbum)
+        }
+*/
 
         val btMusico=findViewById<Button>(R.id.btMusico)
         btMusico.setOnClickListener {

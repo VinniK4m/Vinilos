@@ -3,9 +3,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="co.edu.uniandes.fourbidden.vinilos">
 
+    <uses-sdk android:minSdkVersion="5" />
+
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-sdk android:minSdkVersion="5" />
 
     <application
         android:allowBackup="true"
@@ -14,6 +15,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Vinilos">
+        <activity
+            android:name=".vista.CrearAlbumActivity"
+            android:exported="false" />
         <activity
             android:name=".vista.AlbumActivity"
             android:exported="false" />
@@ -26,7 +30,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".vista.MusicoActivity"
             android:exported="false" />

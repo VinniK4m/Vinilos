@@ -1,7 +1,9 @@
 package co.edu.uniandes.fourbidden.vinilos.vista.fragmentos
 
+import android.content.Intent
 import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -16,6 +18,7 @@ import androidx.recyclerview.widget.RecyclerView
 import co.edu.uniandes.fourbidden.vinilos.R
 import co.edu.uniandes.fourbidden.vinilos.databinding.FragmentAlbumBinding
 import co.edu.uniandes.fourbidden.vinilos.modelo.Album
+import co.edu.uniandes.fourbidden.vinilos.vista.CrearAlbumActivity
 import co.edu.uniandes.fourbidden.vinilos.vista.adapter.AlbumsAdapter
 import co.edu.uniandes.fourbidden.vinilos.vistamodelo.AlbumViewModel
 
@@ -39,6 +42,19 @@ class AlbumFragment : Fragment() {
         _binding = FragmentAlbumBinding.inflate(inflater, container, false)
         val view = binding.root
         viewModelAdapter = AlbumsAdapter()
+
+
+
+        //var myView = inflater.inflate(R.layout.fragment_album_new, container, false)
+        button = _binding!!.btCrearAlbum
+        button!!.setOnClickListener {
+            Log.d("","en el action del boton crear album..................")
+            val intent = Intent (getActivity(), CrearAlbumActivity::class.java)
+            getActivity()?.startActivity(intent)
+
+        }
+
+
         return view
     }
 
@@ -51,13 +67,16 @@ class AlbumFragment : Fragment() {
 
 
 
+
+
+/*
         val btCrearAlbum= _binding?.btCrearAlbum
         btCrearAlbum?.setOnClickListener {
-            val action = AlbumFragmentDirections.actionAlbumFragmentToNewAlbum()
+            val activityCrearAlbum = Intent(this, CrearAlbumActivity::class.java)
 
         }
 
-
+*/
 
     }
 
