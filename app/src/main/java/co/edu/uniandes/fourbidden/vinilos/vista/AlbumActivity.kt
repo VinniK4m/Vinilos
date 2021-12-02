@@ -1,17 +1,23 @@
 package co.edu.uniandes.fourbidden.vinilos.vista
 
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import android.widget.Button
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupActionBarWithNavController
 import co.edu.uniandes.fourbidden.vinilos.R
+import co.edu.uniandes.fourbidden.vinilos.vista.fragmentos.AlbumFragmentDirections
+import co.edu.uniandes.fourbidden.vinilos.vista.fragmentos.AlbumNewFragment
+import java.lang.reflect.Array.newInstance
 
 class AlbumActivity : AppCompatActivity() {
     private lateinit var navController: NavController
 
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_album)
@@ -20,6 +26,14 @@ class AlbumActivity : AppCompatActivity() {
         navController = navHostFragment.navController
         //setSupportActionBar(findViewById(R.id.my_toolbar))
         setupActionBarWithNavController(navController)
+
+/*
+        val btCrearAlbum= findViewById<Button>(R.id.btCrearAlbum)
+        btCrearAlbum.setOnClickListener {
+        val activityCrearAlbum = Intent(this, CrearAlbumActivity::class.java)
+        startActivity(activityCrearAlbum)
+        }
+*/
 
         val btMusico=findViewById<Button>(R.id.btMusico)
         btMusico.setOnClickListener {

@@ -37,6 +37,9 @@ class ServiceAdapter constructor(context: Context) {
         Volley.newRequestQueue(context.applicationContext)
     }
 
+
+
+
     suspend fun getAlbums() = suspendCoroutine<List<Album>>{ cont->
         requestQueue.add(getRequest("albums",
             Response.Listener<String> { response ->
@@ -99,8 +102,9 @@ class ServiceAdapter constructor(context: Context) {
                 cont.resumeWithException(it)
             }))
     }
-    fun postComment(body: JSONObject, albumId: Int,  onComplete:(resp:JSONObject)->Unit , onError: (error:VolleyError)->Unit){
-        requestQueue.add(postRequest("albums/$albumId/tracks",
+
+    fun postAlbum(body: JSONObject, onComplete:(resp:JSONObject)->Unit , onError: (error:VolleyError)->Unit){
+        requestQueue.add(postRequest("albums",
             body,
             Response.Listener<JSONObject> { response ->
                 onComplete(response)
@@ -112,9 +116,13 @@ class ServiceAdapter constructor(context: Context) {
     private fun getRequest(path:String, responseListener: Response.Listener<String>, errorListener: Response.ErrorListener): StringRequest {
         return StringRequest(Request.Method.GET, URL_API+path, responseListener,errorListener)
     }
+
     private fun postRequest(path: String, body: JSONObject,  responseListener: Response.Listener<JSONObject>, errorListener: Response.ErrorListener ):JsonObjectRequest{
         return  JsonObjectRequest(Request.Method.POST, URL_API+path, body, responseListener, errorListener)
     }
+
+
+
 
 
 }

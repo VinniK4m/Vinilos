@@ -2,6 +2,7 @@ package co.edu.uniandes.fourbidden.vinilos.vista.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.Button
 import androidx.annotation.LayoutRes
 import androidx.core.net.toUri
 import androidx.databinding.DataBindingUtil
@@ -14,6 +15,7 @@ import co.edu.uniandes.fourbidden.vinilos.vista.fragmentos.AlbumFragmentDirectio
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.request.RequestOptions
+import org.json.JSONObject
 
 class AlbumsAdapter: RecyclerView.Adapter<AlbumsAdapter.AlbumViewHolder>() {
     var albums :List<Album> = emptyList()
@@ -21,7 +23,10 @@ class AlbumsAdapter: RecyclerView.Adapter<AlbumsAdapter.AlbumViewHolder>() {
             field = value
             notifyDataSetChanged()
         }
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AlbumViewHolder {
+
+
+
+            override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AlbumViewHolder {
         val withDataBinding: ItemAlbumBinding = DataBindingUtil.inflate(
             LayoutInflater.from(parent.context),
             AlbumViewHolder.LAYOUT,
@@ -41,6 +46,9 @@ class AlbumsAdapter: RecyclerView.Adapter<AlbumsAdapter.AlbumViewHolder>() {
             // Navigate using that action
             holder.viewDataBinding.root.findNavController().navigate(action)
         }
+
+
+
     }
 
 
