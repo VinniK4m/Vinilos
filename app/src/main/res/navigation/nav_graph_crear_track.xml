@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/trackCreaFragment">
+
+    <fragment
+        android:id="@+id/trackCreaFragment"
+        android:name="co.edu.uniandes.fourbidden.vinilos.vista.fragmentos.TrackNewFragment"
+        android:label="@string/titulocrearalbum"
+        android:drawableLeft="@drawable/albums"
+        tools:layout="@layout/fragment_track_new" >
+
+    </fragment>
+
+
+</navigation>

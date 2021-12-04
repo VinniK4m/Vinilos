@@ -39,4 +39,7 @@
     <string name="titulocrearalbum">Crear Album</string>
     <string name="email">email</string>
     <string name="titulodetallecoleccionista">Detalle Coleccionista</string>
+    <string name="form_track_name">Nombre</string>
+    <string name="form_track_duracion">Duración</string>
+    <string name="create_track">Crear Track</string>
 </resources>
