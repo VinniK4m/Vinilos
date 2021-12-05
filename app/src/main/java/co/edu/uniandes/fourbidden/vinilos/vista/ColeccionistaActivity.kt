@@ -26,6 +26,7 @@ class ColeccionistaActivity : AppCompatActivity() {
             val activityAlbumes = Intent(this, AlbumActivity::class.java)
             startActivity(activityAlbumes)
         }
+
         val btMusico=findViewById<Button>(R.id.btMusico)
         btMusico.setOnClickListener {
             val activityMusicos = Intent(this, MusicoActivity::class.java)
