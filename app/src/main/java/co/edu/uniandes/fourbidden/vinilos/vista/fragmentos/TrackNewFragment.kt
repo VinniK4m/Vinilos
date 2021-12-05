@@ -14,10 +14,6 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.navArgs
 import co.edu.uniandes.fourbidden.vinilos.databinding.FragmentAlbumNewBinding
 import co.edu.uniandes.fourbidden.vinilos.vista.adapter.AlbumsAdapter
-import co.edu.uniandes.fourbidden.vinilos.vistamodelo.AlbumViewModel
-import co.edu.uniandes.fourbidden.vinilos.vistamodelo.CrearAlbumViewModel
-import co.edu.uniandes.fourbidden.vinilos.vistamodelo.DetalleAlbumViewModel
-import co.edu.uniandes.fourbidden.vinilos.vistamodelo.TrackViewModel
 import com.android.volley.Response
 import com.google.android.material.textfield.TextInputEditText
 import org.json.JSONObject
@@ -30,18 +26,24 @@ import android.content.DialogInterface
 import android.text.TextUtils
 import android.widget.EditText
 import co.edu.uniandes.fourbidden.vinilos.databinding.FragmentTrackNewBinding
+import co.edu.uniandes.fourbidden.vinilos.vistamodelo.*
 
 
 class TrackNewFragment : Fragment() {
     private var _binding: FragmentTrackNewBinding? = null
     private val binding get() = _binding!!
-    private lateinit var viewModel: CrearAlbumViewModel
+    private lateinit var viewModel: CrearTrackViewModel
     private var viewModelAdapter: AlbumsAdapter? = null
+    private var albumIdG: Int = 1
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+        val albumId = activity?.intent?.extras?.get("albumId")
+        Log.d("albumId", albumId.toString())
+        albumIdG = albumId.toString().toInt()
         _binding = FragmentTrackNewBinding.inflate(inflater, container, false)
         val view = binding.root
         viewModelAdapter = AlbumsAdapter()
@@ -61,11 +63,10 @@ class TrackNewFragment : Fragment() {
 
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-       val btCrearTrack: Button = binding.createTrack
+        val btCrearTrack: Button = binding.createTrack
         btCrearTrack.setOnClickListener {
             val nameTxt : TextInputEditText = binding.formTrackName
             val duracionTxt : TextInputEditText = binding.formTrackDuracion
-
 
             if (validarCampos(nameTxt, duracionTxt)){
                 val postParams = mapOf<String, Any>(
@@ -76,24 +77,26 @@ class TrackNewFragment : Fragment() {
                 val activity = requireNotNull(this.activity) {
                     "You can only access the viewModel after onActivityCreated()"
                 }
-                viewModel = ViewModelProvider(this, CrearAlbumViewModel.Factory(activity.application, JSONObject(postParams))).get(
-                    CrearAlbumViewModel::class.java)
+                viewModel = ViewModelProvider(this, CrearTrackViewModel.Factory(activity.application,albumIdG,JSONObject(postParams))).get(
+                    CrearTrackViewModel::class.java)
+
+                mensajeToast("Canción creada con éxito");
+                nameTxt.setText("")
+                duracionTxt.setText("")
             }
 
-
-
-
+        }
     }
 
-    }
-    private fun validarCampos(nameTxt: TextInputEditText, coverTxt: TextInputEditText): Boolean {
+
+    private fun validarCampos(nameTxt: TextInputEditText, duracionTxt: TextInputEditText): Boolean {
 
         if (TextUtils.isEmpty(nameTxt.getText().toString())) {
             mensajeToast("El nombre esta vacío, intente de nuevo");
             return false;
         }
-        if (TextUtils.isEmpty(coverTxt.getText().toString())) {
-            mensajeToast("La carátula esta vacía, intente de nuevo");
+        if (TextUtils.isEmpty(duracionTxt.getText().toString())) {
+            mensajeToast("La duración esta vacía, intente de nuevo");
             return false;
         }
 
@@ -112,8 +115,5 @@ class TrackNewFragment : Fragment() {
 
         alertDialog = alertDialogBuilder.create()
         alertDialog?.show()
-
     }
-
-
 }

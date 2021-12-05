@@ -1,11 +1,13 @@
 package co.edu.uniandes.fourbidden.vinilos.vista.fragmentos
 
+import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
@@ -14,9 +16,11 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import co.edu.uniandes.fourbidden.vinilos.R
 import co.edu.uniandes.fourbidden.vinilos.databinding.DetalleAlbumBinding
 import co.edu.uniandes.fourbidden.vinilos.databinding.TrackAlbumBinding
 import co.edu.uniandes.fourbidden.vinilos.modelo.Track
+import co.edu.uniandes.fourbidden.vinilos.vista.CrearTrackActivity
 import co.edu.uniandes.fourbidden.vinilos.vista.adapter.TrackAdapter
 import co.edu.uniandes.fourbidden.vinilos.vistamodelo.DetalleAlbumViewModel
 import co.edu.uniandes.fourbidden.vinilos.vistamodelo.TrackViewModel
@@ -34,7 +38,6 @@ class DetalleAlbumFragment : Fragment() {
     private lateinit var viewModelT: TrackViewModel
     private var viewModelAdapter: TrackAdapter? = null
 
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -42,6 +45,14 @@ class DetalleAlbumFragment : Fragment() {
         _bindingT = TrackAlbumBinding.inflate(inflater, container, false)
         viewModelAdapter = TrackAdapter()
         _binding = DetalleAlbumBinding.inflate(inflater, container, false)
+        _binding!!.btCrearTrack.setOnClickListener {
+            Log.d("","en el action del boton crear album..................")
+            val intent = Intent (getActivity(), CrearTrackActivity::class.java)
+            val argsTrack: DetalleAlbumFragmentArgs by navArgs()
+            val albumId = argsTrack.albumId.toString()
+            intent.putExtra("albumId", albumId)
+            startActivity(intent)
+        }
         return binding.root
     }
 

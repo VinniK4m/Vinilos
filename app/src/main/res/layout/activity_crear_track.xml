@@ -25,16 +25,13 @@
         android:id="@+id/toolbar"
         android:layout_width="0dp"
         android:layout_height="64dp"
-        android:background="@color/white"
+        android:background="?attr/colorPrimary"
         android:minHeight="?attr/actionBarSize"
         android:theme="?attr/actionBarTheme"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent" />
-
-
-
 
     <Button
         android:id="@+id/btAlbumes"

@@ -55,6 +55,8 @@ class AlbumFragment : Fragment() {
         }
 
 
+
+
         return view
     }
 

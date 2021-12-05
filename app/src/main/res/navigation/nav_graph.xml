@@ -14,9 +14,6 @@
         <action
             android:id="@+id/action_albumFragment_to_fragmentDetalleAlbum"
             app:destination="@id/fragmentDetalleAlbum" />
-
-
-
     </fragment>
 
     <fragment
@@ -28,8 +25,4 @@
             android:name="albumId"
             app:argType="integer" />
     </fragment>
-
-
-
-
 </navigation>

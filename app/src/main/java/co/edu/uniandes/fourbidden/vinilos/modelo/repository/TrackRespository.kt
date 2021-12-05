@@ -7,6 +7,8 @@ import co.edu.uniandes.fourbidden.vinilos.database.TracksDao
 import co.edu.uniandes.fourbidden.vinilos.modelo.Track
 import co.edu.uniandes.fourbidden.vinilos.modelo.servicio.ServiceAdapter
 import co.edu.uniandes.fourbidden.vinilos.modelo.servicio.ServiceAdapterMusico
+import com.android.volley.VolleyError
+import org.json.JSONObject
 
 class TrackRespository (val application: Application, private val tracksDao: TracksDao) {
 
@@ -18,5 +20,9 @@ class TrackRespository (val application: Application, private val tracksDao: Tra
                 emptyList()
             } else ServiceAdapter.getInstance(application).getTracks(albumId)
         } else cached
+    }
+
+    fun createTrack(albumId:Int, newtrack: JSONObject, onComplete:(resp: JSONObject)->Unit, onError: (error: VolleyError)->Unit) {
+        ServiceAdapter.getInstance(application).postTrack(albumId,newtrack,onComplete,  onError)
     }
 }

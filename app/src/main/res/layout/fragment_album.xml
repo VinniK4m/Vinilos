@@ -21,7 +21,6 @@
         tools:listitem="@layout/item_album"/>
 
 
-
     <Button
         android:id="@+id/btCrearAlbum"
         style="@style/botonMenu"
@@ -30,7 +29,9 @@
         android:layout_marginStart="5dp"
         android:layout_marginBottom="8dp"
         android:text="@string/btCrearAlbum"
-        tools:listitem="@layout/fragment_album_new"/>
-        />
+        android:textSize="12sp"
+        android:visibility="invisible"
+        tools:listitem="@layout/fragment_album_new" />
+
 
 </FrameLayout>

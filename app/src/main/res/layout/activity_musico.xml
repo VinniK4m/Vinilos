@@ -40,6 +40,7 @@
         android:layout_marginStart="5dp"
         android:layout_marginBottom="8dp"
         android:text="@string/opAlbumes"
+        android:textSize="12sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -51,17 +52,19 @@
         android:layout_marginStart="5dp"
         android:layout_marginBottom="8dp"
         android:text="@string/opColeccionistas"
+        android:textSize="12sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@id/btMusico" />
 
     <Button
         android:id="@+id/btMusico"
-        style="@style/botonMenu"
+        style="@style/botonSeleccionado"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="5dp"
         android:layout_marginBottom="8dp"
         android:text="@string/opMusicos"
+        android:textSize="12sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@id/btAlbumes" />
 

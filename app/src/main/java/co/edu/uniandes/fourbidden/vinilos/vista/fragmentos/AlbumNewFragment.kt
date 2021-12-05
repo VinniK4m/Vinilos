@@ -85,13 +85,17 @@ class AlbumNewFragment : Fragment() {
                 }
                 viewModel = ViewModelProvider(this, CrearAlbumViewModel.Factory(activity.application, JSONObject(postParams))).get(
                     CrearAlbumViewModel::class.java)
+
+                mensajeToast("Álbum creado con éxito");
+                nameTxt.setText("")
+                coverTxt.setText("")
+                releasedateTxt.setText("")
+                descriptionTxt.setText("")
+                genreTxt.setText("")
+                recordlabelTxt.setText("")
+
             }
-
-
-
-
-    }
-
+        }
     }
     private fun validarCampos(nameTxt: TextInputEditText, coverTxt: TextInputEditText,
                               releasedateTxt: TextInputEditText,descriptionTxt: TextInputEditText,
@@ -117,8 +121,24 @@ class AlbumNewFragment : Fragment() {
             mensajeToast("El género esta vacío, intente de nuevo");
             return false;
         }
+        if (!TextUtils.equals(genreTxt.getText().toString(),"Classical") and
+            !TextUtils.equals(genreTxt.getText().toString(),"Salsa") and
+            !TextUtils.equals(genreTxt.getText().toString(),"Rock") and
+            !TextUtils.equals(genreTxt.getText().toString(),"Folk")) {
+            mensajeToast("El género debe estar entre Classical, Salsa, Rock, Folk, intente de nuevo");
+            return false;
+        }
         if (TextUtils.isEmpty(recordlabelTxt.getText().toString())) {
             mensajeToast("El género esta vacío, intente de nuevo");
+            return false;
+        }
+        if (!TextUtils.equals(recordlabelTxt.getText().toString(),"Sony Music") and
+            !TextUtils.equals(recordlabelTxt.getText().toString(),"EMI") and
+            !TextUtils.equals(recordlabelTxt.getText().toString(),"Discos Fuentes") and
+            !TextUtils.equals(recordlabelTxt.getText().toString(),"Elektra") and
+            !TextUtils.equals(recordlabelTxt.getText().toString(),"Fania Records")) {
+            mensajeToast("El género debe estar entre Sony Music, EMI, Discos Fuentes, Elektra, " +
+                    "Fania Records, intente de nuevo");
             return false;
         }
         return true

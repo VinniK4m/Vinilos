@@ -6,20 +6,20 @@ import android.util.Log
 import androidx.annotation.RequiresApi
 import androidx.lifecycle.*
 import co.edu.uniandes.fourbidden.vinilos.database.VinylRoomDatabase
-import co.edu.uniandes.fourbidden.vinilos.modelo.Album
-import co.edu.uniandes.fourbidden.vinilos.modelo.repository.AlbumRepository
+import co.edu.uniandes.fourbidden.vinilos.modelo.Track
+import co.edu.uniandes.fourbidden.vinilos.modelo.repository.TrackRespository
 import org.json.JSONObject
 
 
 @RequiresApi(Build.VERSION_CODES.O)
-class CrearAlbumViewModel (application: Application,parametros : JSONObject) :  AndroidViewModel(application) {
+class CrearTrackViewModel (application: Application, albumId: Int, parametros : JSONObject) :  AndroidViewModel(application) {
 
-    private val _albumrepository = AlbumRepository(application, VinylRoomDatabase.getDatabase(application.applicationContext).albumsDao())
+    private val _trackrepository = TrackRespository(application, VinylRoomDatabase.getDatabase(application.applicationContext).tracksDao())
 
-    private val _album = MutableLiveData<Album>()
+    private val _track = MutableLiveData<Track>()
 
-    val album: LiveData<Album>
-        get() = _album
+    val track: LiveData<Track>
+        get() = _track
 
     private var _eventNetworkError = MutableLiveData(false)
 
@@ -32,7 +32,7 @@ class CrearAlbumViewModel (application: Application,parametros : JSONObject) :  
         get() = _isNetworkErrorShown
 
     init {
-         _albumrepository.createAlbum(parametros,  { response ->
+         _trackrepository.createTrack(albumId, parametros,  { response ->
              Log.d("prueba","")
          },
              {
@@ -44,11 +44,11 @@ class CrearAlbumViewModel (application: Application,parametros : JSONObject) :  
         _isNetworkErrorShown.value = true
     }
 
-    class Factory(val app: Application,private val json: JSONObject) : ViewModelProvider.Factory {
+    class Factory(val app: Application, private val albumId: Int, val json: JSONObject) : ViewModelProvider.Factory {
         override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-            if (modelClass.isAssignableFrom(CrearAlbumViewModel::class.java)) {
+            if (modelClass.isAssignableFrom(CrearTrackViewModel::class.java)) {
                 @Suppress("UNCHECKED_CAST")
-                return CrearAlbumViewModel(app, json) as T
+                return CrearTrackViewModel(app, albumId, json) as T
             }
             throw IllegalArgumentException("Unable to construct viewmodel")
         }
