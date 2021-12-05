@@ -55,4 +55,8 @@ class AlbumRepository(val application: Application, private val albumsDao: Album
 
     fun createAlbum(newalbum: JSONObject, onComplete:(resp:JSONObject)->Unit , onError: (error:VolleyError)->Unit) {
         ServiceAdapter.getInstance(application).postAlbum(newalbum,onComplete,  onError)
-    }}
+    }
+    fun createTrack(albumId:Int, newtrack: JSONObject, onComplete:(resp:JSONObject)->Unit , onError: (error:VolleyError)->Unit) {
+        ServiceAdapter.getInstance(application).postTrack(albumId,newtrack,onComplete,  onError)
+    }
+}

@@ -2,6 +2,7 @@ package co.edu.uniandes.fourbidden.vinilos.vista.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.ImageView
 import androidx.annotation.LayoutRes
 import androidx.core.net.toUri
 import androidx.databinding.DataBindingUtil
@@ -35,6 +36,7 @@ class ColeccionistaAdapter: RecyclerView.Adapter<ColeccionistaAdapter.Coleccioni
     override fun onBindViewHolder(holder: ColeccionistaViewHolder, position: Int) {
         holder.viewDataBinding.also {
             it.coleccionista = coleccionistas[position]
+
 
         }
         holder.viewDataBinding.root.setOnClickListener {

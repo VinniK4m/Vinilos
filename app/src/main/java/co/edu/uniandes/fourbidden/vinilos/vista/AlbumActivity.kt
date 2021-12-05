@@ -24,27 +24,26 @@ class AlbumActivity : AppCompatActivity() {
         val navHostFragment = supportFragmentManager
             .findFragmentById(R.id.nav_host_fragment) as NavHostFragment
         navController = navHostFragment.navController
-        //setSupportActionBar(findViewById(R.id.my_toolbar))
         setupActionBarWithNavController(navController)
-
-/*
-        val btCrearAlbum= findViewById<Button>(R.id.btCrearAlbum)
-        btCrearAlbum.setOnClickListener {
-        val activityCrearAlbum = Intent(this, CrearAlbumActivity::class.java)
-        startActivity(activityCrearAlbum)
-        }
-*/
 
         val btMusico=findViewById<Button>(R.id.btMusico)
         btMusico.setOnClickListener {
             val activityMusicos = Intent(this, MusicoActivity::class.java)
             startActivity(activityMusicos)
         }
+
         val btColeccionista =findViewById<Button>(R.id.btColeccionistas)
         btColeccionista.setOnClickListener {
             val coleccionistaActivity = Intent(this, ColeccionistaActivity::class.java)
             startActivity(coleccionistaActivity)
         }
+
+        val btCrearAlbum =findViewById<Button>(R.id.btCrearAlbum)
+        btCrearAlbum.setOnClickListener {
+            val crearAlbumActivity = Intent(this, CrearAlbumActivity::class.java)
+            startActivity(crearAlbumActivity)
+        }
+
     }
     override fun onSupportNavigateUp(): Boolean {
         return navController.navigateUp() || super.onSupportNavigateUp()

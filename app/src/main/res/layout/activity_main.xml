@@ -58,8 +58,8 @@
     <Button
         android:id="@+id/bingreso"
         style="@style/botonMenu"
-        android:layout_width="93dp"
-        android:layout_height="48dp"
+        android:layout_width="127dp"
+        android:layout_height="39dp"
         android:layout_marginBottom="12dp"
         android:background="@color/black"
         android:text="@string/textobotonentrar"

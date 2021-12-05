@@ -16,6 +16,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Vinilos">
         <activity
+            android:name=".vista.CrearTrackActivity"
+            android:exported="false" />
+        <activity
             android:name=".vista.CrearAlbumActivity"
             android:exported="false" />
         <activity

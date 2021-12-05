@@ -39,13 +39,28 @@
 
     </style>
     <style name="botonMenu" parent="Widget.MaterialComponents.Button">
+        <item name="android:paddingLeft">1dp</item>
+        <item name="android:paddingRight">1dp</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_width">120sp</item>
+        <item name="android:layout_width">wrap_content</item>
         <item name="strokeColor">@color/secondaryColor</item>
-        <item name="strokeWidth">3dp</item>
+        <item name="strokeWidth">2dp</item>
         <item name="android:font" tools:targetApi="o">@font/comfortaa</item>
-        <item name="android:textSize">15sp</item>
+        <item name="android:textSize">12sp</item>
         <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="botonSeleccionado" parent="Widget.MaterialComponents.Button">
+        <item name="android:paddingLeft">2dp</item>
+        <item name="android:paddingRight">2dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="strokeColor">@color/selectColor</item>
+        <item name="strokeWidth">4dp</item>
+        <item name="android:font" tools:targetApi="o">@font/comfortaa</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="backgroundTint">@color/selectColor</item>
     </style>
 
 
