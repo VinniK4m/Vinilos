@@ -6,7 +6,6 @@ import android.net.ConnectivityManager
 import co.edu.uniandes.fourbidden.vinilos.database.TracksDao
 import co.edu.uniandes.fourbidden.vinilos.modelo.Track
 import co.edu.uniandes.fourbidden.vinilos.modelo.servicio.ServiceAdapter
-import co.edu.uniandes.fourbidden.vinilos.modelo.servicio.ServiceAdapterMusico
 import com.android.volley.VolleyError
 import org.json.JSONObject
 

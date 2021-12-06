@@ -15,7 +15,6 @@ class DetalleAlbumViewModel (application: Application, albumId: String) :  Andro
     private val _albumrepository = AlbumRepository(application, VinylRoomDatabase.getDatabase(application.applicationContext).albumsDao())
 
     private val _album = MutableLiveData<Album>()
-    //private val _albumrepository = AlbumRepository(application)
 
     val album: LiveData<Album>
         get() = _album

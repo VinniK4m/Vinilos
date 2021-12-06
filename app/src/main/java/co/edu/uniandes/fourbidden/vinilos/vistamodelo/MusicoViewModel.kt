@@ -7,7 +7,6 @@ import androidx.annotation.RequiresApi
 import androidx.lifecycle.*
 import co.edu.uniandes.fourbidden.vinilos.database.VinylRoomDatabase
 import co.edu.uniandes.fourbidden.vinilos.modelo.Musico
-import co.edu.uniandes.fourbidden.vinilos.modelo.repository.ColeccionistaRepository
 import co.edu.uniandes.fourbidden.vinilos.modelo.repository.MusicoRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -20,7 +19,7 @@ class MusicoViewModel (application: Application) :  AndroidViewModel(application
 
 
     private val _musicos = MutableLiveData<List<Musico>>()
-    //private val _musciorepository = MusicoRepository(application)
+
 
     val musicos: LiveData<List<Musico>>
         get() = _musicos

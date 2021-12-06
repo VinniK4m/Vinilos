@@ -5,9 +5,7 @@ import android.os.Build
 import androidx.annotation.RequiresApi
 import androidx.lifecycle.*
 import co.edu.uniandes.fourbidden.vinilos.database.VinylRoomDatabase
-import co.edu.uniandes.fourbidden.vinilos.modelo.Album
 import co.edu.uniandes.fourbidden.vinilos.modelo.Coleccionista
-import co.edu.uniandes.fourbidden.vinilos.modelo.repository.AlbumRepository
 import co.edu.uniandes.fourbidden.vinilos.modelo.repository.ColeccionistaRepository
 
 
@@ -21,7 +19,6 @@ class DetalleColeccionistaViewModel(application: Application, albumId: String) :
     )
 
     private val _coleccionista = MutableLiveData<Coleccionista>()
-    //private val _albumrepository = AlbumRepository(application)
 
     val coleccionista: LiveData<Coleccionista>
         get() = _coleccionista

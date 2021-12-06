@@ -3,7 +3,6 @@ package co.edu.uniandes.fourbidden.vinilos.vista
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.widget.Button
 import co.edu.uniandes.fourbidden.vinilos.R
 

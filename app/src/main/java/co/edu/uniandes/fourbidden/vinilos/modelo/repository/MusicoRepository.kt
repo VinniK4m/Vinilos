@@ -28,14 +28,4 @@ class MusicoRepository(val application: Application, private val musicoDao: Musi
             callback(it)
         },onError)
     }
-
-/*
-    suspend fun refreshDataMusicos(): List<Musico>{
-        return ServiceAdapterMusico.getInstance(application).getMusicos()
-    }
-
-
-
-    */
-
 }

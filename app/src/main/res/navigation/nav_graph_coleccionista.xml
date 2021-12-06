@@ -9,6 +9,7 @@
         android:id="@+id/coleccionistaFragment"
         android:name="co.edu.uniandes.fourbidden.vinilos.vista.fragmentos.ColeccionistaFragment"
         android:label="@string/titulolistacoleccionistas"
+        android:textColor="@color/black"
         tools:layout="@layout/fragment_coleccionista" >
         <action
             android:id="@+id/action_coleccionistaFragment_to_fragmentDetalleColeccionista"

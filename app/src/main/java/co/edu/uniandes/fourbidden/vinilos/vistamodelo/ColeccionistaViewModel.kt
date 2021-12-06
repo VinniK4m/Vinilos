@@ -7,7 +7,6 @@ import androidx.annotation.RequiresApi
 import androidx.lifecycle.*
 import co.edu.uniandes.fourbidden.vinilos.database.VinylRoomDatabase
 import co.edu.uniandes.fourbidden.vinilos.modelo.Coleccionista
-import co.edu.uniandes.fourbidden.vinilos.modelo.repository.AlbumRepository
 import co.edu.uniandes.fourbidden.vinilos.modelo.repository.ColeccionistaRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -20,7 +19,6 @@ class ColeccionistaViewModel (application: Application) :  AndroidViewModel(appl
     private val _coleccionistarepository = ColeccionistaRepository(application, VinylRoomDatabase.getDatabase(application.applicationContext).coleccionistasDao())
 
     private val _coleccionistas = MutableLiveData<List<Coleccionista>>()
-    //private val _coleccionistarepository = ColeccionistaRepository(application)
 
     val coleccionistas: LiveData<List<Coleccionista>>
         get() = _coleccionistas
