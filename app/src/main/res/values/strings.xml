@@ -11,6 +11,7 @@
     <string name="opAlbumes">Álbumes</string>
     <string name="opMusicos">Músicos</string>
     <string name="opColeccionistas">Coleccionistas</string>
+    <string name="opCrearAlbum">+</string>
     <string name="todo">TODO</string>
     <string name="titulolistacoleccionistas">Listado de Coleccionistas</string>
     <string name="textoimagen">Imagen del barra menu</string>
@@ -28,4 +29,19 @@
     <string name="fechanacimiento">Fecha\nnacimiento :</string>
     <string name="descripcionmusico">Descripción :</string>
     <string name="albumes">"Albums "</string>
+    <string name="form_album_name">Nombre</string>
+    <string name="form_album_cover">Carátula</string>
+    <string name="form_album_date">Fecha de lanzamiento</string>
+    <string name="form_album_descr">Descripción</string>
+    <string name="form_album_genre">Género</string>
+    <string name="form_album_recordlabel">Disquera</string>
+    <string name="create_album">Crear Album</string>
+    <string name="btCrearAlbum">Crear Album</string>
+    <string name="titulocrearalbum">Crear Album</string>
+    <string name="email">email</string>
+    <string name="titulodetallecoleccionista">Detalle Coleccionista</string>
+    <string name="form_track_name">Nombre</string>
+    <string name="form_track_duracion">Duración</string>
+    <string name="create_track">Crear Track</string>
+    <string name="btcrearalbum">Crear Álbum</string>
 </resources>

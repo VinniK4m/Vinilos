@@ -9,6 +9,7 @@
         android:id="@+id/musicoFragment"
         android:name="co.edu.uniandes.fourbidden.vinilos.vista.fragmentos.MusicoFragment"
         android:label="@string/titulolistamusico"
+        android:textColor="@color/black"
         tools:layout="@layout/fragment_musico" >
         <action
             android:id="@+id/action_musicoFragment_to_fragmentDetalleMusico"
@@ -22,6 +23,6 @@
         tools:layout="@layout/detalle_musico" >
         <argument
             android:name="musicoId"
-            app:argType="string" />
+            app:argType="integer" />
     </fragment>
 </navigation>

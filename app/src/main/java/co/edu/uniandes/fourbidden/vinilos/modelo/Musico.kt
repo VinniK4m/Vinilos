@@ -1,12 +1,14 @@
 package co.edu.uniandes.fourbidden.vinilos.modelo
 
-import java.time.LocalDate
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 
+@Entity(tableName = "musicos_table")
 data class Musico(
-    val id: String,
+    @PrimaryKey
+    val id: Int,
     val name: String,
     val image: String,
-    val birthDate: LocalDate,
-    val description: String,
-    var albums: List<Album>
+    val birthDate: String,
+    val description: String
 )

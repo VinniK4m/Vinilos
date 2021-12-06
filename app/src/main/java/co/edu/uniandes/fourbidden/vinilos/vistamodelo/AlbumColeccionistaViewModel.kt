@@ -1,0 +1,79 @@
+package co.edu.uniandes.fourbidden.vinilos.vistamodelo
+
+
+import android.app.Application
+import android.os.Build
+import android.util.Log
+import androidx.annotation.RequiresApi
+import androidx.lifecycle.*
+import co.edu.uniandes.fourbidden.vinilos.database.VinylRoomDatabase
+import co.edu.uniandes.fourbidden.vinilos.modelo.Album
+import co.edu.uniandes.fourbidden.vinilos.modelo.repository.AlbumRepository
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
+
+@RequiresApi(Build.VERSION_CODES.O)
+class AlbumColeccionistaViewModel (application: Application, coleccionistaId: Int) :  AndroidViewModel(application) {
+
+    private val _albumrepository = AlbumRepository(application, VinylRoomDatabase.getDatabase(application.applicationContext).albumsDao())
+
+    private val _albums = MutableLiveData<List<Album>>()
+    val coleccionistaId:Int = coleccionistaId
+
+    val albums: LiveData<List<Album>>
+        get() = _albums
+
+    private var _eventNetworkError = MutableLiveData(false)
+
+    val eventNetworkError: LiveData<Boolean>
+        get() = _eventNetworkError
+
+    private var _isNetworkErrorShown = MutableLiveData(false)
+
+    val isNetworkErrorShown: LiveData<Boolean>
+        get() = _isNetworkErrorShown
+
+    init {
+        refreshDataFromNetwork()
+
+    }
+
+    private fun refreshDataFromNetwork() {
+        try {
+            viewModelScope.launch (Dispatchers.Default){
+                withContext(Dispatchers.IO){
+                    Log.d("musico ID", coleccionistaId.toString())
+                    if (coleccionistaId > 0){
+                        val data = _albumrepository.refreshDataFromColeccionista(coleccionistaId)
+                        _albums.postValue(data)
+                    }else{
+                        val data = _albumrepository.refreshData()
+                        _albums.postValue(data)
+                    }
+                }
+                _eventNetworkError.postValue(false)
+                _isNetworkErrorShown.postValue(false)
+            }
+        }
+        catch (e:Exception){
+            _eventNetworkError.value = true
+        }
+    }
+
+
+    fun onNetworkErrorShown() {
+        _isNetworkErrorShown.value = true
+    }
+
+    class Factory(val app: Application, val coleccionistaId: Int) : ViewModelProvider.Factory {
+        override fun <T : ViewModel?> create(modelClass: Class<T>): T {
+            if (modelClass.isAssignableFrom(AlbumColeccionistaViewModel::class.java)) {
+                @Suppress("UNCHECKED_CAST")
+                return AlbumColeccionistaViewModel(app,coleccionistaId ) as T
+            }
+            throw IllegalArgumentException("Unable to construct viewmodel")
+        }
+    }
+
+}

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".vista.fragmentos.AlbumNewFragment">
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        >
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/form_album_name"
+            android:layout_width="match_parent"
+            android:layout_height="75dp"
+            android:hint="@string/form_album_name" />
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/form_album_cover"
+            android:layout_width="match_parent"
+            android:layout_height="75dp"
+            android:hint="@string/form_album_cover" />
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/form_album_date"
+            android:layout_width="match_parent"
+            android:layout_height="75dp"
+            android:hint="@string/form_album_date" />
+
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/form_album_descr"
+            android:layout_width="match_parent"
+            android:layout_height="75dp"
+            android:hint="@string/form_album_descr" />
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/form_album_genre"
+            android:layout_width="match_parent"
+            android:layout_height="75dp"
+            android:hint="@string/form_album_genre" />
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/form_album_recordlabel"
+            android:layout_width="match_parent"
+            android:layout_height="75dp"
+            android:hint="@string/form_album_recordlabel" />
+
+
+    <Button
+        android:id="@+id/create_album"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:text="@string/create_album" />
+
+    </LinearLayout>
+
+</FrameLayout>

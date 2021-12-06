@@ -5,18 +5,14 @@ import android.os.Build
 import androidx.annotation.RequiresApi
 import co.edu.uniandes.fourbidden.vinilos.modelo.Album
 import co.edu.uniandes.fourbidden.vinilos.modelo.Musico
-import co.edu.uniandes.fourbidden.vinilos.modelo.Track
 import com.android.volley.Request
 import com.android.volley.RequestQueue
 import com.android.volley.Response
 import com.android.volley.VolleyError
-import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import org.json.JSONArray
 import org.json.JSONObject
-import java.time.LocalDate
-import java.time.LocalDate.parse
 import kotlin.coroutines.resume
 import kotlin.coroutines.resumeWithException
 import kotlin.coroutines.suspendCoroutine
@@ -42,13 +38,14 @@ class ServiceAdapterMusico constructor(context: Context) {
             Response.Listener<String> { response ->
                 val resp = JSONArray(response)
                 val list = mutableListOf<Musico>()
+                var item:JSONObject? = null
+                var fecha : String = ""
                 for (i in 0 until resp.length()) {
-                    val item = resp.getJSONObject(i)
-                    val fecha : String =  item!!.getString("birthDate").substringBefore(delimiter = "T", missingDelimiterValue = "2000-01-01")
-                    val releaseDate : LocalDate = parse(fecha)
-                    val listAlbums = mutableListOf<Album>()
-                    list.add(i, Musico(id = item.getString("id"),name = item.getString("name"), image = item.getString("image"),
-                        birthDate = releaseDate, description = item.getString("description"), albums = listAlbums))
+                    item = resp.getJSONObject(i)
+                    fecha =  item!!.getString("birthDate").substringBefore(delimiter = "T", missingDelimiterValue = "2000-01-01")
+
+                    list.add(i, Musico(id = item.getInt("id"),name = item.getString("name"), image = item.getString("image"),
+                        birthDate = fecha, description = item.getString("description")))
                 }
                 cont.resume(list)
             },
@@ -65,26 +62,39 @@ class ServiceAdapterMusico constructor(context: Context) {
             Response.Listener<String> { response ->
                 val resp = JSONObject(response)
                 val fecha : String =  resp.getString("birthDate").substringBefore(delimiter = "T", missingDelimiterValue = "2000-01-01")
-                val releaseDate = parse(fecha)
-                val listAlbums = mutableListOf<Album>()
-                val listTracks = mutableListOf<Track>()
-                val albums = resp.getJSONArray("albums")
-                for (j in 0 until albums.length()) {
-                    val itemAlbum = albums.getJSONObject(j)
-                    listAlbums.add(j, Album(id = itemAlbum.getString("id"),
-                        name = itemAlbum.getString("name"),
-                        cover = itemAlbum.getString("cover"),
-                        recordLabel = itemAlbum.getString("recordLabel"),
-                        releaseDate = releaseDate,
-                        genre = itemAlbum.getString("genre"),
-                        description = itemAlbum.getString("description"), tracks = listTracks))
-                }
-                val musico = Musico(id = resp.getString("id"),name = resp.getString("name"), image = resp.getString("image"),
-                    birthDate = releaseDate, description = resp.getString("description"), albums = listAlbums)
+                //val releaseDate = parse(fecha)
+
+                val musico = Musico(id = resp.getInt("id"),name = resp.getString("name"), image = resp.getString("image"),
+                    birthDate = fecha, description = resp.getString("description"))
                 onComplete(musico)
             },
             Response.ErrorListener {
                 onError(it)
+            }))
+    }
+    suspend fun getAlbums(idMusico: Int) = suspendCoroutine<List<Album>>{ cont->
+        requestQueue.add(getRequest("musicians/$idMusico/albums",
+            Response.Listener<String> { response ->
+                val resp = JSONArray(response)
+                val list = mutableListOf<Album>()
+                var item:JSONObject? = null
+                var fecha : String = ""
+                for (i in 0 until resp.length()) {
+                    item = resp.getJSONObject(i)
+                    fecha =  item.getString("releaseDate").substringBefore(delimiter = "T", missingDelimiterValue = "2000-01-01")
+                    list.add(i, Album(id = item.getInt("id"),
+                        name = item.getString("name"),
+                        cover = item.getString("cover"),
+                        recordLabel = item.getString("recordLabel"),
+                        releaseDate = fecha,
+                        genre = item.getString("genre"),
+                        description = item.getString("description"),
+                        idMusico = idMusico))
+                }
+                cont.resume(list)
+            },
+            Response.ErrorListener {
+                cont.resumeWithException(it)
             }))
     }
 

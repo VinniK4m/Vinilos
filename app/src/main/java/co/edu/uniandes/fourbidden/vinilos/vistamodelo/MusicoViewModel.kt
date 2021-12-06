@@ -5,6 +5,7 @@ import android.app.Application
 import android.os.Build
 import androidx.annotation.RequiresApi
 import androidx.lifecycle.*
+import co.edu.uniandes.fourbidden.vinilos.database.VinylRoomDatabase
 import co.edu.uniandes.fourbidden.vinilos.modelo.Musico
 import co.edu.uniandes.fourbidden.vinilos.modelo.repository.MusicoRepository
 import kotlinx.coroutines.Dispatchers
@@ -14,9 +15,11 @@ import kotlinx.coroutines.withContext
 
 @RequiresApi(Build.VERSION_CODES.O)
 class MusicoViewModel (application: Application) :  AndroidViewModel(application) {
+    private val _musicorepository = MusicoRepository(application, VinylRoomDatabase.getDatabase(application.applicationContext).musicosDao())
+
 
     private val _musicos = MutableLiveData<List<Musico>>()
-    private val _musciorepository = MusicoRepository(application)
+
 
     val musicos: LiveData<List<Musico>>
         get() = _musicos
@@ -39,7 +42,7 @@ class MusicoViewModel (application: Application) :  AndroidViewModel(application
         try {
             viewModelScope.launch (Dispatchers.Default){
                 withContext(Dispatchers.IO){
-                    val data = _musciorepository.refreshDataMusicos()
+                    val data = _musicorepository.refreshData()
                     _musicos.postValue(data)
                 }
                 _eventNetworkError.postValue(false)

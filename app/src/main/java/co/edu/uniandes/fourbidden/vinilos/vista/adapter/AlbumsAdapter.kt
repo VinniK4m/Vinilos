@@ -21,7 +21,10 @@ class AlbumsAdapter: RecyclerView.Adapter<AlbumsAdapter.AlbumViewHolder>() {
             field = value
             notifyDataSetChanged()
         }
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AlbumViewHolder {
+
+
+
+            override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AlbumViewHolder {
         val withDataBinding: ItemAlbumBinding = DataBindingUtil.inflate(
             LayoutInflater.from(parent.context),
             AlbumViewHolder.LAYOUT,
@@ -41,12 +44,16 @@ class AlbumsAdapter: RecyclerView.Adapter<AlbumsAdapter.AlbumViewHolder>() {
             // Navigate using that action
             holder.viewDataBinding.root.findNavController().navigate(action)
         }
+
+
+
     }
 
 
     override fun getItemCount(): Int {
         return albums.size
     }
+
     class AlbumViewHolder(val viewDataBinding: ItemAlbumBinding) :
         RecyclerView.ViewHolder(viewDataBinding.root) {
 
@@ -55,7 +62,6 @@ class AlbumsAdapter: RecyclerView.Adapter<AlbumsAdapter.AlbumViewHolder>() {
             Glide.with(itemView)
                 .load(album.cover.toUri().buildUpon().scheme("https").build())
                 .apply(RequestOptions()
-                    //.placeholder(R.drawable.loading_animation)
                     .diskCacheStrategy(DiskCacheStrategy.ALL)
                     .error(R.drawable.ic_broken_image))
                 .into(viewDataBinding.albumCover)

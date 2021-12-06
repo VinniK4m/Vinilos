@@ -4,6 +4,7 @@ import android.app.Application
 import android.os.Build
 import androidx.annotation.RequiresApi
 import androidx.lifecycle.*
+import co.edu.uniandes.fourbidden.vinilos.database.VinylRoomDatabase
 import co.edu.uniandes.fourbidden.vinilos.modelo.Album
 import co.edu.uniandes.fourbidden.vinilos.modelo.repository.AlbumRepository
 
@@ -11,8 +12,9 @@ import co.edu.uniandes.fourbidden.vinilos.modelo.repository.AlbumRepository
 @RequiresApi(Build.VERSION_CODES.O)
 class DetalleAlbumViewModel (application: Application, albumId: String) :  AndroidViewModel(application) {
 
+    private val _albumrepository = AlbumRepository(application, VinylRoomDatabase.getDatabase(application.applicationContext).albumsDao())
+
     private val _album = MutableLiveData<Album>()
-    private val _albumrepository = AlbumRepository(application)
 
     val album: LiveData<Album>
         get() = _album

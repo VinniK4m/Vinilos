@@ -2,7 +2,6 @@ package co.edu.uniandes.fourbidden.vinilos.vista.fragmentos
 
 import android.os.Build
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -16,7 +15,9 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import co.edu.uniandes.fourbidden.vinilos.databinding.AlbumMusicoBinding
 import co.edu.uniandes.fourbidden.vinilos.databinding.DetalleMusicoBinding
+import co.edu.uniandes.fourbidden.vinilos.modelo.Album
 import co.edu.uniandes.fourbidden.vinilos.vista.adapter.AlbumListAdapter
+import co.edu.uniandes.fourbidden.vinilos.vistamodelo.AlbumViewModel
 import co.edu.uniandes.fourbidden.vinilos.vistamodelo.DetalleMusicoViewModel
 import com.squareup.picasso.Picasso
 
@@ -30,6 +31,7 @@ class DetalleMusicoFragment : Fragment() {
 
 
     private var viewModelAdapter: AlbumListAdapter? = null
+    private lateinit var viewModelA: AlbumViewModel
 
 
     override fun onCreateView(
@@ -60,7 +62,7 @@ class DetalleMusicoFragment : Fragment() {
 
         viewModel = ViewModelProvider(
             this,
-            DetalleMusicoViewModel.Factory(activity.application, args.musicoId)
+            DetalleMusicoViewModel.Factory(activity.application, args.musicoId.toString())
         ).get(
             DetalleMusicoViewModel::class.java
         )
@@ -69,9 +71,12 @@ class DetalleMusicoFragment : Fragment() {
             binding.musico = it
 
             Picasso.get().load(binding.musico?.image).into(binding.cover)
-            //binding.tracksRv = it.tracks
-            viewModelAdapter!!.albums = it.albums
-            Log.d("lista", it.albums.toString())
+        })
+        viewModelA = ViewModelProvider(this, AlbumViewModel.Factory(activity.application, args.musicoId)).get(AlbumViewModel::class.java)
+        viewModelA.albums.observe(viewLifecycleOwner, Observer<List<Album>> {
+            it.apply {
+                viewModelAdapter!!.albums = this
+            }
         })
         viewModel.eventNetworkError.observe(
             viewLifecycleOwner,
