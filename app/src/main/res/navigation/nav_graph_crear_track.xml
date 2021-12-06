@@ -8,7 +8,8 @@
     <fragment
         android:id="@+id/trackCreaFragment"
         android:name="co.edu.uniandes.fourbidden.vinilos.vista.fragmentos.TrackNewFragment"
-        android:label="@string/titulocrearalbum"
+        android:label="@string/create_track"
+        android:textColor="@color/black"
         android:drawableLeft="@drawable/albums"
         tools:layout="@layout/fragment_track_new" >
     </fragment>

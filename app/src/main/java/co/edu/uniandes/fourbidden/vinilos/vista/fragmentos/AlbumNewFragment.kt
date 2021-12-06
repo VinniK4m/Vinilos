@@ -1,34 +1,22 @@
 package co.edu.uniandes.fourbidden.vinilos.vista.fragmentos
 
+import android.app.AlertDialog
+import android.content.DialogInterface
 import android.os.Build
 import android.os.Bundle
-import android.util.Log
+import android.text.TextUtils
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.fragment.navArgs
 import co.edu.uniandes.fourbidden.vinilos.databinding.FragmentAlbumNewBinding
 import co.edu.uniandes.fourbidden.vinilos.vista.adapter.AlbumsAdapter
-import co.edu.uniandes.fourbidden.vinilos.vistamodelo.AlbumViewModel
 import co.edu.uniandes.fourbidden.vinilos.vistamodelo.CrearAlbumViewModel
-import co.edu.uniandes.fourbidden.vinilos.vistamodelo.DetalleAlbumViewModel
-import co.edu.uniandes.fourbidden.vinilos.vistamodelo.TrackViewModel
-import com.android.volley.Response
 import com.google.android.material.textfield.TextInputEditText
 import org.json.JSONObject
-import android.view.Gravity
-
-import android.text.Html
-import android.R
-import android.app.AlertDialog
-import android.content.DialogInterface
-import android.text.TextUtils
-import android.widget.EditText
 
 
 class AlbumNewFragment : Fragment() {

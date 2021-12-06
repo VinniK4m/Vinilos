@@ -1,32 +1,23 @@
 package co.edu.uniandes.fourbidden.vinilos.vista.fragmentos
 
+import android.app.AlertDialog
+import android.content.DialogInterface
 import android.os.Build
 import android.os.Bundle
+import android.text.TextUtils
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.fragment.navArgs
-import co.edu.uniandes.fourbidden.vinilos.databinding.FragmentAlbumNewBinding
+import co.edu.uniandes.fourbidden.vinilos.databinding.FragmentTrackNewBinding
 import co.edu.uniandes.fourbidden.vinilos.vista.adapter.AlbumsAdapter
-import com.android.volley.Response
+import co.edu.uniandes.fourbidden.vinilos.vistamodelo.CrearTrackViewModel
 import com.google.android.material.textfield.TextInputEditText
 import org.json.JSONObject
-import android.view.Gravity
-
-import android.text.Html
-import android.R
-import android.app.AlertDialog
-import android.content.DialogInterface
-import android.text.TextUtils
-import android.widget.EditText
-import co.edu.uniandes.fourbidden.vinilos.databinding.FragmentTrackNewBinding
-import co.edu.uniandes.fourbidden.vinilos.vistamodelo.*
 
 
 class TrackNewFragment : Fragment() {

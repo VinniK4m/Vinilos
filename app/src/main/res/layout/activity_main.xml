@@ -40,7 +40,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@android:drawable/screen_background_light" />
+        app:srcCompat="?attr/colorPrimary" />
 
     <TextView
         android:id="@+id/textView"

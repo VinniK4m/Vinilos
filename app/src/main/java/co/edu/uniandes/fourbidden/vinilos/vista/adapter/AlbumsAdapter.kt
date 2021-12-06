@@ -2,7 +2,6 @@ package co.edu.uniandes.fourbidden.vinilos.vista.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.Button
 import androidx.annotation.LayoutRes
 import androidx.core.net.toUri
 import androidx.databinding.DataBindingUtil
@@ -15,7 +14,6 @@ import co.edu.uniandes.fourbidden.vinilos.vista.fragmentos.AlbumFragmentDirectio
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.request.RequestOptions
-import org.json.JSONObject
 
 class AlbumsAdapter: RecyclerView.Adapter<AlbumsAdapter.AlbumViewHolder>() {
     var albums :List<Album> = emptyList()
@@ -64,7 +62,6 @@ class AlbumsAdapter: RecyclerView.Adapter<AlbumsAdapter.AlbumViewHolder>() {
             Glide.with(itemView)
                 .load(album.cover.toUri().buildUpon().scheme("https").build())
                 .apply(RequestOptions()
-                    //.placeholder(R.drawable.loading_animation)
                     .diskCacheStrategy(DiskCacheStrategy.ALL)
                     .error(R.drawable.ic_broken_image))
                 .into(viewDataBinding.albumCover)

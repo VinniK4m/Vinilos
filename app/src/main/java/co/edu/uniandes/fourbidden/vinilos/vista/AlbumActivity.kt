@@ -10,9 +10,6 @@ import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupActionBarWithNavController
 import co.edu.uniandes.fourbidden.vinilos.R
-import co.edu.uniandes.fourbidden.vinilos.vista.fragmentos.AlbumFragmentDirections
-import co.edu.uniandes.fourbidden.vinilos.vista.fragmentos.AlbumNewFragment
-import java.lang.reflect.Array.newInstance
 
 class AlbumActivity : AppCompatActivity() {
     private lateinit var navController: NavController

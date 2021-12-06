@@ -2,7 +2,6 @@ package co.edu.uniandes.fourbidden.vinilos.vista.fragmentos
 
 import android.os.Build
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -17,12 +16,9 @@ import androidx.recyclerview.widget.RecyclerView
 import co.edu.uniandes.fourbidden.vinilos.databinding.AlbumColeccionistaBinding
 import co.edu.uniandes.fourbidden.vinilos.databinding.DetalleColeccionistaBinding
 import co.edu.uniandes.fourbidden.vinilos.modelo.Album
-import co.edu.uniandes.fourbidden.vinilos.modelo.Track
 import co.edu.uniandes.fourbidden.vinilos.vista.adapter.AlbumColeccionistaAdapter
-import co.edu.uniandes.fourbidden.vinilos.vista.adapter.AlbumListAdapter
-import co.edu.uniandes.fourbidden.vinilos.vista.adapter.TrackAdapter
-import co.edu.uniandes.fourbidden.vinilos.vistamodelo.*
-import com.squareup.picasso.Picasso
+import co.edu.uniandes.fourbidden.vinilos.vistamodelo.AlbumColeccionistaViewModel
+import co.edu.uniandes.fourbidden.vinilos.vistamodelo.DetalleColeccionistaViewModel
 
 class DetalleColeccionistaFragment : Fragment() {
 

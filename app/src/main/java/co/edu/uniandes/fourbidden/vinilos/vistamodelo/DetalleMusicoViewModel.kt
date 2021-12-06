@@ -14,7 +14,6 @@ class DetalleMusicoViewModel (application: Application, musicoId: String) :  And
     private val _musicorepository = MusicoRepository(application, VinylRoomDatabase.getDatabase(application.applicationContext).musicosDao())
 
     private val _musico = MutableLiveData<Musico>()
-    //private val _musicorepository = MusicoRepository(application)
 
     val musico: LiveData<Musico>
         get() = _musico

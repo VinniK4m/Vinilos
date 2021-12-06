@@ -5,11 +5,8 @@ import android.content.Context
 import android.net.ConnectivityManager
 import android.os.Build
 import androidx.annotation.RequiresApi
-import co.edu.uniandes.fourbidden.vinilos.database.AlbumsDao
 import co.edu.uniandes.fourbidden.vinilos.database.ColeccionistasDao
-import co.edu.uniandes.fourbidden.vinilos.modelo.Album
 import co.edu.uniandes.fourbidden.vinilos.modelo.Coleccionista
-import co.edu.uniandes.fourbidden.vinilos.modelo.servicio.ServiceAdapter
 import co.edu.uniandes.fourbidden.vinilos.modelo.servicio.ServiceAdapterColeccionista
 import com.android.volley.VolleyError
 
@@ -25,9 +22,6 @@ class ColeccionistaRepository(val application: Application, private val coleccio
             } else ServiceAdapterColeccionista.getInstance(application).getColeccionistas()
         } else cached
     }
-    /*suspend fun refreshDataColeccionistas(): List<Coleccionista>{
-        return ServiceAdapterColeccionista.getInstance(application).getColeccionistas()
-    }*/
 
 
     @RequiresApi(Build.VERSION_CODES.O)

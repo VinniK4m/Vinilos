@@ -19,7 +19,6 @@ class AlbumColeccionistaViewModel (application: Application, coleccionistaId: In
     private val _albumrepository = AlbumRepository(application, VinylRoomDatabase.getDatabase(application.applicationContext).albumsDao())
 
     private val _albums = MutableLiveData<List<Album>>()
-    //private val _albumrepository = AlbumRepository(application)
     val coleccionistaId:Int = coleccionistaId
 
     val albums: LiveData<List<Album>>

@@ -15,7 +15,6 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import co.edu.uniandes.fourbidden.vinilos.R
 import co.edu.uniandes.fourbidden.vinilos.databinding.FragmentAlbumBinding
 import co.edu.uniandes.fourbidden.vinilos.modelo.Album
 import co.edu.uniandes.fourbidden.vinilos.vista.CrearAlbumActivity
@@ -45,7 +44,7 @@ class AlbumFragment : Fragment() {
 
 
 
-        //var myView = inflater.inflate(R.layout.fragment_album_new, container, false)
+
         button = _binding!!.btCrearAlbum
         button!!.setOnClickListener {
             Log.d("","en el action del boton crear album..................")
@@ -65,20 +64,6 @@ class AlbumFragment : Fragment() {
         recyclerView.layoutManager = GridLayoutManager(context, 3)//LinearLayoutManager(context)
         recyclerView.layoutManager
         recyclerView.adapter = viewModelAdapter
-
-
-
-
-
-
-/*
-        val btCrearAlbum= _binding?.btCrearAlbum
-        btCrearAlbum?.setOnClickListener {
-            val activityCrearAlbum = Intent(this, CrearAlbumActivity::class.java)
-
-        }
-
-*/
 
     }
 

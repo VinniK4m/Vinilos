@@ -42,7 +42,6 @@ class MusicosAdapter: RecyclerView.Adapter<MusicosAdapter.MusicoViewHolder>() {
         holder.bind(musicos[position])
         holder.viewDataBinding.root.setOnClickListener {
             val action = MusicoFragmentDirections.actionMusicoFragmentToFragmentDetalleMusico(musicos[position].id)
-            // Navigate using that action
             holder.viewDataBinding.root.findNavController().navigate(action)
         }
     }
@@ -59,7 +58,6 @@ class MusicosAdapter: RecyclerView.Adapter<MusicosAdapter.MusicoViewHolder>() {
                 .load(musico.image.toUri().buildUpon().scheme("https").build())
                 .apply(
                     RequestOptions()
-                    //.placeholder(R.drawable.loading_animation)
                     .diskCacheStrategy(DiskCacheStrategy.ALL)
                     .error(R.drawable.ic_broken_image))
                 .into(viewDataBinding.musicoCover)

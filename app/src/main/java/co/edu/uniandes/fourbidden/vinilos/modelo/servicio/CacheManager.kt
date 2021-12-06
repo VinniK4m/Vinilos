@@ -3,8 +3,6 @@ package co.edu.uniandes.fourbidden.vinilos.modelo.servicio
 import android.content.Context
 import android.content.SharedPreferences
 import co.edu.uniandes.fourbidden.vinilos.modelo.Album
-import co.edu.uniandes.fourbidden.vinilos.modelo.Coleccionista
-import co.edu.uniandes.fourbidden.vinilos.modelo.Musico
 import co.edu.uniandes.fourbidden.vinilos.modelo.Track
 
 class CacheManager (context: Context) {

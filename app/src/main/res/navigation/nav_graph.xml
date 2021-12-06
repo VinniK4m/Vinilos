@@ -9,6 +9,7 @@
         android:id="@+id/albumFragment"
         android:name="co.edu.uniandes.fourbidden.vinilos.vista.fragmentos.AlbumFragment"
         android:label="@string/titulolistaalbum"
+        android:textColor="@color/black"
         android:drawableLeft="@drawable/albums"
         tools:layout="@layout/fragment_album" >
         <action

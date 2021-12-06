@@ -13,7 +13,6 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import co.edu.uniandes.fourbidden.vinilos.databinding.FragmentColeccionistaBinding
-import co.edu.uniandes.fourbidden.vinilos.modelo.Coleccionista
 import co.edu.uniandes.fourbidden.vinilos.vista.adapter.ColeccionistaAdapter
 import co.edu.uniandes.fourbidden.vinilos.vistamodelo.ColeccionistaViewModel
 

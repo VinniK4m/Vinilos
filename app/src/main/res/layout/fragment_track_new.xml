@@ -13,17 +13,17 @@
         android:orientation="vertical"
         >
 
-    <com.google.android.material.textfield.TextInputEditText
-        android:id="@+id/form_track_name"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="@string/form_track_name" />
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/form_track_name"
+            android:layout_width="match_parent"
+            android:layout_height="75dp"
+            android:hint="@string/form_track_name" />
 
-    <com.google.android.material.textfield.TextInputEditText
-        android:id="@+id/form_track_duracion"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="@string/form_track_duracion" />
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/form_track_duracion"
+            android:layout_width="match_parent"
+            android:layout_height="75dp"
+            android:hint="@string/form_track_duracion" />
 
     <Button
         android:id="@+id/create_track"

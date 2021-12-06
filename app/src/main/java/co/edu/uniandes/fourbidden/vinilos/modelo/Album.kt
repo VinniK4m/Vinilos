@@ -1,6 +1,5 @@
 package co.edu.uniandes.fourbidden.vinilos.modelo
 
-import java.time.LocalDate
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
